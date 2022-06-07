@@ -1,6 +1,15 @@
 import {createTheme} from '@mui/material/styles';
 import {red} from '@mui/material/colors';
 
+export const Theme = {
+  primary: '#333357',
+  secondary: 'white',
+  selection : '#1372EC',
+  link: '#1372EC',
+  navbar: '#062D70',
+  background: '#E5E5E5'
+}
+
 const theme = createTheme({
   palette: {
     mode: 'light',

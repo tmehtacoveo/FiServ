@@ -12,10 +12,15 @@ import {
 import {Grid, Typography, Box} from '@mui/material';
 import {initializeHeadlessEngine} from './common/Engine';
 import {SearchEngine} from '@coveo/headless';
+import HomePage from './Components/HomePage';
+import NavBar from './Components/NavBar';
+import Header from './Components/Header';
 
 export default function App() {
   return (
     <Router>
+      <NavBar/>
+      <Header/>
       <Routes>
         <Route
           path="/"
@@ -23,7 +28,7 @@ export default function App() {
             <Navigate to={isEnvValid() === true ? '/home' : '/error'} replace />
           }
         />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/error" element={<Error />} />
       </Routes>
     </Router>

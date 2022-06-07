@@ -3,8 +3,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import {ThemeProvider, StyledEngineProvider} from '@mui/material/styles';
 import App from './App';
 import theme from './theme';
+import './index.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
-const container = document.getElementById('root');
+const container = document.getElementById('root')!;
 const root = createRoot(container);
 root.render(
   <StyledEngineProvider injectFirst>
