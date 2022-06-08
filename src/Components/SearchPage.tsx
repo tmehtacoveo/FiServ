@@ -23,7 +23,6 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
   }, [engine]);
 
   return (
-    <EngineProvider value={engine}>
       <Container maxWidth="lg">
         <Grid container justifyContent="center">
           <Grid item md={8}>
@@ -62,7 +61,6 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           </Grid>
         </Box>
       </Container>
-    </EngineProvider>
   );
 };
 

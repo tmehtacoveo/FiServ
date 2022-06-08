@@ -39,6 +39,10 @@ color: white;
 font-size: 14px;
 text-decoration: none;
 opacity: 0.8;
+transition: 0.2s ease-in-out all;
+&:hover{
+    opacity: 1;
+}
 &.active{
     opacity: 1;
 }

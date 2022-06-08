@@ -1,8 +1,4 @@
 import React, {useEffect} from 'react';
-import SearchPage from './Components/SearchPage';
-import Hero from './Components/Hero';
-import logo from './logo.svg';
-import coveologo from './coveologo.svg';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,9 +11,25 @@ import {SearchEngine} from '@coveo/headless';
 import HomePage from './Components/HomePage';
 import NavBar from './Components/NavBar';
 import Header from './Components/Header';
+import { EngineProvider } from './common/engineContext';
+import SearchBox from './Components/SearchBox';
+import SearchPage from './Components/SearchPage';
+
 
 export default function App() {
+
+  const [engine, setEngine] = React.useState<SearchEngine | null>(null);
+
+  useEffect(() => {
+    initializeHeadlessEngine().then((engine) => {
+      setEngine(engine);
+    });
+  }, []);
+  
   return (
+    <>
+    {engine && 
+    <EngineProvider value = {engine}>
     <Router>
       <NavBar/>
       <Header/>
@@ -29,9 +41,12 @@ export default function App() {
           }
         />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage engine = {engine} />} />
         <Route path="/error" element={<Error />} />
       </Routes>
     </Router>
+    </EngineProvider>}
+    </>
   );
 }
 
@@ -48,29 +63,6 @@ const isEnvValid = () => {
   return variables.reduce(reducer, true);
 };
 
-const Home = () => {
-  const [engine, setEngine] = React.useState<SearchEngine | null>(null);
-
-  useEffect(() => {
-    initializeHeadlessEngine().then((engine) => {
-      setEngine(engine);
-    });
-  }, []);
-
-  if (engine) {
-    return (
-      <div className="App">
-        <Hero
-          logos={[logo, coveologo]}
-          welcome="Welcome to Your Coveo React.js Search Page"
-        />
-        {engine && <SearchPage engine={engine} />}
-      </div>
-    );
-  } else {
-    return <div>Waiting for engine</div>;
-  }
-};
 
 const Error = () => {
   return (
