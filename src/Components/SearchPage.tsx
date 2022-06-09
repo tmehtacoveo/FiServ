@@ -25,7 +25,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
   return (
       <Container maxWidth="lg">
         <Grid container justifyContent="center">
-          <Grid item md={8}>
+          <Grid item md={8} mt = {6.7}>
             <SearchBox />
           </Grid>
         </Grid>

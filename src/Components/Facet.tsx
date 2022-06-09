@@ -1,4 +1,4 @@
-import {FunctionComponent, useEffect, useState, useContext} from 'react';
+import {FunctionComponent, useEffect, useState, useContext, memo} from 'react';
 import {Facet as HeadlessFacet, buildFacet, FacetValue} from '@coveo/headless';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -7,6 +7,7 @@ import List from '@mui/material/List';
 import './Facet.css';
 import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
 import EngineContext from '../common/engineContext';
+import { FacetContext } from './FacetContext';
 
 interface FacetProps {
   title: string;
@@ -90,14 +91,23 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
 };
 
 const Facet: FunctionComponent<FacetProps> = (props) => {
+ const {facetController, setFacetController} = useContext(FacetContext)
   const engine = useContext(EngineContext)!;
-  const controller: HeadlessFacet = buildFacet(engine, {
-    options: {
-      numberOfValues: 5,
-      field: props.field,
-    },
-  });
-  return <FacetRenderer {...props} controller={controller} />;
+  
+  let controller : HeadlessFacet  = facetController? facetController : buildFacet(engine, {
+      options: {
+        numberOfValues: 5,
+        field: props.field,
+      },
+    });
+
+    useEffect(()=>{
+      if(!facetController){
+        setFacetController(controller)
+      }
+    },[])
+    
+  return <FacetRenderer {...props} controller={facetController? facetController : controller} />;
 };
 
-export default Facet;
+export default memo(Facet);

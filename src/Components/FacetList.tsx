@@ -7,9 +7,9 @@ const FacetList = () => {
     <Box>
       <Box px={1} pb={1}>
         <Typography variant="overline">Refine By</Typography>
-        <Facet field="objecttype" title="Object Type" />
+        <Facet field="source" title="Source" />
         <Facet field="filetype" title="File Type" />
-        <Facet field="author" title="Author" />
+        <Facet field="concepts" title="Concepts" />
       </Box>
     </Box>
   );

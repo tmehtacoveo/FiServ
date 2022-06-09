@@ -14,6 +14,8 @@ import Header from './Components/Header';
 import { EngineProvider } from './common/engineContext';
 import SearchBox from './Components/SearchBox';
 import SearchPage from './Components/SearchPage';
+import Footer from './Components/Footer';
+import FacetControllerProvider from './Components/FacetContext';
 
 
 export default function App() {
@@ -30,6 +32,7 @@ export default function App() {
     <>
     {engine && 
     <EngineProvider value = {engine}>
+      <FacetControllerProvider>
     <Router>
       <NavBar/>
       <Header/>
@@ -44,7 +47,9 @@ export default function App() {
         <Route path="/search" element={<SearchPage engine = {engine} />} />
         <Route path="/error" element={<Error />} />
       </Routes>
+      <Footer/>
     </Router>
+    </FacetControllerProvider>
     </EngineProvider>}
     </>
   );

@@ -8,7 +8,8 @@ export const Theme = {
   link: '#1372EC',
   navbar: '#062D70',
   background: '#E5E5E5',
-  button : '#1372EC'
+  button : '#1372EC',
+  footer: '#262646'
 }
 
 const theme = createTheme({

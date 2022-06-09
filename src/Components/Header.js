@@ -6,16 +6,25 @@ import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
 import { user } from "react-icons-kit/feather/user";
-import SearchBox from "./SearchBox";
+import HomeSearchBox from "./HomeSearchBox";
 import {x} from 'react-icons-kit/feather/x'
 import Fade from '@mui/material/Fade';
+import { useLocation, useNavigate } from "react-router-dom"
 
 const Header = () => {
     const [openSearch, setOpenSearch] = useState(false)
+    const location = useLocation()
+    const navigate = useNavigate()
+    const closeSearchBox = ()=>{
+      setOpenSearch(!openSearch)
+    }
+
+  const onSearchPage = !location.pathname === '/search'
+
   return (
     <>
       <Wrapper>
-        <Logo src={bankLogo} />
+        <Logo src={bankLogo} onClick = {()=>navigate('/home')} />
         <RightWrapper>
           <LinkWrapper>
             <NavigationLink to="/">Bank Account</NavigationLink>
@@ -24,8 +33,8 @@ const Header = () => {
             <NavigationLink to="/">Investment</NavigationLink>
             <NavigationLink to="/">Insurance</NavigationLink>
             <Divider></Divider>
-            <div style={{ color: "grey", cursor: "pointer" }} onClick={()=>setOpenSearch(!openSearch)}>
-              {openSearch?<Icon icon={x} size={24} /> : <Icon icon={search} size={24} />}
+            <div style={{ color: "grey", cursor: "pointer" }} onClick={()=>closeSearchBox()}>
+              {openSearch && !onSearchPage?<Icon icon={x} size={24} /> : <Icon icon={search} size={24} />}
             </div>
             <div style={{ color: "grey", cursor: "pointer" }}>
               <Icon icon={user} size={24} />
@@ -33,10 +42,10 @@ const Header = () => {
           </LinkWrapper>
         </RightWrapper>
       </Wrapper>
-      <Fade in={openSearch}>
+      <Fade in={openSearch && !onSearchPage}>
       <SearchContainer>
           <div style = {{width : '50%'}}>
-        <SearchBox />
+        <HomeSearchBox closeSearchBox = {closeSearchBox} />
         </div>
       </SearchContainer>
       </Fade>
