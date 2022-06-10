@@ -7,7 +7,7 @@ import List from '@mui/material/List';
 import './Facet.css';
 import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
 import EngineContext from '../common/engineContext';
-import { FacetContext } from './FacetContext';
+import { FacetContext, FacetContextType } from './FacetContext';
 
 interface FacetProps {
   title: string;
@@ -91,10 +91,10 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
 };
 
 const Facet: FunctionComponent<FacetProps> = (props) => {
- const {facetController, setFacetController} = useContext(FacetContext)
+ const {facetController, setFacetController} = useContext<any>(FacetContext)!
   const engine = useContext(EngineContext)!;
   
-  let controller : HeadlessFacet  = facetController? facetController : buildFacet(engine, {
+  let controller : HeadlessFacet  = facetController[props.field]? facetController[props.field] : buildFacet(engine, {
       options: {
         numberOfValues: 5,
         field: props.field,
@@ -102,12 +102,18 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
     });
 
     useEffect(()=>{
-      if(!facetController){
-        setFacetController(controller)
+      if(!facetController[props.field]){
+        const update =<T,> (prev : T): T=>{
+          return {...prev, [props.field] : controller}
+        }
+
+        setFacetController(update);
       }
     },[])
+
+    console.log(facetController)
     
-  return <FacetRenderer {...props} controller={facetController? facetController : controller} />;
+  return <FacetRenderer {...props} controller={facetController[props.field]? facetController[props.field] : controller} />;
 };
 
 export default memo(Facet);

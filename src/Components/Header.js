@@ -15,11 +15,18 @@ const Header = () => {
     const [openSearch, setOpenSearch] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
+    const onSearchPage = location.pathname === '/search'
+
     const closeSearchBox = ()=>{
+
+      if(onSearchPage){
+        document.querySelector('.search-box input').focus();
+        return;
+      }
       setOpenSearch(!openSearch)
     }
 
-  const onSearchPage = !location.pathname === '/search'
+
 
   return (
     <>

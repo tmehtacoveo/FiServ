@@ -34,7 +34,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       freeSolo
       style={{width: 'auto'}}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Search" size="small" />
+        <TextField {...params} placeholder="Search" size="small" className='search-box'/>
       )}
     />
   );
