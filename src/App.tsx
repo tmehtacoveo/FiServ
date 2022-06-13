@@ -26,6 +26,7 @@ export default function App() {
     initializeHeadlessEngine().then((engine) => {
       setEngine(engine);
     });
+
   }, []);
   
   return (

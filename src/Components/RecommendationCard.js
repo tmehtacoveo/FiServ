@@ -1,41 +1,50 @@
 import React from 'react';
-import theme, {Theme} from '../theme';
+import {Theme} from '../theme';
 import styled from "styled-components";
-import sampleImage from '../assests/sampleImages/recommendation.png'
 import {chevronRight} from 'react-icons-kit/feather/chevronRight'
-import { Icon } from 'react-icons-kit'
+import { Icon } from 'react-icons-kit';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
-const RecommendtionCard = ({title, description, image, video = true})=>{
+const RecommendtionCard = ({title, description, image, video = true,clickUri,onClick,onContextMenu,onMouseDown,onMouseUp})=>{
 
 
     return <MainWrapper>
         <Image src = {image}/>
         <TextWrapper>
-        <Title>{title}</Title>
+        <Title 
+        href={clickUri} 
+        onClick = {onClick}
+        onContextMenu = {onContextMenu}
+        onMouseDown = {onMouseDown}
+        onMouseUp = {onMouseUp}
+        >{title}</Title>
         <SubTitle>{description}</SubTitle>
-        <ReferralLink>{!video? 'Learn more' : 'Watch now' } <div style = {{marginLeft: "5px", color : Theme.link }}><Icon icon = {chevronRight} /></div></ReferralLink>
+        <ReferralLink
+        href={clickUri} 
+        onClick = {onClick}
+        onContextMenu = {onContextMenu}
+        onMouseDown = {onMouseDown}
+        onMouseUp = {onMouseUp}
+        >{!video? 'Learn more' : 'Watch now' } <div style = {{marginLeft: "5px", color : Theme.link }}><Icon icon = {chevronRight} /></div></ReferralLink>
         </TextWrapper>
     </MainWrapper>
 };
 
 
-const MainWrapper = styled.div`
-height: 500px;
-width: 400px;
-border-radius: 16px;
-border: 1px solid #E5E8E8;
-overflow: hidden;
-margin: 20px;
-background: white;
-cursor: pointer;
-&:hover{
-    border-color : ${Theme.link};
+export const SkeletonRecommendtionCard = ()=>{
+
+return <MainWrapper>
+        <Skeleton style = {{height: '250px', position: 'relative', top: '-5px'}} />
+        <div style = {{padding: '30px 20px'}}>
+        <Skeleton count={1} style = {{marginBottom : '20px', height: '50px'}}/>
+        <Skeleton count={2} style = {{margin: '10px 0px'}}/>
+        </div>
+</MainWrapper>
+
 }
 
-&:hover h3{
-    color : #1372EC
-}
-`
+
 
 
 const Image = styled.img`
@@ -54,9 +63,11 @@ flex-direction: column;
 
 `
 
-const Title = styled.h3`
+const Title = styled.a`
 font-family: 'Gibson';
+text-decoration: none;
 font-style: normal;
+align-self: flex-start;
 font-weight: 400;
 font-size: 24px;
 line-height: 32px;
@@ -90,7 +101,30 @@ color: ${Theme.link};
 text-decoration: none;
 display: flex;
 align-self: flex-start;
+opacity: 0.8;
 cursor: pointer;
+`
+
+const MainWrapper = styled.div`
+height: 500px;
+width: 400px;
+border-radius: 16px;
+border: 1px solid #E5E8E8;
+overflow: hidden;
+margin: 20px;
+background: white;
+cursor: pointer;
+&:hover{
+    border-color : ${Theme.link};
+}
+
+&:hover ${Title}{
+    color : #1372EC
+}
+
+&:hover ${ReferralLink}{
+    opacity: 1;
+}
 `
 
 export default RecommendtionCard;
