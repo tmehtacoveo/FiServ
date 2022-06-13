@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface SearchBoxProps {
   controller: HeadlessSearchBox;
-  closeSearchBox : ()=>void;
+  toggleSearchBox : ()=>void;
 }
 
 const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
@@ -33,7 +33,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
           if (controller.state.value !== '')
           {
             navigate('/search');
-            props.closeSearchBox();
+            props.toggleSearchBox();
             controller.submit();
           }
       }} */
@@ -41,10 +41,10 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       freeSolo
       style={{width: 'auto'}}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Search" size="small" onKeyDown={e => {
+        <TextField {...params} className='search-box' placeholder="Search" size="small" onKeyDown={e => {
             if (e.code === 'Enter' && controller.state.value !== '') {
                 navigate('/search');
-                props.closeSearchBox();
+                props.toggleSearchBox();
                 controller.submit();
             }
           }}/>
@@ -54,15 +54,15 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
 };
 
 interface  SearchBoxType {
-    closeSearchBox : ()=>void
+    toggleSearchBox : ()=>void
 }
 
-const SearchBox = ({closeSearchBox}: SearchBoxType) => {
+const SearchBox = ({toggleSearchBox}: SearchBoxType) => {
   const options: SearchBoxOptions = {numberOfSuggestions: 8};
   const engine = useContext(EngineContext)!;
   const controller = buildSearchBox(engine, {options});
   controller.updateText('');
-  return <SearchBoxRenderer controller={controller} closeSearchBox = {closeSearchBox} />;
+  return <SearchBoxRenderer controller={controller} toggleSearchBox = {toggleSearchBox} />;
 };
 
 export default SearchBox;

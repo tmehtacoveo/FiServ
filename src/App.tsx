@@ -31,7 +31,7 @@ export default function App() {
   
   return (
     <>
-    {engine && 
+    {engine? 
     <EngineProvider value = {engine}>
       <FacetControllerProvider>
     <Router>
@@ -51,7 +51,7 @@ export default function App() {
       <Footer/>
     </Router>
     </FacetControllerProvider>
-    </EngineProvider>}
+    </EngineProvider> : <h2>Loading engine</h2>}
     </>
   );
 }

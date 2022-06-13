@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
 import bankLogo from "../assests/ChanceBank.png";
@@ -17,16 +17,21 @@ const Header = () => {
     const navigate = useNavigate()
     const onSearchPage = location.pathname === '/search'
 
-    const closeSearchBox = ()=>{
+    const toggleSearchBox = ()=>{
 
       if(onSearchPage){
         document.querySelector('.search-box input').focus();
         return;
       }
       setOpenSearch(!openSearch)
+      
     }
 
-
+    useEffect(()=>{
+      if(openSearch){
+        document.querySelector('.search-box input').focus();
+      }
+    },[openSearch])
 
   return (
     <>
@@ -40,7 +45,7 @@ const Header = () => {
             <NavigationLink to="/">Investment</NavigationLink>
             <NavigationLink to="/">Insurance</NavigationLink>
             <Divider></Divider>
-            <div style={{ color: "grey", cursor: "pointer" }} onClick={()=>closeSearchBox()}>
+            <div style={{ color: "grey", cursor: "pointer" }} onClick={()=>toggleSearchBox()}>
               {openSearch && !onSearchPage?<Icon icon={x} size={24} /> : <Icon icon={search} size={24} />}
             </div>
             <div style={{ color: "grey", cursor: "pointer" }}>
@@ -52,7 +57,7 @@ const Header = () => {
       <Fade in={openSearch && !onSearchPage}>
       <SearchContainer>
           <div style = {{width : '50%'}}>
-        <HomeSearchBox closeSearchBox = {closeSearchBox} />
+        <HomeSearchBox toggleSearchBox = {toggleSearchBox} />
         </div>
       </SearchContainer>
       </Fade>

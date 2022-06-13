@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const RecommendtionCard = ({title, description, image, video = true,clickUri,onClick,onContextMenu,onMouseDown,onMouseUp})=>{
 
 
-    return <MainWrapper>
+    return <MainWrapper key = {title}>
         <Image src = {image}/>
         <TextWrapper>
         <Title 
@@ -32,8 +32,7 @@ const RecommendtionCard = ({title, description, image, video = true,clickUri,onC
 };
 
 
-export const SkeletonRecommendtionCard = ()=>{
-
+export const SkeletonRecommendtionCard = ({keyID})=>{
 return <MainWrapper>
         <Skeleton style = {{height: '250px', position: 'relative', top: '-5px'}} />
         <div style = {{padding: '30px 20px'}}>
