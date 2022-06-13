@@ -41,7 +41,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       freeSolo
       style={{width: 'auto'}}
       renderInput={(params) => (
-        <TextField {...params} className='search-box' placeholder="Search" size="small" onKeyDown={e => {
+        <TextField {...params} className='home-search-box' placeholder="Search" size="small" onKeyDown={e => {
             if (e.code === 'Enter' && controller.state.value !== '') {
                 navigate('/search');
                 props.toggleSearchBox();

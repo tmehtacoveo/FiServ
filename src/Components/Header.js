@@ -18,7 +18,6 @@ const Header = () => {
     const onSearchPage = location.pathname === '/search'
 
     const toggleSearchBox = ()=>{
-
       if(onSearchPage){
         document.querySelector('.search-box input').focus();
         return;
@@ -29,7 +28,7 @@ const Header = () => {
 
     useEffect(()=>{
       if(openSearch){
-        document.querySelector('.search-box input').focus();
+        document.querySelector('.home-search-box input').focus();
       }
     },[openSearch])
 
