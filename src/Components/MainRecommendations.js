@@ -36,7 +36,7 @@ const MainRecommendations = ()=>{
 
 
     return <MainWrapper>
-        <Title>Tile of this section</Title>
+        <Title>Recommendations</Title>
         <SubTitle>Subtitle here</SubTitle>
         <CardWrapper>
         {RecommendationCardsData.map((item,index)=>{
