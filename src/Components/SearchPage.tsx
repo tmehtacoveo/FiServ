@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -20,6 +20,7 @@ interface ISearchPageProps {
 
 const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
   const {engine} = props;
+  const [resultLoading, setResultLoading] = useState(false);
   useEffect(() => {
     engine.executeFirstSearch();
   }, [engine]);
@@ -36,7 +37,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         <DidYouMean/>
         </Grid>
         <Box my={4}>
-          <Grid container>
+          <Grid container style = {{opacity : resultLoading? '0.6' : '1'}}>
             <Grid item md={3} sm={12}>
               <FacetList />
             </Grid>
@@ -50,7 +51,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                     <Sort />
                   </Grid>
                 </Grid>
-                <ResultList />
+                <ResultList setResultLoading = {setResultLoading} />
               </Box>
               <Box my={4}>
                 <Grid container>

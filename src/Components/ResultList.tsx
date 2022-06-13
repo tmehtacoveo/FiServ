@@ -27,8 +27,9 @@ interface FieldValueInterface {
   caption: string;
 }
 
-interface ResultListProps {
+interface ResultListRendererProps {
   controller: HeadlessResultList;
+  setResultLoading : (x: boolean)=>void
 }
 function ListItemLink(engine: SearchEngine, result: Result) {
   const interactiveResult = buildInteractiveResult(engine, {
@@ -68,11 +69,10 @@ function FieldValue(props: FieldValueInterface) {
   );
 }
 
-const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
-  const {controller} = props;
+const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) => {
+  const {controller,setResultLoading} = props;
   const engine = useContext(EngineContext)!;
   const [state, setState] = useState(controller.state);
-
   const headlessResultTemplateManager: ResultTemplatesManager<Template> =
     buildResultTemplatesManager(engine);
 
@@ -107,6 +107,16 @@ const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
     [controller]
   );
 
+  useEffect(()=>{
+    if(state.isLoading)
+    {
+      setResultLoading(true);
+    }
+    else{
+      setResultLoading(false)
+    }
+  },[state])
+
   return (
     <List>
       {state.results.map((result: Result) => {
@@ -117,10 +127,14 @@ const ResultListRenderer: FunctionComponent<ResultListProps> = (props) => {
   );
 };
 
-const ResultList = () => {
+interface ResultListProps {
+  setResultLoading : (x: boolean)=>void
+}
+
+const ResultList:FunctionComponent<ResultListProps> = ({setResultLoading}) => {
   const engine = useContext(EngineContext)!;
   const controller = buildResultList(engine);
-  return <ResultListRenderer controller={controller} />;
+  return <ResultListRenderer controller={controller} setResultLoading={setResultLoading} />;
 };
 
 export default ResultList;
