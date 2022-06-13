@@ -31,11 +31,12 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         <Grid container justifyContent="center">
           <Grid item md={8} mt = {6.7}>
             <SearchBox />
+            <Grid item md={8} mt = {3}>
+            <DidYouMean/>
+            </Grid>
           </Grid>
         </Grid>
-        <Grid item md={8} mt = {6.7}>
-        <DidYouMean/>
-        </Grid>
+        
         <Box my={4}>
           <Grid container style = {{opacity : resultLoading? '0.6' : '1'}}>
             <Grid item md={3} sm={12}>
