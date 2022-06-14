@@ -11,7 +11,7 @@ const RecommendtionCard = ({title, description, image, video = true,clickUri,onC
 
     return <MainWrapper key = {title} onClick = {()=>{
         onClick();
-        window.open(clickUri,'_black')
+        window.open(clickUri,'_blank', 'noopener,noreferrer');
     }}
         onContextMenu = {onContextMenu}
         onMouseDown = {onMouseDown}
