@@ -9,24 +9,18 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const RecommendtionCard = ({title, description, image, video = true,clickUri,onClick,onContextMenu,onMouseDown,onMouseUp})=>{
 
 
-    return <MainWrapper key = {title}>
+    return <MainWrapper key = {title} onClick = {()=>{
+        onClick();
+        window.open(clickUri,'_black')
+    }}
+        onContextMenu = {onContextMenu}
+        onMouseDown = {onMouseDown}
+        onMouseUp = {onMouseUp}>
         <Image src = {image}/>
         <TextWrapper>
-        <Title 
-        href={clickUri} 
-        onClick = {onClick}
-        onContextMenu = {onContextMenu}
-        onMouseDown = {onMouseDown}
-        onMouseUp = {onMouseUp}
-        >{title}</Title>
+        <Title>{title}</Title>
         <SubTitle>{description}</SubTitle>
-        <ReferralLink
-        href={clickUri} 
-        onClick = {onClick}
-        onContextMenu = {onContextMenu}
-        onMouseDown = {onMouseDown}
-        onMouseUp = {onMouseUp}
-        >{!video? 'Learn more' : 'Watch now' } <div style = {{marginLeft: "5px", color : Theme.link }}><Icon icon = {chevronRight} /></div></ReferralLink>
+        <ReferralLink>{!video? 'Learn more' : 'Watch now' } <div style = {{marginLeft: "5px", color : Theme.link }}><Icon icon = {chevronRight} /></div></ReferralLink>
         </TextWrapper>
     </MainWrapper>
 };

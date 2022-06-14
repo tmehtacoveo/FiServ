@@ -133,7 +133,9 @@ interface ResultListProps {
 
 const ResultList:FunctionComponent<ResultListProps> = ({setResultLoading}) => {
   const engine = useContext(EngineContext)!;
-  const controller = buildResultList(engine);
+  const controller = buildResultList(engine,{
+    options : { fieldsToInclude: ['sfanswer__c']}
+  });
   return <ResultListRenderer controller={controller} setResultLoading={setResultLoading} />;
 };
 
