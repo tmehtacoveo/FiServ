@@ -1,10 +1,11 @@
-import { useEffect, useState, FunctionComponent, useContext } from "react";
+import { useEffect, useState, FunctionComponent } from "react";
 import {
   RecommendationList as HeadlessRecommendationList,
   loadClickAnalyticsActions,
   Result,
   buildRecommendationEngine,
   buildRecommendationList,
+  buildContext,
 } from "@coveo/headless/recommendation";
 import { Theme } from "../theme";
 import styled from "styled-components";
@@ -105,9 +106,21 @@ const MainRecommendationList = () => {
     },
   });
 
+  const contextController = buildContext(recommendationEngine);
+
+  contextController.add(
+    'concepts' , ['investment advisors ', ' broker-dealer representatives ', ' fiduciary standard ']
+  )
+  console.log(contextController.state)
+
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
   });
+
+
+
+
+  
 
   return (
     <RecommendationListRenderer
