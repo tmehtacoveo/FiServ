@@ -5,6 +5,7 @@
   "dependencies": {
     "@coveo/headless": "^1.66.3",
     "@coveo/search-token-server": "^1.29.2",
+    "@coveord/platform-client": "^33.1.0",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.6.0",
@@ -23,7 +24,7 @@
     "typescript": "^4.7.3"
   },
   "scripts": {
-    "start": "npm run allocate-port && concurrently --raw \"npm run start-server\" \"react-scripts start\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
