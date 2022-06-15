@@ -38,7 +38,7 @@ export async function initializeHeadlessEngine() {
       accessToken: await getSearchToken(),
       renewAccessToken: getSearchToken,
       search :{
-        searchHub : 'Finance'
+        searchHub : process.env.SEARCH_HUB!
       }
     },
   });
@@ -97,7 +97,7 @@ async function ensureClientTokenGenerated() {
        * Example:
        * searchHub: 'supporthub',
        */
-       searchHub: 'Finance',
+       /* searchHub: 'Finance', */
       /**
        * The filter query expression to apply when authenticating a query with this search token.
        * See https://docs.coveo.com/en/56/#filter-string-optional

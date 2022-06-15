@@ -14,7 +14,6 @@ const {controller} = props
 const [state, setState] = useState(controller.state);
  
   useEffect(() => controller.subscribe(() => setState(controller.state)), []);
- console.log('static filter', controller.state);
 
 
   return (
@@ -85,7 +84,7 @@ const StaticFilterSelector: FunctionComponent = ()=>{
 
 const Wrapper = styled.div`
     width: 100%;
-    padding: 0px 20%; 
+    padding: 0px 10%; 
     background: ${Theme.navbar};
     display: flex;
     align-items: center;
@@ -96,6 +95,7 @@ const Wrapper = styled.div`
 
 const Filter = styled.a<{isActive : boolean}>`
     padding: 15px 20px;
+    text-align: center;
     color : ${Theme.secondary};
     cursor: pointer;
     background: ${props => props.isActive? Theme.selection : null};

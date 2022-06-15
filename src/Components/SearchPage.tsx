@@ -42,19 +42,19 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         </Grid>
       </Grid>
       <StaticFilterSelector/>
-      <Container maxWidth="lg" style={{ border: "2px red solid" }}>
+      <Container maxWidth="xl" style={{ padding : '0px' }}>
         <Grid item md={8.5} mt={3}>
           <DidYouMean />
         </Grid>
         <Box my={4}>
           <Grid container style={{ opacity: resultLoading ? "0.6" : "1" }}>
-            <Grid item md={3} sm={12}>
+            <Grid item xs={3} md={3} sm={12}>
               <FacetList />
             </Grid>
-            <Grid item md={9} sm={12}>
+            <Grid item xs={6} md={6} sm={12}>
               <Box pl={3}>
                 <Grid container alignItems="flex-end">
-                  <Grid item md={10}>
+                  <Grid item md={9.5}>
                     <QuerySummary />
                   </Grid>
                   <Grid item md={2}>
@@ -73,6 +73,15 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                   </Grid>
                 </Grid>
               </Box>
+            </Grid>
+            <Grid item xs={3} md={3} sm={12}>
+              {/* <div style = {{
+                width: '100%',
+                height : '200px',
+                border: '2px black solid'
+              }}>
+
+              </div> */}
             </Grid>
           </Grid>
         </Box>

@@ -100,9 +100,10 @@ export const RecommendationListRenderer: FunctionComponent<
 const VideoRecommendation = () => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
-      organizationId: "fiservg0299c4q",
-      accessToken: "xx6a51ceb9-3c7a-453f-b9eb-004ced9c6636",
-      pipeline : 'Video Rec Sidebar'
+      organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
+      accessToken: process.env.REACT_APP_API_KEY!,
+      searchHub : process.env.SEARCH_HUB!,
+      pipeline : 'Video Rec Sidebar',
 
     },
   });
