@@ -10,18 +10,10 @@ import Sort from "./Sort";
 import FacetList from "./FacetList";
 import ResultsPerPage from "./ResultsPerPage";
 import {
-  buildStaticFilter,
-  loadContextActions,
   SearchEngine,
 } from "@coveo/headless";
-import { EngineProvider } from "../common/engineContext";
-import {
-  buildContext,
-  buildRecommendationEngine,
-  buildRecommendationList,
-  loadRecommendationActions,
-} from "@coveo/headless/recommendation";
 import DidYouMean from "./DidyouMean";
+import StaticFilterSelector from './StaticFilterSelector';
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -49,6 +41,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           <SearchBox />
         </Grid>
       </Grid>
+      <StaticFilterSelector/>
       <Container maxWidth="lg" style={{ border: "2px red solid" }}>
         <Grid item md={8.5} mt={3}>
           <DidYouMean />

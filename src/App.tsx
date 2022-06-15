@@ -46,6 +46,7 @@ export default function App() {
         />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage engine = {engine} />} />
+        <Route path="/search/:filter" element={<SearchPage engine = {engine} />} />
         <Route path="/error" element={<Error />} />
       </Routes>
       <Footer/>
