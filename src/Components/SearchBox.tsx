@@ -32,7 +32,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       }}
       options={state.suggestions.map((suggestion) => suggestion.rawValue)}
       freeSolo
-      style={{width: 'auto'}}
+      style={{width: 'auto', background: 'white'}}
       renderInput={(params) => (
         <TextField {...params} placeholder="Search" size="small" className='search-box'/>
       )}

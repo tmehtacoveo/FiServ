@@ -1,44 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import SearchBox from './SearchBox';
-import QuerySummary from './QuerySummary';
-import ResultList from './ResultList';
-import Pager from './Pager';
-import Sort from './Sort';
-import FacetList from './FacetList';
-import ResultsPerPage from './ResultsPerPage';
-import {buildStaticFilter, loadContextActions, SearchEngine} from '@coveo/headless';
-import {EngineProvider} from '../common/engineContext';
-import { buildContext, buildRecommendationEngine, buildRecommendationList, loadRecommendationActions } from '@coveo/headless/recommendation';
-import DidYouMean from './DidyouMean';
+import React, { useEffect, useState } from "react";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import SearchBox from "./SearchBox";
+import QuerySummary from "./QuerySummary";
+import ResultList from "./ResultList";
+import Pager from "./Pager";
+import Sort from "./Sort";
+import FacetList from "./FacetList";
+import ResultsPerPage from "./ResultsPerPage";
+import {
+  buildStaticFilter,
+  loadContextActions,
+  SearchEngine,
+} from "@coveo/headless";
+import { EngineProvider } from "../common/engineContext";
+import {
+  buildContext,
+  buildRecommendationEngine,
+  buildRecommendationList,
+  loadRecommendationActions,
+} from "@coveo/headless/recommendation";
+import DidYouMean from "./DidyouMean";
 
 interface ISearchPageProps {
   engine: SearchEngine;
 }
 
 const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
-  const {engine} = props;
+  const { engine } = props;
   const [resultLoading, setResultLoading] = useState(false);
   useEffect(() => {
     engine.executeFirstSearch();
   }, [engine]);
 
-
   return (
-      <Container maxWidth="lg">
-        <Grid container justifyContent="center">
-          <Grid item md={8} mt = {6.7}>
-            <SearchBox />
-            <Grid item md={8} mt = {3}>
-            <DidYouMean/>
-            </Grid>
-          </Grid>
+    <>
+      <Grid
+        container
+        justifyContent="center"
+        style={{
+          background: "#F6F7F9",
+        }}
+      >
+        <Grid item md={5} mt={6.5} mb={6.5} style = {{
+          minWidth: '500px'
+        }}>
+          <SearchBox />
         </Grid>
-        
+      </Grid>
+      <Container maxWidth="lg" style={{ border: "2px red solid" }}>
+        <Grid item md={8.5} mt={3}>
+          <DidYouMean />
+        </Grid>
         <Box my={4}>
-          <Grid container style = {{opacity : resultLoading? '0.6' : '1'}}>
+          <Grid container style={{ opacity: resultLoading ? "0.6" : "1" }}>
             <Grid item md={3} sm={12}>
               <FacetList />
             </Grid>
@@ -52,7 +68,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                     <Sort />
                   </Grid>
                 </Grid>
-                <ResultList setResultLoading = {setResultLoading} />
+                <ResultList setResultLoading={setResultLoading} />
               </Box>
               <Box my={4}>
                 <Grid container>
@@ -68,6 +84,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           </Grid>
         </Box>
       </Container>
+    </>
   );
 };
 

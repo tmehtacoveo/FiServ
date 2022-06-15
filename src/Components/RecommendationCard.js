@@ -77,7 +77,7 @@ font-style: normal;
 font-weight: 300;
 font-size: 16px;
 line-height: 26px;
-color: #626971;
+color: ${Theme.primary};
 display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;  
