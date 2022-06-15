@@ -103,7 +103,7 @@ const MainRecommendationList = () => {
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
-      searchHub : process.env.SEARCH_HUB!
+      searchHub : process.env.REACT_APP_SEARCH_HUB!
     },
   });
 
