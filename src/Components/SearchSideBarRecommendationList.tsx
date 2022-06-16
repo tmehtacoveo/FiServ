@@ -109,12 +109,12 @@ export const RecommendationListRenderer: FunctionComponent<
 
 
 interface SearSearchSideBarRecommendationListProps {
-    pipeline : string;
+    pipeline : string ;
     NumberofResults : number;
     title : string
 }
 
-const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecommendationListProps> = ({pipeline, NumberofResults,title}) => {
+const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecommendationListProps> = ({pipeline = "default", NumberofResults,title}) => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,

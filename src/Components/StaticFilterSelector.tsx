@@ -3,6 +3,44 @@ import { buildStaticFilter, StaticFilter} from '@coveo/headless';
 import EngineContext from '../common/engineContext';
 import styled from 'styled-components';
 import { Theme } from "../theme";
+import {useNavigate} from 'react-router-dom';
+
+
+const FILTER_LIST =  [
+    {
+      caption : 'Investing',
+      expression : `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
+      state: 'idle'
+    },
+    {
+        caption : 'Money Matters',
+        expression : `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
+        state: 'idle'
+    },
+    {
+        caption : 'Insurance Needs',
+        expression : `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
+        state: 'idle'
+    },
+    {
+        caption : 'Banking Info',
+        expression : `@source==("Bankrate")`,
+        state: 'idle'
+    },
+    {
+        caption : 'Advisor',
+        expression : `@source==("Advisor")`,
+        state: 'idle'
+    },
+    {
+        caption : 'Youtube',
+        expression : `@filetype=="youtubevideo"`,
+        state: 'idle'
+    }
+]
+
+
+
 
 interface StaticFIlterSelectorType {
     controller : StaticFilter
@@ -11,6 +49,7 @@ interface StaticFIlterSelectorType {
  
 export const StaticFilterRenderer: FunctionComponent<StaticFIlterSelectorType> = (props) => {
 const {controller} = props
+const navigate = useNavigate();
 const [state, setState] = useState(controller.state);
  
   useEffect(() => controller.subscribe(() => setState(controller.state)), []);
@@ -22,7 +61,15 @@ const [state, setState] = useState(controller.state);
       {state.values.map((value) => {
         return (
           <Filter key={value.caption} onClick={()=>{
+
             controller.toggleSingleSelect(value)
+            if(value.state === 'selected'){
+                navigate(`/search`)
+            }else{
+                navigate(`/search/${value.caption.replace(/\s/g, '')}`)
+            }
+            
+
           }}
           isActive = {value.state === 'selected'}
           >
@@ -36,45 +83,21 @@ const [state, setState] = useState(controller.state);
 };
 
 
-const StaticFilterSelector: FunctionComponent = ()=>{
+interface StaticFilterSelectorProps {
+    filterSelected : string | undefined
+}
+
+
+const StaticFilterSelector: FunctionComponent<StaticFilterSelectorProps> = ({filterSelected})=>{
 
     const engine = useContext(EngineContext)!;
 
     const controller = buildStaticFilter(engine,{
         options: {
           id: 'searchpage-static-filter',
-          values: [
-            {
-              caption : 'Investing',
-              expression : `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
-              state: 'idle'
-            },
-            {
-                caption : 'Money Matters',
-                expression : `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
-                state: 'idle'
-            },
-            {
-                caption : 'Insurance Needs',
-                expression : `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
-                state: 'idle'
-            },
-            {
-                caption : 'Banking Info',
-                expression : `@source==("Bankrate")`,
-                state: 'idle'
-            },
-            {
-                caption : 'Advisor',
-                expression : `@source==("Advisor")`,
-                state: 'idle'
-            },
-            {
-                caption : 'Youtube',
-                expression : `@filetype=="youtubevideo"`,
-                state: 'idle'
-            }
-        ]
+          values: FILTER_LIST.map((item)=>{
+              return {...item, state : filterSelected && item.caption.replace(/\s/g, '').toLowerCase() === filterSelected.toLowerCase()? 'selected' : 'idle' }
+          })
         }
       } )
 

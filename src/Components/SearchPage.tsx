@@ -9,18 +9,18 @@ import Pager from "./Pager";
 import Sort from "./Sort";
 import FacetList from "./FacetList";
 import ResultsPerPage from "./ResultsPerPage";
-import {
-  SearchEngine,
-} from "@coveo/headless";
+import { SearchEngine } from "@coveo/headless";
 import DidYouMean from "./DidyouMean";
-import StaticFilterSelector from './StaticFilterSelector';
+import StaticFilterSelector from "./StaticFilterSelector";
 import SearchSideBarRecommendationList from "./SearchSideBarRecommendationList";
+import { useParams } from "react-router-dom";
 
 interface ISearchPageProps {
   engine: SearchEngine;
 }
 
 const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
+  const { filter } = useParams();
   const { engine } = props;
   const [resultLoading, setResultLoading] = useState(false);
   useEffect(() => {
@@ -36,14 +36,20 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           background: "#F6F7F9",
         }}
       >
-        <Grid item md={5} mt={6.5} mb={6.5} style = {{
-          minWidth: '500px'
-        }}>
+        <Grid
+          item
+          md={5}
+          mt={6.5}
+          mb={6.5}
+          style={{
+            minWidth: "500px",
+          }}
+        >
           <SearchBox />
         </Grid>
       </Grid>
-      <StaticFilterSelector/>
-      <Container maxWidth="xl" style={{ padding : '0px' }}>
+      <StaticFilterSelector filterSelected={filter} />
+      <Container maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item md={8.5} mt={3}>
           <DidYouMean />
         </Grid>
@@ -76,7 +82,20 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={3} md={3} sm={12}>
-                <SearchSideBarRecommendationList pipeline="IRS test" NumberofResults = {6} title = {'Related for Investing'}/>
+              {filter?.toLowerCase() === "investing" && (
+                <SearchSideBarRecommendationList
+                  pipeline="IRS test"
+                  NumberofResults={6}
+                  title={"Related for Investing"}
+                />
+              )}
+              {filter?.toLowerCase() === "insuranceneeds" && (
+                <SearchSideBarRecommendationList
+                  pipeline="Glossary test"
+                  NumberofResults={6}
+                  title={"Glossary"}
+                />
+              )}
             </Grid>
           </Grid>
         </Box>
