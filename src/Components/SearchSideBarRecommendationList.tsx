@@ -1,39 +1,52 @@
-import { useEffect, useState, FunctionComponent } from "react";
+import { useEffect, useState, FunctionComponent, useContext } from "react";
 import {
   RecommendationList as HeadlessRecommendationList,
   loadClickAnalyticsActions,
   Result,
   buildRecommendationEngine,
   buildRecommendationList,
-  buildContext,
+  loadAdvancedSearchQueryActions,
+  RecommendationEngine
 } from "@coveo/headless/recommendation";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assests/sampleImages/recommendation.png";
+import RecommendtionCardSmall, { SkeletonRecommendtionCardSmall } from "./RecommendationCardSmall";
+import EngineContext from "../common/engineContext";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
-  engine: any;
+  engine: RecommendationEngine;
+  NumberofResults : number;
+  title : string
 }
 
 export const RecommendationListRenderer: FunctionComponent<
   RecommendationListProps
 > = (props) => {
   const engine = props.engine;
+  const [lastQuery, setLastQuery] = useState('')
+  const MainEngine = useContext(EngineContext)!
   const { controller } = props;
   const [state, setState] = useState(controller.state);
-  console.log("state recommendation list", state);
-
   useEffect(() => {
-
-    setTimeout(() => {
-      controller.refresh();
-    controller.subscribe(() => setState(controller.state))
-    }, 1000);
-    
-  
+    controller.refresh();
+   controller.subscribe(() => setState(controller.state))
   }, []);
+
+  useEffect(()=>{
+
+        if( MainEngine.state.query?.q !== lastQuery){
+            engine.dispatch(
+                loadAdvancedSearchQueryActions(engine).updateAdvancedSearchQueries({
+                    aq : MainEngine.state.query?.q
+                })
+            )
+            setLastQuery(MainEngine.state.query? MainEngine.state.query.q : "")
+                controller.refresh();
+                controller.subscribe(() => setState(controller.state))
+        }
+
+  },[MainEngine.state.query])
 
 
   if (state.error) {
@@ -46,35 +59,31 @@ export const RecommendationListRenderer: FunctionComponent<
     );
   }
 
-/*   if (!state.recommendations.length) {
-    return <button onClick={() => controller.refresh()}>Refresh</button>;
-  } */
-
   const logClick = (recommendation: Result) => {
     if (!engine) {
       return;
     }
-    console.log('loggin')
-    const { logRecommendationOpen } = loadClickAnalyticsActions(engine);
-    engine.dispatch(logRecommendationOpen(recommendation));
+        console.log('loggin')
+        const { logRecommendationOpen } = loadClickAnalyticsActions(engine);
+        engine.dispatch(logRecommendationOpen(recommendation));
   };
 
-  const skeletonArray = [1,2,3]
+  const skeletonArray = [1,2,3,4,5]
 
+  
   return (
     <MainWrapper>
-      <Title>Recommendations</Title>
-      <SubTitle>Here are your personalized recommendation</SubTitle>
-      {state.recommendations.length > 0 ?
+        <Divider/>
+      <Title>{props.title}</Title>
+      { !state.isLoading?
       <CardWrapper>
-        {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
+        {state?.recommendations?.slice(0, props.NumberofResults).map((recommendation, index) => {
           return (
             <div key = {recommendation.title}>
-            <RecommendtionCard
+            <RecommendtionCardSmall
               video={false}
               title={recommendation.title}
               description={recommendation.excerpt}
-              image={SampleImage}
               clickUri={recommendation.clickUri} 
               onClick={() => logClick(recommendation)}
               onContextMenu={() => logClick(recommendation)}
@@ -88,7 +97,7 @@ export const RecommendationListRenderer: FunctionComponent<
         {skeletonArray.map((item, index) => {
           return (
             <div key = {item}>
-            <SkeletonRecommendtionCard keyID={item}/>
+            <SkeletonRecommendtionCardSmall keyID={item}/>
             </div>
           );
         })}
@@ -98,21 +107,22 @@ export const RecommendationListRenderer: FunctionComponent<
 
 };
 
-const MainRecommendationList = () => {
+
+interface SearSearchSideBarRecommendationListProps {
+    pipeline : string;
+    NumberofResults : number;
+    title : string
+}
+
+const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecommendationListProps> = ({pipeline, NumberofResults,title}) => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub : process.env.REACT_APP_SEARCH_HUB!,
+      pipeline: pipeline
     },
   });
-
-  const contextController = buildContext(recommendationEngine);
-
-  contextController.add(
-    'concepts' , ['investment advisors ', ' broker-dealer representatives ', ' fiduciary standard ']
-  )
-  console.log(contextController.state)
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
@@ -127,33 +137,39 @@ const MainRecommendationList = () => {
     <RecommendationListRenderer
       controller={recController}
       engine={recommendationEngine}
+      NumberofResults = {NumberofResults}
+      title = {title}
     />
   );
 };
 
-export default MainRecommendationList;
+export default SearchSideBarRecommendationList;
+
+
+const Divider = styled.div`
+    width: 100%;
+    height: 4px;
+    background: ${Theme.primary};
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+`
 
 const MainWrapper = styled.div`
-  width: 95%;
-  background-color: white;
+  width: 100%;
   border-radius: 24px;
   position: relative;
-  top: -40px;
-  padding: 40px 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0px 10px 25px rgba(229, 232, 232, 0.6);
   margin-bottom: 30px;
 `;
 
 const Title = styled.h2`
-  font-size: 32px;
+margin-left: 20px;
+  font-size: 20px;
   font-weight: 400;
   font-family: "Gibson";
   color: ${Theme.primary};
-  margin-top: 30px;
-  margin-bottom: 10px;
 `;
 
 const SubTitle = styled.p`
@@ -166,11 +182,7 @@ const SubTitle = styled.p`
 
 const CardWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   max-width: 1500px;
-  margin-top: 20px;
 `;
 

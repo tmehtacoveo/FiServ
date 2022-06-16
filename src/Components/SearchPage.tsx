@@ -14,6 +14,7 @@ import {
 } from "@coveo/headless";
 import DidYouMean from "./DidyouMean";
 import StaticFilterSelector from './StaticFilterSelector';
+import SearchSideBarRecommendationList from "./SearchSideBarRecommendationList";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -75,13 +76,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={3} md={3} sm={12}>
-              {/* <div style = {{
-                width: '100%',
-                height : '200px',
-                border: '2px black solid'
-              }}>
-
-              </div> */}
+                <SearchSideBarRecommendationList pipeline="IRS test" NumberofResults = {6} title = {'Related for Investing'}/>
             </Grid>
           </Grid>
         </Box>
