@@ -55,7 +55,7 @@ const Header = () => {
       </Wrapper>
       <Fade in={openSearch && !onSearchPage}>
       <SearchContainer>
-          <div style = {{width : '50%'}}>
+          <div style = {{width : '50%', maxWidth: '800px', minWidth: "500px"}}>
         <HomeSearchBox toggleSearchBox = {toggleSearchBox} />
         </div>
       </SearchContainer>

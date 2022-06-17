@@ -11,9 +11,9 @@ import FacetList from "./FacetList";
 import ResultsPerPage from "./ResultsPerPage";
 import { SearchEngine } from "@coveo/headless";
 import DidYouMean from "./DidyouMean";
-import StaticFilterSelector from "./StaticFilterSelector";
 import SearchSideBarRecommendationList from "./SearchSideBarRecommendationList";
 import { useParams } from "react-router-dom";
+import SearchTabs from "./SearchTabs";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -43,12 +43,13 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           mb={6.5}
           style={{
             minWidth: "500px",
+            maxWidth: "800px"
           }}
         >
           <SearchBox />
         </Grid>
       </Grid>
-      <StaticFilterSelector filterSelected={filter} />
+      <SearchTabs filterSelected={filter} />
       <Container maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item md={8.5} mt={3}>
           <DidYouMean />

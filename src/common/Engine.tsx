@@ -38,7 +38,8 @@ export async function initializeHeadlessEngine() {
       accessToken: await getSearchToken(),
       renewAccessToken: getSearchToken,
       search :{
-        searchHub : process.env.REACT_APP_SEARCH_HUB!
+        searchHub : process.env.REACT_APP_SEARCH_HUB!,
+        pipeline: 'Investing'
       }
     },
   });
