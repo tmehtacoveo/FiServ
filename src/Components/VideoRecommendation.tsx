@@ -79,6 +79,7 @@ export const RecommendationListRenderer: FunctionComponent<
               onContextMenu={() => logClick(recommendation)}
               onMouseDown={() => logClick(recommendation)}
               onMouseUp={() => logClick(recommendation)}
+              sfid = {null}
             />
             </div>
           );

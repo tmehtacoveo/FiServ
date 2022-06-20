@@ -5,17 +5,22 @@ import {chevronRight} from 'react-icons-kit/feather/chevronRight'
 import { Icon } from 'react-icons-kit';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useNavigate } from 'react-router-dom';
 
-const RecommendtionCard = ({title, description, image, video = true,clickUri,onClick,onContextMenu,onMouseDown,onMouseUp})=>{
-
+const RecommendtionCard = ({title, description, image, video = true,clickUri,onClick,onContextMenu,onMouseDown,onMouseUp, source = '', sfid})=>{
+    const navigate = useNavigate();
 
     return <MainWrapper key = {title} onClick = {()=>{
         onClick();
+        if(source === 'Salesforce'){
+            navigate(`/salesforcekb/${sfid}`)
+            return;
+        }
         window.open(clickUri,'_blank', 'noopener,noreferrer');
     }}
         onContextMenu = {onContextMenu}
-        onMouseDown = {onMouseDown}
-        onMouseUp = {onMouseUp}>
+        /* onMouseDown = {onMouseDown}
+        onMouseUp = {onMouseUp} */>
         <Image src = {image}/>
         <TextWrapper>
         <Title>{title}</Title>

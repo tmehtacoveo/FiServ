@@ -68,6 +68,7 @@ export const RecommendationListRenderer: FunctionComponent<
       {state.recommendations.length > 0 ?
       <CardWrapper>
         {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
+
           return (
             <div key = {recommendation.title}>
             <RecommendtionCard
@@ -80,6 +81,8 @@ export const RecommendationListRenderer: FunctionComponent<
               onContextMenu={() => logClick(recommendation)}
               onMouseDown={() => logClick(recommendation)}
               onMouseUp={() => logClick(recommendation)}
+              source = {recommendation.raw.sourcetype}
+              sfid = {recommendation.raw.sfid? recommendation.raw.sfid : null}
             />
             </div>
           );
@@ -112,7 +115,6 @@ const MainRecommendationList = () => {
   contextController.add(
     'concepts' , ['investment advisors ', ' broker-dealer representatives ', ' fiduciary standard ']
   )
-  console.log(contextController.state)
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
