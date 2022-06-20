@@ -17,7 +17,8 @@ interface RecommendationListProps {
   controller: HeadlessRecommendationList;
   engine: RecommendationEngine;
   NumberofResults : number;
-  title : string
+  title : string;
+  video : boolean
 }
 
 export const RecommendationListRenderer: FunctionComponent<
@@ -69,8 +70,6 @@ export const RecommendationListRenderer: FunctionComponent<
   };
 
   const skeletonArray = [1,2,3,4,5]
-
-  
   return (
     <MainWrapper>
         <Divider/>
@@ -81,7 +80,7 @@ export const RecommendationListRenderer: FunctionComponent<
           return (
             <div key = {recommendation.title}>
             <RecommendtionCardSmall
-              video={false}
+              video={recommendation.raw.sourcetype === 'YouTube'}
               title={recommendation.title}
               description={recommendation.excerpt}
               clickUri={recommendation.clickUri} 
@@ -89,6 +88,7 @@ export const RecommendationListRenderer: FunctionComponent<
               onContextMenu={() => logClick(recommendation)}
               onMouseDown={() => logClick(recommendation)}
               onMouseUp={() => logClick(recommendation)}
+              image = {recommendation.raw.ytthumbnailurl? recommendation.raw.ytthumbnailurl : ''}
             />
             </div>
           );
@@ -111,10 +111,11 @@ export const RecommendationListRenderer: FunctionComponent<
 interface SearSearchSideBarRecommendationListProps {
     pipeline : string ;
     NumberofResults : number;
-    title : string
+    title : string;
+    video? : boolean
 }
 
-const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecommendationListProps> = ({pipeline = "default", NumberofResults,title}) => {
+const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecommendationListProps> = ({pipeline = "default", NumberofResults,title, video = false}) => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
@@ -139,6 +140,7 @@ const SearchSideBarRecommendationList: FunctionComponent<SearSearchSideBarRecomm
       engine={recommendationEngine}
       NumberofResults = {NumberofResults}
       title = {title}
+      video = {video}
     />
   );
 };

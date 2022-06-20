@@ -32,7 +32,7 @@ const TAB_LIST = [
     isActive: false,
   },
   {
-    caption: "Advisor",
+    caption: "Advisors",
     expression: `@source==("Advisor")`,
     isActive: false,
   },

@@ -83,6 +83,14 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={3} md={3} sm={12}>
+            {(filter?.toLowerCase() === "allcontent" || filter === undefined) && (
+                <SearchSideBarRecommendationList
+                  pipeline="Video Rec Sidebar"
+                  NumberofResults={5}
+                  title={"Related Videos"}
+                  video = {true}
+                />
+              )}
               {filter?.toLowerCase() === "investing" && (
                 <SearchSideBarRecommendationList
                   pipeline="IRS test"
