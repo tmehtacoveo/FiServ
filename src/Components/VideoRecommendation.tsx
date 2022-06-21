@@ -9,7 +9,7 @@ import {
 import { Theme } from "../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assests/sampleImages/recommendation.png";
+import SampleImage from "../assets/sampleImages/recommendation.png";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;

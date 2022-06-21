@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Theme } from '../theme';
-import WhiteLogo from '../assests/BarcaBank.png'
+import WhiteLogo from '../assets/BarcaBank.png'
 const Footer = ()=>{
 
     return <Wrapper>

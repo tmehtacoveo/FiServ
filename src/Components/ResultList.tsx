@@ -1,4 +1,4 @@
-import {FunctionComponent, useContext, useEffect, useState} from 'react';
+import React, {FunctionComponent, useContext, useEffect, useState} from 'react';
 import List from '@mui/material/List';
 import {ListItem, Box, Typography} from '@mui/material';
 import {
@@ -15,6 +15,7 @@ import EngineContext from '../common/engineContext';
 import {useNavigate} from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import { SFKBContext } from './SFKBContext';
+import { FieldToIncludesInSearchResults, ResultTemplateConfig } from '../config/SearchConfig';
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -101,7 +102,7 @@ const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) =
   const headlessResultTemplateManager: ResultTemplatesManager<Template> =
     buildResultTemplatesManager(engine);
 
-  headlessResultTemplateManager.registerTemplates({
+ /*  headlessResultTemplateManager.registerTemplates({
     conditions: [],
     content: (result: Result) => (
       <ListItem disableGutters key={result.uniqueId}>
@@ -151,8 +152,8 @@ const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) =
       </ListItem>
     },
     priority : 1
-  });
-
+  }); */
+  headlessResultTemplateManager.registerTemplates(...ResultTemplateConfig)
   useEffect(
     () => controller.subscribe(() => setState(controller.state)),
     [controller]
@@ -172,7 +173,7 @@ const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) =
     <List>
       {state.results.map((result: Result) => {
         const template = headlessResultTemplateManager.selectTemplate(result);
-        return template ? template(result) : null;
+        return <React.Fragment key = {result.uniqueId}> {template ? template(result) : null} </React.Fragment>;
       })}
     </List>
   );
@@ -185,7 +186,7 @@ interface ResultListProps {
 const ResultList:FunctionComponent<ResultListProps> = ({setResultLoading}) => {
   const engine = useContext(EngineContext)!;
   const controller = buildResultList(engine,{
-    options : { fieldsToInclude: ['sfanswer__c', 'sfid']}
+    options : { fieldsToInclude: FieldToIncludesInSearchResults}
   });
   return <ResultListRenderer controller={controller} setResultLoading={setResultLoading} />;
 };

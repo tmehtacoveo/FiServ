@@ -9,7 +9,8 @@ export const Theme = {
   navbar: '#062D70',
   background: '#E5E5E5',
   button : '#1372EC',
-  footer: '#262646'
+  footer: '#262646',
+  resultLink: '#1372EC'
 }
 
 const theme = createTheme({

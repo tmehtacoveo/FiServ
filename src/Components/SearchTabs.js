@@ -4,44 +4,9 @@ import EngineContext from "../common/engineContext";
 import styled from "styled-components";
 import { Theme } from "../theme";
 import { useNavigate } from "react-router-dom";
+import { SearchPageTabConfig } from "../config/SearchConfig";
 
-const TAB_LIST = [
-  {
-    caption: "All Content",
-    expression: "",
-    isActive: true,
-  },
-  {
-    caption: "Investing",
-    expression: `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
-    isActive: false,
-  },
-  {
-    caption: "Money Matters",
-    expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
-    isActive: false,
-  },
-  {
-    caption: "Insurance Needs",
-    expression: `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
-    isActive: false,
-  },
-  {
-    caption: "Banking Info",
-    expression: `@source==("Bankrate")`,
-    isActive: false,
-  },
-  {
-    caption: "Advisors",
-    expression: `@source==("Advisor")`,
-    isActive: false,
-  },
-  {
-    caption: "Youtube",
-    expression: `@filetype=="youtubevideo"`,
-    isActive: false,
-  },
-];
+const TAB_LIST = SearchPageTabConfig;
 
 const isRouteMatching = (param, caption) => {
   if (!param && caption === TAB_LIST[0].caption) {

@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import bankLogo from "../assests/ChanceBank.png";
+import bankLogo from "../assets/ChanceBank.png";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";

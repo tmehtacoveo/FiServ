@@ -65,7 +65,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                   <Grid item md={9.5}>
                     <QuerySummary />
                   </Grid>
-                  <Grid item md={2}>
+                  <Grid item md={2} sx = {{position : 'relative' , left : '-50px'}}>
                     <Sort />
                   </Grid>
                 </Grid>

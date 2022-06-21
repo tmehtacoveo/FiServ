@@ -1,7 +1,7 @@
 import React from 'react';
 import theme, {Theme} from '../theme';
 import styled from "styled-components";
-import HeroImage from '../assests/Heading.jpg'
+import HeroImage from '../assets/Heading.jpg'
 
 const HeroHome = ()=>{
     return <Wrapper>

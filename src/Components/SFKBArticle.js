@@ -23,7 +23,9 @@ const [state, setState] = useState({});
 
         return ()=>{
             unsub()
-            controller.toggleSingleSelect(controller.state.values[1])}
+            controller.toggleSingleSelect(controller.state.values[1])
+        
+        }
         
     },[engine,sfid])
 
