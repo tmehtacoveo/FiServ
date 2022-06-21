@@ -25,13 +25,8 @@ export const RecommendationListRenderer: FunctionComponent<
   console.log("video recommendation list", state);
 
   useEffect(() => {
-
-    setTimeout(() => {
-      controller.refresh();
+    controller.refresh();
     controller.subscribe(() => setState(controller.state))
-    }, 1000);
-    
-  
   }, []);
 
 

@@ -26,13 +26,8 @@ export const RecommendationListRenderer: FunctionComponent<
   console.log("state recommendation list", state);
 
   useEffect(() => {
-
-    setTimeout(() => {
-      controller.refresh();
-    controller.subscribe(() => setState(controller.state))
-    }, 1000);
-    
-  
+    controller.refresh();
+    controller.subscribe(() => setState(controller.state)) 
   }, []);
 
 
