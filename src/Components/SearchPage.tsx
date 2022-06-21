@@ -14,6 +14,7 @@ import DidYouMean from "./DidyouMean";
 import SearchSideBarRecommendationList from "./SearchSideBarRecommendationList";
 import { useParams } from "react-router-dom";
 import SearchTabs from "./SearchTabs";
+import { SearchPageTabConfig } from "../config/SearchConfig";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -43,7 +44,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           mb={6.5}
           style={{
             minWidth: "500px",
-            maxWidth: "800px"
+            maxWidth: "800px",
           }}
         >
           <SearchBox />
@@ -65,7 +66,11 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                   <Grid item md={9.5}>
                     <QuerySummary />
                   </Grid>
-                  <Grid item md={2} sx = {{position : 'relative' , left : '-50px'}}>
+                  <Grid
+                    item
+                    md={2}
+                    sx={{ position: "relative", left: "-50px" }}
+                  >
                     <Sort />
                   </Grid>
                 </Grid>
@@ -83,28 +88,27 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={3} md={3} sm={12}>
-            {(filter?.toLowerCase() === "allcontent" || filter === undefined) && (
-                <SearchSideBarRecommendationList
-                  pipeline="Video Rec Sidebar"
-                  NumberofResults={5}
-                  title={"Related Videos"}
-                  video = {true}
-                />
-              )}
-              {filter?.toLowerCase() === "investing" && (
-                <SearchSideBarRecommendationList
-                  pipeline="IRS test"
-                  NumberofResults={6}
-                  title={"Related for Investing"}
-                />
-              )}
-              {filter?.toLowerCase() === "insuranceneeds" && (
-                <SearchSideBarRecommendationList
-                  pipeline="Glossary test"
-                  NumberofResults={6}
-                  title={"Glossary"}
-                />
-              )}
+              {SearchPageTabConfig.map((tab, index) => {
+                if (
+                  (filter?.toLowerCase() ===
+                    tab.caption.replace(/\s/g, "").toLowerCase() ||
+                    (index === 0 && filter === undefined)) &&
+                  tab.sideBarRecommendationConfig
+                ) {
+                  return (
+                    <React.Fragment key={tab.caption}>
+                      <SearchSideBarRecommendationList
+                        pipeline={tab.sideBarRecommendationConfig?.pipeline}
+                        NumberofResults={
+                          tab.sideBarRecommendationConfig?.NumberofResults
+                        }
+                        title={tab.sideBarRecommendationConfig?.title}
+                        video={tab.sideBarRecommendationConfig?.video}
+                      />
+                    </React.Fragment>
+                  );
+                }
+              })}
             </Grid>
           </Grid>
         </Box>
