@@ -7,7 +7,21 @@ import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
 import { DefaultSideBarRecommendationConfigType } from "./ConfigTypes";
 
-export const SearchEnginePipeline = "Investing";
+
+export const FacetConfig = [
+  {
+    field: "source",
+    title: "Source",
+  },
+  {
+    field: "filetype",
+    title: "File Type",
+  },
+  {
+    field: "concepts",
+    title: "Concepts",
+  },
+];
 
 export const ResultTemplateConfig = [
   {
@@ -111,20 +125,7 @@ export const SearchPageTabConfig = [
   },
 ];
 
-export const FacetConfig = [
-  {
-    field: "source",
-    title: "Source",
-  },
-  {
-    field: "filetype",
-    title: "File Type",
-  },
-  {
-    field: "concepts",
-    title: "Concepts",
-  },
-];
+
 
 export const DefaultSideBarRecommendationConfig: DefaultSideBarRecommendationConfigType[] =
   []; /* [{

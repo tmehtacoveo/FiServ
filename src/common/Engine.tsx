@@ -4,7 +4,6 @@ import {
   RestUserIdType,
   TokenModel,
 } from '@coveord/platform-client';
-import { SearchEnginePipeline } from '../config/SearchConfig';
 
 const getEndpointToLocalServer = () => {
   if (!process.env.REACT_APP_SERVER_PORT) {
@@ -40,7 +39,7 @@ export async function initializeHeadlessEngine() {
       renewAccessToken: getSearchToken,
       search :{
         searchHub : process.env.REACT_APP_SEARCH_HUB!,
-        pipeline: SearchEnginePipeline
+        pipeline: process.env.REACT_APP_SEARCH_ENGINE_PIPELINE!
       }
     },
   });
