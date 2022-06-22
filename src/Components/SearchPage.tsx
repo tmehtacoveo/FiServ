@@ -14,7 +14,10 @@ import DidYouMean from "./DidyouMean";
 import SearchSideBarRecommendationList from "./SearchSideBarRecommendationList";
 import { useParams } from "react-router-dom";
 import SearchTabs from "./SearchTabs";
-import { SearchPageTabConfig } from "../config/SearchConfig";
+import {
+  DefaultSideBarRecommendationConfig,
+  SearchPageTabConfig,
+} from "../config/SearchConfig";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -88,27 +91,52 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={3} md={3} sm={12}>
-              {SearchPageTabConfig.map((tab, index) => {
-                if (
-                  (filter?.toLowerCase() ===
-                    tab.caption.replace(/\s/g, "").toLowerCase() ||
-                    (index === 0 && filter === undefined)) &&
-                  tab.sideBarRecommendationConfig
-                ) {
-                  return (
-                    <React.Fragment key={tab.caption}>
-                      <SearchSideBarRecommendationList
-                        pipeline={tab.sideBarRecommendationConfig?.pipeline}
-                        NumberofResults={
-                          tab.sideBarRecommendationConfig?.NumberofResults
-                        }
-                        title={tab.sideBarRecommendationConfig?.title}
-                        video={tab.sideBarRecommendationConfig?.video}
-                      />
-                    </React.Fragment>
-                  );
-                }
-              })}
+              {DefaultSideBarRecommendationConfig.length > 0? (
+                <>
+                  {DefaultSideBarRecommendationConfig.map((item) => {
+                    return (
+                      <React.Fragment key={item.title}>
+                        <SearchSideBarRecommendationList
+                          pipeline={item?.pipeline}
+                          NumberofResults={item?.NumberofResults}
+                          title={item?.title}
+                          video={item?.video}
+                        />
+                      </React.Fragment>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  {SearchPageTabConfig.map((tab, index) => {
+                    if (
+                      (filter?.toLowerCase() ===
+                        tab.caption.replace(/\s/g, "").toLowerCase() ||
+                        (index === 0 && filter === undefined)) &&
+                      tab.sideBarRecommendationConfig
+                    ) {
+                      return (
+                        <React.Fragment key={tab.caption}>
+                          <>
+                            {tab.sideBarRecommendationConfig.map((item) => {
+                              return (
+                                <React.Fragment key={item.title}>
+                                  <SearchSideBarRecommendationList
+                                    pipeline={item?.pipeline}
+                                    NumberofResults={item?.NumberofResults}
+                                    title={item?.title}
+                                    video={item?.video}
+                                  />
+                                </React.Fragment>
+                              );
+                            })}
+                          </>
+                        </React.Fragment>
+                      );
+                    }
+                  })}
+                </>
+              )}
             </Grid>
           </Grid>
         </Box>

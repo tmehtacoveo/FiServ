@@ -10,7 +10,7 @@ import EngineContext from '../common/engineContext';
 import { FacetContext, FacetContextType } from './FacetContext';
 import styled from 'styled-components'
 interface FacetProps {
-  title: string;
+  title: string | undefined;
   field: string;
 }
 

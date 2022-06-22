@@ -9,6 +9,7 @@ import {
   ResultsPerPage as HeadlessResultsPerPage,
 } from '@coveo/headless';
 import EngineContext from '../common/engineContext';
+import { ResultsPerPagesConfig } from '../config/SearchConfig';
 
 interface ResultsPerPageProps {
   options: number[];
@@ -50,7 +51,7 @@ const ResultsPerPageRenderer: FunctionComponent<ResultsPerPageProps> = (
 
 const ResultsPerPage = () => {
   const engine = useContext(EngineContext)!;
-  const options = [ 10, 25, 50];
+  const options = ResultsPerPagesConfig;
   const controller = buildResultsPerPage(engine, {
     initialState: {numberOfResults: options[0]},
   });
