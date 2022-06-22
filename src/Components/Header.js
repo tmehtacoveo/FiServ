@@ -15,8 +15,7 @@ const Header = () => {
     const [openSearch, setOpenSearch] = useState(false)
     const location = useLocation()
     const navigate = useNavigate()
-    const onSearchPage = location.pathname === '/search'
-
+    const onSearchPage = location.pathname.includes('search')
     const toggleSearchBox = ()=>{
       if(onSearchPage){
         document.querySelector('.search-box input').focus();

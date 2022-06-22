@@ -1,32 +1,15 @@
 import React, {
-  FunctionComponent,
   useContext,
-  useEffect,
-  useState,
 } from "react";
-import List from "@mui/material/List";
 import { ListItem, Box, Typography } from "@mui/material";
 import {
-  buildResultList,
   Result,
-  buildResultTemplatesManager,
-  ResultTemplatesManager,
-  ResultList as HeadlessResultList,
   buildInteractiveResult,
   SearchEngine,
-  ResultTemplatesHelpers,
 } from "@coveo/headless";
 import EngineContext from "../common/engineContext";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { width } from "@mui/system";
-import pdfIcon from "../assets/FileTypeIcons/pdf.png";
 import { Theme } from "../theme";
-import { FileTypeIconsConfig } from "../config/SearchConfig";
-import { Quickview } from "../Components/QuickView";
-
-type Template = (result: Result) => React.ReactNode;
 
 export function filterProtocol(uri: string) {
   // Filters out dangerous URIs that can create XSS attacks such as `javascript:`.
@@ -51,75 +34,29 @@ function ListItemLink(
     options: { result },
   });
   return (
-    <>
-      {source === "Salesforce KB" ? (
-        <Link
-          to={`/salesforcekb/${result.raw.sfid}`}
-          onClick={() => {
-            if (setResult) {
-              setResult(result);
-            }
-            interactiveResult.select();
-          }}
-          onContextMenu={() => interactiveResult.select()}
-          onMouseDown={() => interactiveResult.select()}
-          onMouseUp={() => interactiveResult.select()}
-          onTouchStart={() => interactiveResult.beginDelayedSelect()}
-          onTouchEnd={() => interactiveResult.cancelPendingSelect()}
-        >
-          {result.title}
-        </Link>
-      ) : (
-        <a
-          href={filterProtocol(result.clickUri)}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={() => interactiveResult.select()}
-          onContextMenu={() => interactiveResult.select()}
-          onMouseDown={() => interactiveResult.select()}
-          onMouseUp={() => interactiveResult.select()}
-          onTouchStart={() => interactiveResult.beginDelayedSelect()}
-          onTouchEnd={() => interactiveResult.cancelPendingSelect()}
-        >
-          {result.title}
-        </a>
-      )}
-    </>
+    <a
+      href={filterProtocol(result.clickUri)}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => interactiveResult.select()}
+      onContextMenu={() => interactiveResult.select()}
+      onMouseDown={() => interactiveResult.select()}
+      onMouseUp={() => interactiveResult.select()}
+      onTouchStart={() => interactiveResult.beginDelayedSelect()}
+      onTouchEnd={() => interactiveResult.cancelPendingSelect()}
+    >
+      {result.title}
+    </a>
   );
 }
 
-function FieldValue(props: FieldValueInterface) {
-  return (
-    /*   <Box> */
-    <>
-      {" "}
-      <Typography
-        color="textSecondary"
-        style={{ fontWeight: "bold" }}
-        variant="caption"
-      >
-        {props.caption}:&nbsp;
-      </Typography>
-      <Typography color="textSecondary" variant="caption">
-        {props.value}
-      </Typography>
-    </>
 
-    /*  </Box> */
-  );
-}
-
-const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
+const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
+  result,
+  imageField,
+}) => {
   const engine = useContext(EngineContext)!;
-  const filetype: any = result.raw.sysfiletype;
   const date = new Date(Number(result.raw.date));
-  const isFileTypeIconIndex = () => {
-    if (Object.keys(FileTypeIconsConfig).indexOf(filetype) > 0) {
-      return Object.keys(FileTypeIconsConfig).indexOf(filetype);
-    }
-    return 0;
-  };
-
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
@@ -128,27 +65,25 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
             <RecommendationBadge>Recommended</RecommendationBadge>
           )}
           <MainWrapper>
-            {filetype in FileTypeIconsConfig && (
-              <SourceTypeWrapper>
+            {result.raw[imageField] && (
+              <ImageWrapper>
                 <IconImage
-                  src={
-                    Object.values(FileTypeIconsConfig)[isFileTypeIconIndex()]
-                  }
-                  alt={`${filetype} icon`}
+                  src={result.raw[imageField]}
+                  alt={`${result.title} image`}
                 />
-              </SourceTypeWrapper>
+              </ImageWrapper>
             )}
             <TextWrapper>
               <TitltAndDateWrapper>
                 <Title>{ListItemLink(engine, result)} </Title>
                 {result.raw.date && (
-                  <Excerpt>
+                  <DateWrapper>
                     {date.getDate() +
                       "/" +
                       (date.getMonth() + 1) +
                       "/" +
                       date.getFullYear()}
-                  </Excerpt>
+                  </DateWrapper>
                 )}
               </TitltAndDateWrapper>
               {result.excerpt && (
@@ -171,7 +106,7 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
   );
 };
 
-export default GeneralResultTemplate;
+export default PeopleResultTemplate;
 
 const MainWrapper = styled.div`
   width: 95%;
@@ -180,9 +115,9 @@ const MainWrapper = styled.div`
   padding: 10px 0px;
 `;
 
-const SourceTypeWrapper = styled.div`
-  width: 100px;
-  height: 100px;
+const ImageWrapper = styled.div`
+  padding: 10px;
+  padding-left: 0px;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -190,27 +125,29 @@ const SourceTypeWrapper = styled.div`
 `;
 
 const IconImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  border-radius: 12px;
 `;
 
 const TextWrapper = styled.div`
-  flex: 8;
-  height: 120px;
+  margin-left: 20px;
+  flex: 4;
+  /* height: 120px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `;
 
 const Title = styled.h2`
+  margin-top: 10px;
   font-family: "Gibson";
   font-size: 20px;
-  line-height: 24px;
-  width: 80%;
+  line-height: 28px;
+  margin-bottom: 20px;
 
   & a {
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-weight: 400;
@@ -250,4 +187,15 @@ const TitltAndDateWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const DateWrapper = styled.p`
+  font-size: 16px;
+  color: #626971;
+  font-family: inherit;
+  font-weight: 300px;
+  width: 150px;
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 20px;
 `;

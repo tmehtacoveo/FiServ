@@ -1,11 +1,31 @@
 import GeneralResultTemplate from "../searchResultTemplates/GeneralResultTemplate";
 import pdfIcon from "../assets/FileTypeIcons/pdf.png";
 import htmlIcon from "../assets/FileTypeIcons/html.png";
+import { ResultTemplatesHelpers } from "@coveo/headless";
+import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
+import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
+
+
+export const SearchEnginePipeline = 'Investing'
 
 export const ResultTemplateConfig = [
   {
     conditions: [],
     content: (result) => <GeneralResultTemplate result={result} />,
+    priority: 1
+  },
+  {
+    conditions: [
+      ResultTemplatesHelpers.fieldMustMatch("source",["Advisor"])
+    ],
+    content: (result) => <PeopleResultTemplate result={result} imageField = {'adimage'} />,
+    priority : 2
+  },{
+    conditions: [
+      ResultTemplatesHelpers.fieldMustMatch("filetype",["youtubevideo"])
+    ],
+    content: (result) => <VideoResultTemplate result={result} imageField = {'ytthumbnailurl'} />,
+    priority : 2
   },
 ];
 
@@ -19,6 +39,8 @@ export const FieldToIncludesInSearchResults = [
   "sfid",
   "sysfiletype",
   "date",
+  "adimage",
+  "ytthumbnailurl"
 ];
 
 export const SearchPageTabConfig = [
