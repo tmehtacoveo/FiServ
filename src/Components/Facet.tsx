@@ -8,7 +8,7 @@ import './Facet.css';
 import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
 import EngineContext from '../common/engineContext';
 import { FacetContext, FacetContextType } from './FacetContext';
-
+import styled from 'styled-components'
 interface FacetProps {
   title: string;
   field: string;
@@ -40,7 +40,8 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
   };
 
   return (
-    <Box mb={5} mr={3} p={1}>
+    <Wrapper>
+    <Box mb={0} mr={3} p={1} >
       <Box pb={1}>
         <Typography variant="h6" component="h6">
           {props.title}
@@ -87,6 +88,7 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
         </Button>
       )}
     </Box>
+    </Wrapper>
   );
 };
 
@@ -117,3 +119,13 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
 };
 
 export default memo(Facet);
+
+
+const Wrapper = styled.div`
+  
+  border: 1px #E5E8E8 solid;
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin-bottom: 20px;
+  font-family: 'Gibson';
+`

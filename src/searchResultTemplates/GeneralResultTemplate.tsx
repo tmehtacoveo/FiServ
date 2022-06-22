@@ -56,6 +56,7 @@ function ListItemLink(
         <Link
           to={`/salesforcekb/${result.raw.sfid}`}
           onClick={() => {
+            
             if (setResult) {
               setResult(result);
             }
@@ -229,7 +230,7 @@ const Excerpt = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   font-size: 16px;
-  color: #626971;
+  color: ${Theme.excerpt};
   font-family: inherit;
   font-weight: 300px;
 `;
@@ -243,7 +244,7 @@ const RecommendationBadge = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 12px;
-  color: #626971;
+  color: ${Theme.excerpt};
 `;
 
 const TitltAndDateWrapper = styled.div`

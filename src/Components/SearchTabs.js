@@ -84,7 +84,7 @@ const Wrapper = styled.div`
 const Tab = styled.a`
   padding: 15px 20px;
   text-align: center;
-  color: ${Theme.secondary};
+  color: ${Theme.secondaryText};
   cursor: pointer;
   background: ${(props) => (props.isActive ? Theme.selection : null)};
   opacity: ${(props) => (props.isActive ? 1 : 0.8)};

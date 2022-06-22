@@ -88,7 +88,7 @@ const Title = styled.a`
   font-weight: 400;
   font-size: 18px;
   line-height: 32px;
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -101,7 +101,7 @@ const SubTitle = styled.span`
   font-weight: 300;
   font-size: 14px;
   line-height: 26px;
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;

@@ -39,7 +39,7 @@ const Title = styled.h1`
 font-weight: 400;
 font-size: 56px;
 line-height: 66px;
-color: ${Theme.primary};
+color: ${Theme.primaryText};
 margin-bottom: 20px;
 @media (max-width: 1000px) {
     display: none;
@@ -51,7 +51,7 @@ const SubTitle = styled.p`
 font-weight: 300;
 font-size: 18px;
 line-height: 28px;
-color: ${Theme.primary};
+color: ${Theme.primaryText};
 margin-bottom: 20px;
 @media (max-width: 1000px) {
     display: none;

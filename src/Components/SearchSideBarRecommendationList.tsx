@@ -14,6 +14,7 @@ import RecommendtionCardSmall, {
   SkeletonRecommendtionCardSmall,
 } from "./RecommendationCardSmall";
 import EngineContext from "../common/engineContext";
+import { Typography } from "@mui/material";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -76,7 +77,9 @@ export const RecommendationListRenderer: FunctionComponent<
           {state.recommendations.length > 0 && (
             <>
               <Divider />
-              <Title>{props.title}</Title>
+              <Typography variant="h6" component="h6" sx = {{marginLeft : '20px'}}>
+              {props.title}
+              </Typography>
               <CardWrapper>
                 {state?.recommendations
                   ?.slice(0, props.NumberofResults)
@@ -168,7 +171,7 @@ export default SearchSideBarRecommendationList;
 const Divider = styled.div`
   width: 100%;
   height: 4px;
-  background: ${Theme.primary};
+  background: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 20px;
   margin-left: 20px;
@@ -188,14 +191,14 @@ const Title = styled.h2`
   font-size: 20px;
   font-weight: 400;
   font-family: "Gibson";
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
 `;
 
 const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   margin-bottom: 20px;
 `;
 

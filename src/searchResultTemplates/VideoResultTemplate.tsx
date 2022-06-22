@@ -170,7 +170,7 @@ import React, {
     -webkit-box-orient: vertical;
     overflow: hidden;
     font-size: 16px;
-    color: #626971;
+    color: ${Theme.excerpt};
     font-family: inherit;
     font-weight: 300px;
   `;
@@ -184,7 +184,7 @@ import React, {
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    color: #626971;
+    color: ${Theme.excerpt};
   `;
   
   const TitltAndDateWrapper = styled.div`
@@ -195,7 +195,7 @@ import React, {
 
   const DateWrapper = styled.p`
     font-size: 16px;
-    color: #626971;
+    color: ${Theme.excerpt};
     font-family: inherit;
     font-weight: 300px;
     width: 100px;

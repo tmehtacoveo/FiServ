@@ -65,7 +65,7 @@ const Header = () => {
 
 const Wrapper = styled.header`
   height: 80px;
-  background-color: ${Theme.secondary};
+  background-color: ${Theme.secondaryText};
   display: flex;
   padding: 0px 40px;
   align-items: center;
@@ -102,7 +102,7 @@ const LinkWrapper = styled.ul`
 `;
 
 const NavigationLink = styled(Link)`
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   text-decoration: none;
   font-size: 16px;
   opacity: 1;
