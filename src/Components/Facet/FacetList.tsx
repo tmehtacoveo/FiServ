@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Facet from "./Facet";
 import { useParams } from "react-router-dom";
-import { FacetConfig, SearchPageTabConfig } from "../config/SearchConfig";
+import { FacetConfig, SearchPageTabConfig } from "../../config/SearchConfig";
 import React from "react";
 
 const FacetList = () => {
@@ -38,7 +38,7 @@ const FacetList = () => {
                   <React.Fragment key = {item.caption}>
                     {item.facetToInclude && item.facetToInclude.map((item : any) => {
                       return (
-                        <React.Fragment key = {item.field}>
+                        <React.Fragment key = {item}>
                         <Facet
                           field={item}
                           title={

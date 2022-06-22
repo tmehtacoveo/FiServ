@@ -15,7 +15,7 @@ import { EngineProvider } from './common/engineContext';
 import SearchBox from './Components/SearchBox';
 import SearchPage from './Components/SearchPage';
 import Footer from './Components/Footer';
-import FacetControllerProvider from './Components/FacetContext';
+import FacetControllerProvider from './Components/Facet/FacetContext';
 import SFKBArticle from './Components/SFKBArticle';
 import SFKBProvider from './Components/SFKBContext';
 
