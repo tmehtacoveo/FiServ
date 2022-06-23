@@ -1,14 +1,16 @@
 import React from 'react';
 import theme, {Theme} from '../theme';
 import styled from "styled-components";
-import HeroImage from '../assets/Heading.jpg'
+import { HeroConfig } from '../config/HomeConfig';
+import { useNavigate } from 'react-router-dom';
 
 const HeroHome = ()=>{
+    const navigate = useNavigate();
     return <Wrapper>
         <TextWrapper>
-        <Title>Life changes fast</Title>
-        <SubTitle>A BTEP Mortgage gives you the flexibility to use the equity from your home when you need it. </SubTitle>
-        <Button>Learn more</Button>
+        <Title>{HeroConfig.title}</Title>
+        <SubTitle>{HeroConfig.description}</SubTitle>
+        <Button onClick = {()=> navigate(HeroConfig.onClickButtonRedirect)}>{HeroConfig.buttonText}</Button>
         </TextWrapper>
     </Wrapper>
 };
@@ -24,7 +26,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 padding-left: 120px;
-background: url(${HeroImage}) no-repeat;
+background: url(${HeroConfig.background}) no-repeat;
 background-position: right center;
 background-size: cover;
 `

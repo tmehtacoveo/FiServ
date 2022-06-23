@@ -2,18 +2,25 @@ import React from 'react';
 import {Theme} from '../theme';
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
+import { NavBarConfig } from '../config/HomeConfig';
 
 
 const NavBar = ()=>{
-
-    return <Wrapper>
+    if(NavBarConfig.length > 0)
+    {
+        return <Wrapper>
         <NavigationWrapper>
-            <NavigationLink to='/home'>Personal</NavigationLink>
-            <NavigationLink to='/'>Business</NavigationLink>
-            <NavigationLink to='/'>Commerical</NavigationLink>
-            <NavigationLink to='/'>About</NavigationLink>
+            {NavBarConfig.map((item)=>{
+                return<NavigationLink key = {item.title} to={item.redirectTo}>{item.title}</NavigationLink>
+            })}
         </NavigationWrapper>
     </Wrapper>
+    }
+    else{
+        return null
+    }
+
+    
 };
 
 const Wrapper = styled.nav`

@@ -13,7 +13,8 @@ export const Theme = {
   button : '#1372EC',
   footer: '#262646',
   resultLink: '#1372EC',
-  excerpt : '#626971'
+  excerpt : '#626971',
+  headerIconColor : "grey"
 }
 
 const theme = createTheme({
