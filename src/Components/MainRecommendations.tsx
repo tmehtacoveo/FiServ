@@ -64,20 +64,21 @@ export const RecommendationListRenderer: FunctionComponent<
       {state.recommendations.length > 0 ? (
         <CardWrapper>
           {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
-            let SFimage
+           /*  let SFimage
             if (recommendation.raw.sfimage__c) {
               let dom = document.createElement("div");
               dom.innerHTML = recommendation.raw.sfimage__c;
               SFimage = dom.querySelector("img").src;
-            }
 
+            }
+            console.log('"sfimage_url__c",' , recommendation.raw?.sfimage_url__c) */
             return (
               <div key={recommendation.title}>
                 <RecommendtionCard
                   video={false}
                   title={recommendation.title}
                   description={recommendation.excerpt}
-                  image={/* SFimage? SFimage :  */SampleImage}
+                  image={recommendation.raw.sfimage_url__c? recommendation.raw.sfimage_url__c : SampleImage}
                   clickUri={recommendation.clickUri}
                   onClick={() => logClick(recommendation)}
                   onContextMenu={() => logClick(recommendation)}
@@ -113,6 +114,7 @@ const MainRecommendationList = () => {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub: process.env.REACT_APP_SEARCH_HUB!,
+      pipeline : 'Investing'
     },
   });
 

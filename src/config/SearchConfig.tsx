@@ -80,7 +80,8 @@ export const FieldToIncludesInSearchResults : string[] = [
   "date",
   "adimage",
   "ytthumbnailurl",
-  "sfimage__c"
+  "sfimage__c",
+  "sfimage_url__c",
 ];
 
 
@@ -96,9 +97,9 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         NumberofResults: 3,
         title: "Related Videos",
         video: true,
-      },
+      }
     ],
-    facetToInclude: ["source", "filetype", "concepts"],
+    facetToInclude: ["source", "filetype", "concepts",],
   },
   {
     caption: "Investing",
