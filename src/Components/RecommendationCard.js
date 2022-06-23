@@ -48,7 +48,8 @@ return <MainWrapper>
 const Image = styled.img`
 height: 250px;
 width: 100%;
-object-fit : "contain";
+object-fit : cover;
+
 `
 const TextWrapper = styled.div`
 display: flex;

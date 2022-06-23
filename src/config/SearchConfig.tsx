@@ -5,7 +5,7 @@ import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
-import { DefaultSideBarRecommendationConfigType } from "./ConfigTypes";
+import { DefaultSideBarRecommendationConfigType, FacetConfigType, FileTypeIconsConfigType, SearchPageTabConfigType } from "./ConfigTypes";
 
 
 export const FacetConfig = [
@@ -39,7 +39,10 @@ export const FacetConfig = [
     field :"adcity",
     title : "City"
   }
-];
+] as const;
+
+
+
 
 export const ResultTemplateConfig = [
   {
@@ -65,21 +68,24 @@ export const ResultTemplateConfig = [
   },
 ];
 
-export const FileTypeIconsConfig = {
+export const FileTypeIconsConfig  = {
   pdf: pdfIcon,
   html: htmlIcon,
 };
 
-export const FieldToIncludesInSearchResults = [
+export const FieldToIncludesInSearchResults : string[] = [
   "sfanswer__c",
   "sfid",
   "sysfiletype",
   "date",
   "adimage",
   "ytthumbnailurl",
+  "sfimage__c"
 ];
 
-export const SearchPageTabConfig = [
+
+
+export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
     caption: "All Content",
     expression: "",
