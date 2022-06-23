@@ -68,7 +68,6 @@ export const RecommendationListRenderer: FunctionComponent<
             if (recommendation.raw.sfimage__c) {
               let dom = document.createElement("div");
               dom.innerHTML = recommendation.raw.sfimage__c;
-              console.log(dom.querySelector("img").src);
               SFimage = dom.querySelector("img").src;
             }
 
@@ -78,7 +77,7 @@ export const RecommendationListRenderer: FunctionComponent<
                   video={false}
                   title={recommendation.title}
                   description={recommendation.excerpt}
-                  image={SFimage? SFimage : SampleImage}
+                  image={/* SFimage? SFimage :  */SampleImage}
                   clickUri={recommendation.clickUri}
                   onClick={() => logClick(recommendation)}
                   onContextMenu={() => logClick(recommendation)}
