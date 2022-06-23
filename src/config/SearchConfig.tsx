@@ -20,7 +20,25 @@ export const FacetConfig = [
   {
     field: "concepts",
     title: "Concepts",
-  },
+  },{
+    field : "mynav2b",
+    title : "Focus Area"
+  },{
+    field : "mynav3b",
+    title : "Banking Information"
+  },{
+    field :"adspecial",
+    title : "Speciality"
+  },{
+    field :"adminimums",
+    title : "Minimums"
+  },{
+    field :"adstate",
+    title : "State"
+  },{
+    field :"adcity",
+    title : "City"
+  }
 ];
 
 export const ResultTemplateConfig = [
@@ -88,12 +106,13 @@ export const SearchPageTabConfig = [
         video: false,
       },
     ],
-    facetToInclude: ["source", "concepts"],
+    facetToInclude: ["concepts","mynav2b"],
   },
   {
     caption: "Money Matters",
     expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
     isActive: false,
+    facetToInclude: ["concepts","mynav2b"],
   },
   {
     caption: "Insurance Needs",
@@ -107,21 +126,25 @@ export const SearchPageTabConfig = [
         video: false,
       },
     ],
+    facetToInclude: ["concepts"],
   },
   {
     caption: "Banking Info",
     expression: `@source==("Bankrate")`,
     isActive: false,
+    facetToInclude: ["concepts","mynav2b","mynav3b"],
   },
   {
     caption: "Advisors",
     expression: `@source==("Advisor")`,
     isActive: false,
+    facetToInclude: ["adspecial","adminimums","adstate","adcity"],
   },
   {
     caption: "Youtube",
     expression: `@filetype=="youtubevideo"`,
     isActive: false,
+    facetToInclude: ["concepts"],
   },
 ];
 

@@ -9,6 +9,7 @@ import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
 import EngineContext from '../../common/engineContext';
 import { FacetContext, FacetContextType } from './FacetContext';
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom';
 interface FacetProps {
   title: string | undefined;
   field: string;
@@ -19,6 +20,7 @@ interface FacetRendererProps extends FacetProps {
 }
 
 const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
+  
   const {controller} = props;
   const [state, setState] = useState(controller.state);
 
@@ -38,7 +40,6 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
   const showLess = () => {
     controller.showLessValues();
   };
-
   return (
     <Wrapper>
     <Box mb={0} mr={3} p={1} >
@@ -95,15 +96,14 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
 const Facet: FunctionComponent<FacetProps> = (props) => {
  const {facetController, setFacetController} = useContext<any>(FacetContext)!
   const engine = useContext(EngineContext)!;
-  
-  let controller : HeadlessFacet  = facetController[props.field]? facetController[props.field] : buildFacet(engine, {
+  let controller : HeadlessFacet  = facetController[props.field] ? facetController[props.field] : buildFacet(engine, {
       options: {
         numberOfValues: 5,
         field: props.field,
       },
     });
 
-    useEffect(()=>{
+  /*   useEffect(()=>{
       if(!facetController[props.field]){
         const update =<T,> (prev : T): T=>{
           return {...prev, [props.field] : controller}
@@ -111,11 +111,13 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
 
         setFacetController(update);
       }
-    },[])
+    },[]) */
 
-    console.log(facetController)
+    /* console.log(facetController) */
+/*     console.log('1',controller?.state?.values)
+    console.log('2',facetController[props.field]?.state?.values) */
     
-  return <FacetRenderer {...props} controller={facetController[props.field]? facetController[props.field] : controller} />;
+  return <FacetRenderer {...props} controller={/* facetController[props.field]? facetController[props.field] : */ controller} />;
 };
 
 export default memo(Facet);

@@ -8,9 +8,7 @@ import React from "react";
 const FacetList = () => {
   const { filter } = useParams();
 
-  console.log("filter", filter);
-
-  const FacetFieldInSearchTabs = () => {
+/*   const FacetFieldInSearchTabs = () => {
     return SearchPageTabConfig.map((item) => {
       if (item.facetToInclude) {
         return item.facetToInclude;
@@ -19,7 +17,7 @@ const FacetList = () => {
     });
   };
 
-  console.log(FacetFieldInSearchTabs());
+  console.log(FacetFieldInSearchTabs()); */
 
   return (
     <Box>
@@ -51,25 +49,16 @@ const FacetList = () => {
                   </React.Fragment>
                 );
               }
-
-              /*  if(item.facetToInclude){
-              
-              return <React.Fragment key = {item.caption}>
-              {item.facetToInclude.map((item)=>{
-
-                return <Facet field={item} title={FacetConfig.find(x => x.field === item).title} />
-              })}
-              <React.Fragment/>
-            } */
             })}
           </>
         ) : (
           <>
+          {console.log('ashdgashgdjgsad')}
             <Facet field="source" title="Source" />
             <Facet field="filetype" title="File Type" />
             <Facet field="concepts" title="Concepts" />
           </>
-        )}
+       )} 
       </Box>
     </Box>
   );
