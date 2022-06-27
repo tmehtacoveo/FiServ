@@ -53,7 +53,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           <SearchBox />
         </Grid>
       </Grid>
-      <SearchTabs filterSelected={filter} />
+      <SearchTabs filterSelected={filter? filter : ""} />
       <Container maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item md={8.5} mt={3}>
           <DidYouMean />

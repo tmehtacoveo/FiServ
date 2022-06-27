@@ -85,9 +85,6 @@ export const RecommendationListRenderer: FunctionComponent<
                   onMouseDown={() => logClick(recommendation)}
                   onMouseUp={() => logClick(recommendation)}
                   source={recommendation.raw.sourcetype}
-                  sfid={
-                    recommendation.raw.sfid ? recommendation.raw.sfid : null
-                  }
                 />
               </div>
             );

@@ -62,19 +62,22 @@ export const RecommendationListRenderer: FunctionComponent<
       {state.recommendations.length > 0 ?
       <CardWrapper>
         {state?.recommendations?.slice(0, 3).map((recommendation, index) => {
+
+        const temp: unknown = recommendation.raw.ytthumbnailurl;
+        const imgeURL : string = temp as string;
+
           return (
             <div key = {recommendation.title}>
             <RecommendtionCard
               video={true}
               title={recommendation.title}
               description={recommendation.excerpt}
-              image={recommendation.raw.ytthumbnailurl}
+              image={imgeURL? imgeURL: SampleImage}
               clickUri={recommendation.clickUri} 
               onClick={() => logClick(recommendation)}
               onContextMenu={() => logClick(recommendation)}
               onMouseDown={() => logClick(recommendation)}
               onMouseUp={() => logClick(recommendation)}
-              sfid = {null}
             />
             </div>
           );
@@ -83,7 +86,7 @@ export const RecommendationListRenderer: FunctionComponent<
         {skeletonArray.map((item, index) => {
           return (
             <div key = {item}>
-            <SkeletonRecommendtionCard keyID={item}/>
+            <SkeletonRecommendtionCard/>
             </div>
           );
         })}

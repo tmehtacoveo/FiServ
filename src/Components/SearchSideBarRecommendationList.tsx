@@ -15,6 +15,7 @@ import RecommendtionCardSmall, {
 } from "./RecommendationCardSmall";
 import EngineContext from "../common/engineContext";
 import { Typography } from "@mui/material";
+import SampleImage from "../assets/sampleImages/recommendation.png";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -84,6 +85,10 @@ export const RecommendationListRenderer: FunctionComponent<
                 {state?.recommendations
                   ?.slice(0, props.NumberofResults)
                   .map((recommendation, index) => {
+
+                    const temp: unknown = recommendation.raw.ytthumbnailurl;
+                    const imageURL : string = temp as string;
+
                     return (
                       <div key={recommendation.title}>
                         <RecommendtionCardSmall
@@ -95,11 +100,7 @@ export const RecommendationListRenderer: FunctionComponent<
                           onContextMenu={() => logClick(recommendation)}
                           onMouseDown={() => logClick(recommendation)}
                           onMouseUp={() => logClick(recommendation)}
-                          image={
-                            recommendation.raw.ytthumbnailurl
-                              ? recommendation.raw.ytthumbnailurl
-                              : ""
-                          }
+                          image={imageURL? imageURL : SampleImage}
                         />
                       </div>
                     );
@@ -116,7 +117,7 @@ export const RecommendationListRenderer: FunctionComponent<
             {skeletonArray.map((item, index) => {
               return (
                 <div key={item}>
-                  <SkeletonRecommendtionCardSmall keyID={item} />
+                  <SkeletonRecommendtionCardSmall/>
                 </div>
               );
             })}
@@ -169,7 +170,7 @@ const SearchSideBarRecommendationList: FunctionComponent<
 export default SearchSideBarRecommendationList;
 
 const Divider = styled.div`
-  width: 100%;
+/*   width: 100%; */
   height: 4px;
   background: ${Theme.primaryText};
   margin-top: 30px;
@@ -205,5 +206,5 @@ const SubTitle = styled.p`
 const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1500px;
+  /* max-width: 1500px; */
 `;

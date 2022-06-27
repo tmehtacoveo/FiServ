@@ -12,14 +12,19 @@ import Fade from "@mui/material/Fade";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderConfig } from "../config/HomeConfig";
 
-const Header = () => {
+const Header : React.FC = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const onSearchPage = location.pathname.includes("search");
   const toggleSearchBox = () => {
+
+
     if (onSearchPage) {
-      document.querySelector(".search-box input").focus();
+      const input = document.querySelector('#first_name');
+      if (input instanceof HTMLElement) {
+        input.focus();
+      }
       return;
     }
     setOpenSearch(!openSearch);
@@ -27,7 +32,10 @@ const Header = () => {
 
   useEffect(() => {
     if (openSearch) {
-      document.querySelector(".home-search-box input").focus();
+      const input = document.querySelector(".home-search-box input");
+      if (input instanceof HTMLElement) {
+        input.focus();
+      }
     }
   }, [openSearch]);
 

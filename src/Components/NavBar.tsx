@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { NavBarConfig } from '../config/HomeConfig';
 
 
-const NavBar = ()=>{
+const NavBar: React.FC = ()=>{
     if(NavBarConfig.length > 0)
     {
         return <Wrapper>

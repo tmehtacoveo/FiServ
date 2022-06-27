@@ -6,7 +6,21 @@ import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const RecommendtionCardSmall = ({
+
+interface RecommendationCardSmallType {
+  title : string,
+  description : string,
+  image : string,
+  video? : boolean,
+  clickUri : string,
+  onClick : ()=>void,
+  onContextMenu : ()=>void,
+  onMouseDown : ()=>void,
+  onMouseUp : ()=>void,
+}
+
+
+const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
   title,
   description,
   video = false,
@@ -43,7 +57,7 @@ const RecommendtionCardSmall = ({
   );
 };
 
-export const SkeletonRecommendtionCardSmall = ({ keyID }) => {
+export const SkeletonRecommendtionCardSmall : React.FC = () => {
   return (
     <MainWrapper>
       <div style={{ padding: "30px 20px" }}>
@@ -122,11 +136,11 @@ const ReferralLink = styled.a`
 `;
 
 const MainWrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
-  margin: 10px 20px;
+  margin: 10px 0px 10px 20px;
   background: white;
   cursor: pointer;
   &:hover {

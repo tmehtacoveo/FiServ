@@ -1,24 +1,31 @@
-import React, { useEffect, useState, FunctionComponent, useContext } from "react";
-import { buildTab } from "@coveo/headless";
+import React, { useEffect, useContext } from "react";
+import { buildTab, Tab } from "@coveo/headless";
 import EngineContext from "../common/engineContext";
 import styled from "styled-components";
 import { Theme } from "../theme";
 import { useNavigate } from "react-router-dom";
 import { SearchPageTabConfig } from "../config/SearchConfig";
+import { SearchPageTabConfigType } from "../config/ConfigTypes";
 
-const TAB_LIST = SearchPageTabConfig;
 
-const isRouteMatching = (param, caption) => {
-  if (!param && caption === TAB_LIST[0].caption) {
+const isRouteMatching  = (param : string, caption : string) => {
+  if (!param && caption === SearchPageTabConfig[0].caption) {
     return true;
   }
-
   return (
-    param && caption.replace(/\s/g, "").toLowerCase() === param.toLowerCase()
+    (param && caption.replace(/\s/g, "").toLowerCase() === param.toLowerCase())? true : false
   );
 };
 
-export const SearchTab = ({ controller, item, selected }) => {
+
+interface SearchTabType {
+  item : SearchPageTabConfigType,
+  controller : Tab,
+  selected : boolean 
+}
+
+
+export const SearchTab: React.FC<SearchTabType> = ({ controller, item, selected }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,7 +35,7 @@ export const SearchTab = ({ controller, item, selected }) => {
   }, []);
 
   return (
-    <Tab
+    <TabTitle
       key={item.caption}
       onClick={() => {
         navigate(`/search/${item.caption.replace(/\s/g, "")}`);
@@ -39,16 +46,21 @@ export const SearchTab = ({ controller, item, selected }) => {
       isActive={selected}
     >
       {item.caption}
-    </Tab>
+    </TabTitle>
   );
 };
 
-const SearchTabs = ({ filterSelected }) => {
-  const engine = useContext(EngineContext);
+
+interface SearchTabsType {
+  filterSelected : string
+}
+
+const SearchTabs : React.FC<SearchTabsType> = ({ filterSelected }) => {
+  const engine = useContext(EngineContext)!;
 
   return (
     <Wrapper>
-      {TAB_LIST.map((item) => {
+      {SearchPageTabConfig.map((item) => {
         const controller = buildTab(engine, {
           options: {
             id: item.caption,
@@ -81,7 +93,7 @@ const Wrapper = styled.div`
   font-weight: 300;
 `;
 
-const Tab = styled.a`
+const TabTitle = styled.a<{isActive : boolean }>`
   padding: 15px 20px;
   text-align: center;
   color: ${Theme.secondaryText};

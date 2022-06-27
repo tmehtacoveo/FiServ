@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { HeroConfig } from '../config/HomeConfig';
 import { useNavigate } from 'react-router-dom';
 
-const HeroHome = ()=>{
+const HeroHome: React.FC = ()=>{
     const navigate = useNavigate();
     return <Wrapper>
         <TextWrapper>
