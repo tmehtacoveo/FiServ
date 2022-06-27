@@ -8,17 +8,6 @@ import React from "react";
 const FacetList = () => {
   const { filter } = useParams();
 
-/*   const FacetFieldInSearchTabs = () => {
-    return SearchPageTabConfig.map((item) => {
-      if (item.facetToInclude) {
-        return item.facetToInclude;
-      }
-      return null;
-    });
-  };
-
-  console.log(FacetFieldInSearchTabs()); */
-
   return (
     <Box>
       <Box px={1} pb={1} mt={4}>
@@ -33,16 +22,14 @@ const FacetList = () => {
                 (index === 0 && filter === undefined && item.facetToInclude)
               ) {
                 return (
-                  <React.Fragment key = {item.caption}>
-                    {item.facetToInclude && item.facetToInclude.map((item : any) => {
+                  <React.Fragment key={item.caption}>
+                    {item.facetToInclude.map((item) => {
                       return (
-                        <React.Fragment key = {item}>
-                        <Facet
-                          field={item}
-                          title={
-                            FacetConfig.find((x) => x.field === item)?.title
-                          }
-                        />
+                        <React.Fragment key={item}>
+                          <Facet
+                            field={item}
+                            title={FacetConfig.find((x) => x.field === item)?.title}
+                          />
                         </React.Fragment>
                       );
                     })}
@@ -53,12 +40,15 @@ const FacetList = () => {
           </>
         ) : (
           <>
-          {console.log('ashdgashgdjgsad')}
-            <Facet field="source" title="Source" />
-            <Facet field="filetype" title="File Type" />
-            <Facet field="concepts" title="Concepts" />
+            {FacetConfig.map((item) => {
+              return (
+                <React.Fragment key={item.field}>
+                  <Facet field={item.field} title={item.title} />
+                </React.Fragment>
+              );
+            })}
           </>
-       )} 
+        )}
       </Box>
     </Box>
   );

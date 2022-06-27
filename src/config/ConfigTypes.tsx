@@ -7,10 +7,12 @@ export interface DefaultSideBarRecommendationConfigType {
     video? : boolean
   }
 
+
+
 type FacetFieldValue = typeof FacetConfig[number]['field']
 
 export interface FacetConfigType {
-  field : string;
+  field : string,
   title : string
 }  
 

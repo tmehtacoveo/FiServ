@@ -64,27 +64,20 @@ export const RecommendationListRenderer: FunctionComponent<
       {state.recommendations.length > 0 ? (
         <CardWrapper>
           {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
-           /*  let SFimage
-            if (recommendation.raw.sfimage__c) {
-              let dom = document.createElement("div");
-              dom.innerHTML = recommendation.raw.sfimage__c;
-              SFimage = dom.querySelector("img").src;
-
-            }
-            console.log('"sfimage_url__c",' , recommendation.raw?.sfimage_url__c) */
+            const temp: unknown = recommendation.raw.sfimage_url__c;
+            const imageURL : string = temp as string;
             return (
               <div key={recommendation.title}>
                 <RecommendtionCard
                   video={false}
                   title={recommendation.title}
                   description={recommendation.excerpt}
-                  image={recommendation.raw.sfimage_url__c? recommendation.raw.sfimage_url__c : SampleImage}
+                  image={imageURL? imageURL : SampleImage}
                   clickUri={recommendation.clickUri}
                   onClick={() => logClick(recommendation)}
                   onContextMenu={() => logClick(recommendation)}
                   onMouseDown={() => logClick(recommendation)}
                   onMouseUp={() => logClick(recommendation)}
-                  source={recommendation.raw.sourcetype}
                 />
               </div>
             );

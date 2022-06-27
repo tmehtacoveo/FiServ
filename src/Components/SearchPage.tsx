@@ -122,10 +122,10 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                               return (
                                 <React.Fragment key={item.title}>
                                   <SearchSideBarRecommendationList
-                                    pipeline={item?.pipeline}
-                                    NumberofResults={item?.NumberofResults}
-                                    title={item?.title}
-                                    video={item?.video}
+                                    pipeline={item.pipeline}
+                                    NumberofResults={item.NumberofResults}
+                                    title={item.title}
+                                    video={item.video}
                                   />
                                 </React.Fragment>
                               );
