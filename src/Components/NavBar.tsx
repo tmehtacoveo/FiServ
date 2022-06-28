@@ -33,12 +33,16 @@ const NavigationWrapper = styled.ul`
 margin-left: 20px;
 display: flex;
 color : white;
-width: 25%;
+width: 20%;
 min-width: 400px;
 height: 40px;
 justify-content: space-around;
 align-items: center;
-
+@media (max-width: 480px) {
+    margin-left: 0px;
+    width: 100%;
+    padding-left: 0;
+}
 `
 
 const NavigationLink = styled(NavLink)`

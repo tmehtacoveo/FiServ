@@ -149,6 +149,9 @@ const MainWrapper = styled.div`
   &:hover ${ReferralLink} {
     opacity: 1;
   }
+  @media (max-width: 480px) {
+    width: 90vw;
+}
 `;
 
 export default RecommendtionCard;

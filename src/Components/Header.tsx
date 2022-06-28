@@ -73,9 +73,9 @@ const Header : React.FC = () => {
       </Wrapper>
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
-          <div style={{ width: "50%", maxWidth: "800px", minWidth: "500px" }}>
+          <SearchBoxContainer >
             <HomeSearchBox toggleSearchBox={toggleSearchBox} />
-          </div>
+          </SearchBoxContainer>
         </SearchContainer>
       </Fade>
     </>
@@ -143,6 +143,9 @@ const Divider = styled.div`
   /* Primary/Grey/40 */
 
   background: #e5e8e8;
+  @media (max-width: 480px) {
+   display: none;
+}
 `;
 
 const SearchContainer = styled.div`
@@ -162,6 +165,15 @@ const IconWrapper = styled.div`
 display: flex;
 width: 80px;
 justify-content: space-between;
+`
+
+const SearchBoxContainer = styled.div`
+  width: 50%;
+  max-width: 800px;
+  min-width: 500px;
+  @media (max-width: 480px) {
+  min-width: 80vw;
+}
 `
 
 export default Header;

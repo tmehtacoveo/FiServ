@@ -29,6 +29,13 @@ padding-left: 120px;
 background: url(${HeroConfig.background}) no-repeat;
 background-position: right center;
 background-size: cover;
+@media (max-width: 480px) {
+    padding-left: 10px;
+   /*  text-align: center; */
+   width: 100vw;
+   justify-content: flex-start;
+   padding-top: 80px;
+}
 `
 
 const TextWrapper = styled.div`
@@ -43,8 +50,11 @@ font-size: 56px;
 line-height: 66px;
 color: ${Theme.primaryText};
 margin-bottom: 20px;
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
     display: none;
+} */
+@media (max-width: 480px) {
+    font-size: 40px;
 }
 `
 
@@ -55,8 +65,11 @@ font-size: 18px;
 line-height: 28px;
 color: ${Theme.primaryText};
 margin-bottom: 20px;
-@media (max-width: 1000px) {
+/* @media (max-width: 1000px) {
     display: none;
+} */
+@media (max-width: 480px) {
+    width: 80%;
 }
 `
 

@@ -30,6 +30,7 @@ code {
 */
 html, body {
   height: 100%;
+ /*  overflow-x: hidden; */
 }
 /*
   Typographic tweaks!
