@@ -9,6 +9,7 @@ import {
   ResultsPerPage as HeadlessResultsPerPage,
 } from '@coveo/headless';
 import EngineContext from '../common/engineContext';
+import { ResultsPerPagesConfig } from '../config/SearchConfig';
 
 interface ResultsPerPageProps {
   options: number[];
@@ -18,21 +19,17 @@ const ResultsPerPageRenderer: FunctionComponent<ResultsPerPageProps> = (
   props
 ) => {
   const {controller, options} = props;
-  const [state, setState] = useState(controller.state);
-
-  useEffect(
-    () => controller.subscribe(() => setState(controller.state)),
-    [controller]
-  );
+  const [selected, setSelected] = useState(options[0])
 
   return (
     <FormControl component="fieldset">
       <Typography>Results per page</Typography>
       <RadioGroup
         row
-        value={state.numberOfResults}
+        value={selected}
         onChange={(event) => {
-          controller.set(parseInt(event.target.value, 10));
+          setSelected(Number(event.target.value))
+          controller.set(Number(event.target.value));
         }}
       >
         {options.map((numberOfResults) => (
@@ -50,7 +47,8 @@ const ResultsPerPageRenderer: FunctionComponent<ResultsPerPageProps> = (
 
 const ResultsPerPage = () => {
   const engine = useContext(EngineContext)!;
-  const options = [5, 10, 25];
+  const options = ResultsPerPagesConfig;
+  
   const controller = buildResultsPerPage(engine, {
     initialState: {numberOfResults: options[0]},
   });

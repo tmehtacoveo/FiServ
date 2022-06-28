@@ -1,14 +1,16 @@
 import React from 'react';
 import theme, {Theme} from '../theme';
 import styled from "styled-components";
-import HeroImage from '../assests/Heading.jpg'
+import { HeroConfig } from '../config/HomeConfig';
+import { useNavigate } from 'react-router-dom';
 
-const HeroHome = ()=>{
+const HeroHome: React.FC = ()=>{
+    const navigate = useNavigate();
     return <Wrapper>
         <TextWrapper>
-        <Title>Life changes fast</Title>
-        <SubTitle>A BTEP Mortgage gives you the flexibility to use the equity from your home when you need it. </SubTitle>
-        <Button>Learn more</Button>
+        <Title>{HeroConfig.title}</Title>
+        <SubTitle>{HeroConfig.description}</SubTitle>
+        <Button onClick = {()=> navigate(HeroConfig.onClickButtonRedirect)}>{HeroConfig.buttonText}</Button>
         </TextWrapper>
     </Wrapper>
 };
@@ -24,7 +26,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 padding-left: 120px;
-background: url(${HeroImage}) no-repeat;
+background: url(${HeroConfig.background}) no-repeat;
 background-position: right center;
 background-size: cover;
 `
@@ -39,7 +41,7 @@ const Title = styled.h1`
 font-weight: 400;
 font-size: 56px;
 line-height: 66px;
-color: ${Theme.primary};
+color: ${Theme.primaryText};
 margin-bottom: 20px;
 @media (max-width: 1000px) {
     display: none;
@@ -51,7 +53,7 @@ const SubTitle = styled.p`
 font-weight: 300;
 font-size: 18px;
 line-height: 28px;
-color: ${Theme.primary};
+color: ${Theme.primaryText};
 margin-bottom: 20px;
 @media (max-width: 1000px) {
     display: none;

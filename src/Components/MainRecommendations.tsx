@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState, FunctionComponent } from "react";
 import {
   RecommendationList as HeadlessRecommendationList,
@@ -9,8 +10,10 @@ import {
 } from "@coveo/headless/recommendation";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assests/sampleImages/recommendation.png";
+import RecommendtionCard, {
+  SkeletonRecommendtionCard,
+} from "./RecommendationCard";
+import SampleImage from "../assets/sampleImages/recommendation.png";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -26,15 +29,9 @@ export const RecommendationListRenderer: FunctionComponent<
   console.log("state recommendation list", state);
 
   useEffect(() => {
-
-    setTimeout(() => {
-      controller.refresh();
-    controller.subscribe(() => setState(controller.state))
-    }, 1000);
-    
-  
+    controller.refresh();
+    controller.subscribe(() => setState(controller.state));
   }, []);
-
 
   if (state.error) {
     return (
@@ -46,7 +43,7 @@ export const RecommendationListRenderer: FunctionComponent<
     );
   }
 
-/*   if (!state.recommendations.length) {
+  /*   if (!state.recommendations.length) {
     return <button onClick={() => controller.refresh()}>Refresh</button>;
   } */
 
@@ -54,48 +51,51 @@ export const RecommendationListRenderer: FunctionComponent<
     if (!engine) {
       return;
     }
-    console.log('loggin')
+    console.log("loggin");
     const { logRecommendationOpen } = loadClickAnalyticsActions(engine);
     engine.dispatch(logRecommendationOpen(recommendation));
   };
 
-  const skeletonArray = [1,2,3]
-
+  const skeletonArray = [1, 2, 3];
   return (
     <MainWrapper>
       <Title>Recommendations</Title>
       <SubTitle>Here are your personalized recommendation</SubTitle>
-      {state.recommendations.length > 0 ?
-      <CardWrapper>
-        {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
-          return (
-            <div key = {recommendation.title}>
-            <RecommendtionCard
-              video={false}
-              title={recommendation.title}
-              description={recommendation.excerpt}
-              image={SampleImage}
-              clickUri={recommendation.clickUri} 
-              onClick={() => logClick(recommendation)}
-              onContextMenu={() => logClick(recommendation)}
-              onMouseDown={() => logClick(recommendation)}
-              onMouseUp={() => logClick(recommendation)}
-            />
-            </div>
-          );
-        })}
-      </CardWrapper> : <CardWrapper>
-        {skeletonArray.map((item, index) => {
-          return (
-            <div key = {item}>
-            <SkeletonRecommendtionCard keyID={item}/>
-            </div>
-          );
-        })}
-      </CardWrapper> }
+      {state.recommendations.length > 0 ? (
+        <CardWrapper>
+          {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
+            const temp: unknown = recommendation.raw.sfimage_url__c;
+            const imageURL : string = temp as string;
+            return (
+              <div key={recommendation.title}>
+                <RecommendtionCard
+                  video={false}
+                  title={recommendation.title}
+                  description={recommendation.excerpt}
+                  image={imageURL? imageURL : SampleImage}
+                  clickUri={recommendation.clickUri}
+                  onClick={() => logClick(recommendation)}
+                  onContextMenu={() => logClick(recommendation)}
+                  onMouseDown={() => logClick(recommendation)}
+                  onMouseUp={() => logClick(recommendation)}
+                />
+              </div>
+            );
+          })}
+        </CardWrapper>
+      ) : (
+        <CardWrapper>
+          {skeletonArray.map((item, index) => {
+            return (
+              <div key={item}>
+                <SkeletonRecommendtionCard keyID={item} />
+              </div>
+            );
+          })}
+        </CardWrapper>
+      )}
     </MainWrapper>
   );
-
 };
 
 const MainRecommendationList = () => {
@@ -103,25 +103,22 @@ const MainRecommendationList = () => {
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
-      searchHub : process.env.SEARCH_HUB!
+      searchHub: process.env.REACT_APP_SEARCH_HUB!,
+      pipeline : 'Investing'
     },
   });
 
   const contextController = buildContext(recommendationEngine);
 
-  contextController.add(
-    'concepts' , ['investment advisors ', ' broker-dealer representatives ', ' fiduciary standard ']
-  )
-  console.log(contextController.state)
+  contextController.add("concepts", [
+    "investment advisors ",
+    " broker-dealer representatives ",
+    " fiduciary standard ",
+  ]);
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
   });
-
-
-
-
-  
 
   return (
     <RecommendationListRenderer
@@ -151,7 +148,7 @@ const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
   font-family: "Gibson";
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 10px;
 `;
@@ -160,7 +157,7 @@ const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   margin-bottom: 20px;
 `;
 
@@ -173,4 +170,3 @@ const CardWrapper = styled.div`
   max-width: 1500px;
   margin-top: 20px;
 `;
-

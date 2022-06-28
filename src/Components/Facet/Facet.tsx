@@ -6,11 +6,12 @@ import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import './Facet.css';
 import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
-import EngineContext from '../common/engineContext';
+import EngineContext from '../../common/engineContext';
 import { FacetContext, FacetContextType } from './FacetContext';
-
+import styled from 'styled-components'
+import { useParams } from 'react-router-dom';
 interface FacetProps {
-  title: string;
+  title: string | undefined;
   field: string;
 }
 
@@ -19,6 +20,7 @@ interface FacetRendererProps extends FacetProps {
 }
 
 const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
+  
   const {controller} = props;
   const [state, setState] = useState(controller.state);
 
@@ -38,9 +40,9 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
   const showLess = () => {
     controller.showLessValues();
   };
-
   return (
-    <Box mb={5} mr={3} p={1}>
+    <Wrapper>
+    <Box mb={0} mr={3} p={1} >
       <Box pb={1}>
         <Typography variant="h6" component="h6">
           {props.title}
@@ -87,21 +89,21 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
         </Button>
       )}
     </Box>
+    </Wrapper>
   );
 };
 
 const Facet: FunctionComponent<FacetProps> = (props) => {
  const {facetController, setFacetController} = useContext<any>(FacetContext)!
   const engine = useContext(EngineContext)!;
-  
-  let controller : HeadlessFacet  = facetController[props.field]? facetController[props.field] : buildFacet(engine, {
+  let controller : HeadlessFacet  = facetController[props.field] ? facetController[props.field] : buildFacet(engine, {
       options: {
         numberOfValues: 5,
         field: props.field,
       },
     });
 
-    useEffect(()=>{
+  /*   useEffect(()=>{
       if(!facetController[props.field]){
         const update =<T,> (prev : T): T=>{
           return {...prev, [props.field] : controller}
@@ -109,11 +111,23 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
 
         setFacetController(update);
       }
-    },[])
+    },[]) */
 
-    console.log(facetController)
+    /* console.log(facetController) */
+/*     console.log('1',controller?.state?.values)
+    console.log('2',facetController[props.field]?.state?.values) */
     
-  return <FacetRenderer {...props} controller={facetController[props.field]? facetController[props.field] : controller} />;
+  return <FacetRenderer {...props} controller={/* facetController[props.field]? facetController[props.field] : */ controller} />;
 };
 
 export default memo(Facet);
+
+
+const Wrapper = styled.div`
+  
+  border: 1px #E5E8E8 solid;
+  border-radius: 16px;
+  padding: 24px 16px;
+  margin-bottom: 20px;
+  font-family: 'Gibson';
+`

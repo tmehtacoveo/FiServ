@@ -9,7 +9,7 @@ import {
 import { Theme } from "../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assests/sampleImages/recommendation.png";
+import SampleImage from "../assets/sampleImages/recommendation.png";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -25,13 +25,8 @@ export const RecommendationListRenderer: FunctionComponent<
   console.log("video recommendation list", state);
 
   useEffect(() => {
-
-    setTimeout(() => {
-      controller.refresh();
+    controller.refresh();
     controller.subscribe(() => setState(controller.state))
-    }, 1000);
-    
-  
   }, []);
 
 
@@ -67,13 +62,17 @@ export const RecommendationListRenderer: FunctionComponent<
       {state.recommendations.length > 0 ?
       <CardWrapper>
         {state?.recommendations?.slice(0, 3).map((recommendation, index) => {
+
+        const temp: unknown = recommendation.raw.ytthumbnailurl;
+        const imgeURL : string = temp as string;
+
           return (
             <div key = {recommendation.title}>
             <RecommendtionCard
               video={true}
               title={recommendation.title}
               description={recommendation.excerpt}
-              image={recommendation.raw.ytthumbnailurl}
+              image={imgeURL? imgeURL: SampleImage}
               clickUri={recommendation.clickUri} 
               onClick={() => logClick(recommendation)}
               onContextMenu={() => logClick(recommendation)}
@@ -87,7 +86,7 @@ export const RecommendationListRenderer: FunctionComponent<
         {skeletonArray.map((item, index) => {
           return (
             <div key = {item}>
-            <SkeletonRecommendtionCard keyID={item}/>
+            <SkeletonRecommendtionCard/>
             </div>
           );
         })}
@@ -102,7 +101,7 @@ const VideoRecommendation = () => {
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
-      searchHub : process.env.SEARCH_HUB!,
+      searchHub : process.env.REACT_APP_SEARCH_HUB!,
       pipeline : 'Video Rec Sidebar',
 
     },
@@ -137,7 +136,7 @@ const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
   font-family: "Gibson";
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 10px;
 `;
@@ -146,7 +145,7 @@ const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: ${Theme.primary};
+  color: ${Theme.primaryText};
   margin-bottom: 20px;
 `;
 

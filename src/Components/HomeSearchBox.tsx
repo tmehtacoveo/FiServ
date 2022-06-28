@@ -29,14 +29,14 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       onInputChange={(_, newInputValue) => {
         controller.updateText(newInputValue);
       }}
-    /*   onChange={() => {
+      onChange={() => {
           if (controller.state.value !== '')
           {
-            navigate('/search');
             props.toggleSearchBox();
             controller.submit();
+            navigate('/search');
           }
-      }} */
+      }}
       options={state.suggestions.map((suggestion) => suggestion.rawValue)}
       freeSolo
       style={{width: 'auto'}}

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import MainRecommendations from "./MainRecommendations";
 import VideoRecommendations from "./VideoRecommendation";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
 
   return (
     <>
