@@ -120,7 +120,6 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
     }
     return 0;
   };
-    console.log('result',result)
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
