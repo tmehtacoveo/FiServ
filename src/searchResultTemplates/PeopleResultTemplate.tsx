@@ -61,9 +61,14 @@ const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
     <>
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={1}>
+        <BadgeWrapper>
           {result.isRecommendation && (
             <RecommendationBadge>Recommended</RecommendationBadge>
           )}
+          {result.isTopResult && (
+            <RecommendationBadge>Featured</RecommendationBadge>
+          )}
+          </BadgeWrapper>
           <MainWrapper>
             {result.raw[imageField] && (
               <ImageWrapper>
@@ -199,3 +204,10 @@ const DateWrapper = styled.p`
   justify-content: flex-end;
   padding-left: 20px;
 `;
+const BadgeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 210px;
+  justify-content: space-between;
+
+`

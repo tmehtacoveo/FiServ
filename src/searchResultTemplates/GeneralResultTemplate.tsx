@@ -120,14 +120,19 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
     }
     return 0;
   };
-
+    console.log('result',result)
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={1}>
+          <BadgeWrapper>
           {result.isRecommendation && (
             <RecommendationBadge>Recommended</RecommendationBadge>
           )}
+          {result.isTopResult && (
+            <RecommendationBadge>Featured</RecommendationBadge>
+          )}
+          </BadgeWrapper>
           <MainWrapper>
             {filetype in FileTypeIconsConfig && (
               <SourceTypeWrapper>
@@ -252,3 +257,11 @@ const TitltAndDateWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+const BadgeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 210px;
+  justify-content: space-between;
+
+`

@@ -88,7 +88,7 @@ export const FieldToIncludesInSearchResults : string[] = [
 
 export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
-    caption: "All Content",
+    caption: "All",
     expression: "",
     isActive: true,
     sideBarRecommendationConfig: [
