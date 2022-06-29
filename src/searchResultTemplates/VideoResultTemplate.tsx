@@ -168,7 +168,7 @@ import React, {
       text-decoration: underline;
     }
   @media (max-width: 480px) {
-   font-size: 16px;
+   font-size: 18px;
    & a {
     -webkit-line-clamp: 2;
    }
