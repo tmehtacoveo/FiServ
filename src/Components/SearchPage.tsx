@@ -18,6 +18,8 @@ import {
   DefaultSideBarRecommendationConfig,
   SearchPageTabConfig,
 } from "../config/SearchConfig";
+import BreadcrumbManager from "./BreadcrumbManager";
+import styled from 'styled-components'
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -45,25 +47,24 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           md={5}
           mt={6.5}
           mb={6.5}
-          style={{
-            minWidth: "500px",
-            maxWidth: "800px",
-          }}
         >
+          <SearchBoxContainer>
           <SearchBox />
+          </SearchBoxContainer>
         </Grid>
       </Grid>
       <SearchTabs filterSelected={filter? filter : ""} />
       <Container maxWidth="xl" style={{ padding: "0px" }}>
-        <Grid item md={8.5} mt={3}>
+        <Grid item mt={3} mb={2}>
           <DidYouMean />
+          <BreadcrumbManager/>
         </Grid>
-        <Box my={4}>
+        <Box my={2}>
           <Grid container style={{ opacity: resultLoading ? "0.6" : "1" }}>
-            <Grid item xs={3} md={3} sm={12}>
+            <Grid item xs={12} md={3} sm={12}>
               <FacetList />
             </Grid>
-            <Grid item xs={6} md={6} sm={12}>
+            <Grid item xs={12} md={6} sm={12}>
               <Box pl={3}>
                 <Grid container alignItems="flex-end">
                   <Grid item md={9.5}>
@@ -90,7 +91,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={3} md={3} sm={12}>
+            <Grid item xs={12} md={3} sm={12}>
               {DefaultSideBarRecommendationConfig.length > 0? (
                 <>
                   {DefaultSideBarRecommendationConfig.map((item) => {
@@ -146,3 +147,13 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
 };
 
 export default SearchPage;
+
+
+const SearchBoxContainer = styled.div`
+  width: 50%;
+  max-width: 800px;
+  min-width: 500px;
+  @media (max-width: 480px) {
+  min-width: 80vw;
+}
+`

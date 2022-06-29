@@ -38,6 +38,9 @@ export const FacetConfig = [
   },{
     field :"adcity",
     title : "City"
+  },{
+    title: "More Info",
+    field : "mynav4b"
   }
 ] as const;
 
@@ -119,7 +122,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
     caption: "Money Matters",
     expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
     isActive: false,
-    facetToInclude: ["concepts","mynav2b"],
+    facetToInclude: ["concepts","mynav2b", "mynav4b"],
   },
   {
     caption: "Insurance Needs",
