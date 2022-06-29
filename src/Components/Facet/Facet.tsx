@@ -5,11 +5,14 @@ import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import './Facet.css';
-import {Divider, ListItem, ListItemText, Typography} from '@mui/material';
+import {Collapse, Divider, ListItem, ListItemText, Typography} from '@mui/material';
 import EngineContext from '../../common/engineContext';
 import { FacetContext, FacetContextType } from './FacetContext';
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
+import {chevronDown} from 'react-icons-kit/feather/chevronDown'
+import {chevronUp} from 'react-icons-kit/feather/chevronUp'
+import { Icon } from "react-icons-kit";
 interface FacetProps {
   title: string | undefined;
   field: string;
@@ -23,6 +26,7 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
   
   const {controller} = props;
   const [state, setState] = useState(controller.state);
+  const [collapse, setCollapse] = useState(true)
 
   useEffect(
     () => controller.subscribe(() => setState(controller.state)),
@@ -43,12 +47,17 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
   return (
     <Wrapper>
     <Box mb={0} mr={3} p={1} >
-      <Box pb={1}>
+      <Box pb={1} sx = {{display: 'flex', flexDirection : 'row', alignItems: 'center', justifyContent: "space-between"}}>
         <Typography variant="h6" component="h6">
           {props.title}
         </Typography>
+        <div onClick = {()=>setCollapse(!collapse)} style = {{cursor: 'pointer'}}>
+          {!collapse? <Icon icon = {chevronDown} size = {20} /> : <Icon icon = {chevronUp} size = {20} />}
+        </div>
+        
       </Box>
       <Divider />
+      <Collapse in= {collapse}>
       <List dense>
         {state.values.map((value: FacetValue) => {
           const labelId = `checkbox-list-label-${value}`;
@@ -88,6 +97,7 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
           Show More
         </Button>
       )}
+      </Collapse>
     </Box>
     </Wrapper>
   );

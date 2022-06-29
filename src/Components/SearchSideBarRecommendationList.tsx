@@ -175,7 +175,8 @@ const Divider = styled.div`
   background: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const MainWrapper = styled.div`
@@ -188,7 +189,7 @@ const MainWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  margin-left: 20px;
+  margin-left: 10px;
   font-size: 20px;
   font-weight: 400;
   font-family: "Gibson";

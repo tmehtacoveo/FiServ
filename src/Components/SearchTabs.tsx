@@ -84,13 +84,14 @@ const SearchTabs : React.FC<SearchTabsType> = ({ filterSelected }) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 0px 10%;
+  /* padding: 0px 10%; */
   background: ${Theme.navbar};
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: Gibson;
   font-weight: 300;
+  flex-wrap: wrap;
 `;
 
 const TabTitle = styled.a<{isActive : boolean }>`

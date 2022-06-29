@@ -192,6 +192,9 @@ const SourceTypeWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 480px) {
+   display: none;
+}
 `;
 
 const IconImage = styled.img`
@@ -213,6 +216,7 @@ const Title = styled.h2`
   line-height: 24px;
   width: 80%;
 
+
   & a {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -226,6 +230,13 @@ const Title = styled.h2`
   & a:hover {
     text-decoration: underline;
   }
+  @media (max-width: 480px) {
+   font-size: 16px;
+   & a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+   }
+}
 `;
 
 const Excerpt = styled.p`
@@ -237,6 +248,9 @@ const Excerpt = styled.p`
   color: ${Theme.excerpt};
   font-family: inherit;
   font-weight: 300px;
+  @media (max-width: 480px) {
+   font-size: 12px;
+}
 `;
 
 const RecommendationBadge = styled.div`
