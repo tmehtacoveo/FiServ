@@ -120,6 +120,20 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
     }
     return 0;
   };
+
+
+  const highlightedExcerpt = (result :  Result)=>{
+    let highlightedString = result.excerpt;
+    let adjustmentoffset = 0;
+    result.excerptHighlights.forEach((item)=>{
+    highlightedString =  highlightedString.slice(0,item.offset + adjustmentoffset) + "<b>" + highlightedString.slice(item.offset + adjustmentoffset,item.offset + adjustmentoffset + item.length) + "</b>" + highlightedString.slice(item.offset + adjustmentoffset + item.length);
+    adjustmentoffset = adjustmentoffset + 7;
+    })
+    return highlightedString;
+
+  }
+
+
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
@@ -158,7 +172,7 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
               </TitltAndDateWrapper>
               {result.excerpt && (
                 <Box pb={1}>
-                  <Excerpt>{result.excerpt}</Excerpt>
+                  <Excerpt dangerouslySetInnerHTML={{ __html: highlightedExcerpt(result) }} />
                 </Box>
               )}
             </TextWrapper>
@@ -239,7 +253,7 @@ const Title = styled.h2`
 }
 `;
 
-const Excerpt = styled.p`
+const Excerpt = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -250,6 +264,10 @@ const Excerpt = styled.p`
   font-weight: 300px;
   @media (max-width: 480px) {
    font-size: 12px;
+}
+
+& b{
+  font-weight: 400;
 }
 `;
 
