@@ -55,6 +55,7 @@ export default BreadcrumbManager;
 
 const Wrapper = styled.ul`
     list-style: none;
+    margin-bottom: 50px;
 `
 
 const BreadcrumbWrapper = styled.li`
@@ -75,6 +76,7 @@ const Breadcrumb = styled.button`
     margin-right: 10px;
     margin-bottom: 5px;
     font-weight: 300;
+    font-size : 16px;
     color: #626971;
     transition: 0.1s ease-in-out all;
     cursor: pointer;

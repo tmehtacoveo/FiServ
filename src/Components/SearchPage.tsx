@@ -57,7 +57,6 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
       <Container maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item mt={3} mb={2}>
           <DidYouMean />
-          <BreadcrumbManager/>
         </Grid>
         <Box my={2}>
           <Grid container style={{ opacity: resultLoading ? "0.6" : "1" }}>
@@ -65,6 +64,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               <FacetList />
             </Grid>
             <Grid item xs={12} md={6} sm={12}>
+            <BreadcrumbManager/>
               <Box pl={3} pr={2}>
                 <Grid container alignItems="flex-end">
                   <Grid item md={9} xs ={12} mb={2}>
