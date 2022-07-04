@@ -7,6 +7,9 @@ import {
   SearchBoxOptions,
 } from '@coveo/headless';
 import EngineContext from '../common/engineContext';
+import parse from 'autosuggest-highlight/parse';
+import match from 'autosuggest-highlight/match';
+
 
 interface SearchBoxProps {
   controller: HeadlessSearchBox;
@@ -40,6 +43,26 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
           }
         }}/>
       )}
+      renderOption={(props, option, { inputValue }) => {
+        const matches = match(option, inputValue);
+        const parts = parse(option, matches);
+        return (
+          <li {...props}>
+            <div>
+              {parts.map((part, index) => (
+                <span
+                  key={index}
+                  style={{
+                    fontWeight: part.highlight ? 400 : 300,
+                  }}
+                >
+                  {part.text}
+                </span>
+              ))}
+            </div>
+          </li>
+        );
+      }}
     />
   );
 };
