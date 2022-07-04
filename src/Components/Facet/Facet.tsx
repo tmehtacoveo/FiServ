@@ -23,9 +23,8 @@ import {
   Typography,
 } from "@mui/material";
 import EngineContext from "../../common/engineContext";
-import { FacetContext, FacetContextType } from "./FacetContext";
+import { FacetContext } from "./FacetContext";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
 import { chevronDown } from "react-icons-kit/feather/chevronDown";
 import { chevronUp } from "react-icons-kit/feather/chevronUp";
 import { Icon } from "react-icons-kit";
@@ -144,8 +143,7 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
 };
 
 const Facet: FunctionComponent<FacetProps> = (props) => {
-  const { facetController, setFacetController } =
-    useContext<any>(FacetContext)!;
+  const { facetController } = useContext(FacetContext)!;
   const engine = useContext(EngineContext)!;
   let controller: HeadlessFacet = facetController[props.field]
     ? facetController[props.field]
@@ -156,26 +154,10 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
         },
       });
 
-  /*   useEffect(()=>{
-      if(!facetController[props.field]){
-        const update =<T,> (prev : T): T=>{
-          return {...prev, [props.field] : controller}
-        }
-
-        setFacetController(update);
-      }
-    },[]) */
-
-  /* console.log(facetController) */
-  /*     console.log('1',controller?.state?.values)
-    console.log('2',facetController[props.field]?.state?.values) */
-
   return (
     <FacetRenderer
       {...props}
-      controller={
-        /* facetController[props.field]? facetController[props.field] : */ controller
-      }
+      controller={controller}
     />
   );
 };

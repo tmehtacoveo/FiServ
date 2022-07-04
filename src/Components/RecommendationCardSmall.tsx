@@ -1,8 +1,6 @@
 import React from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import { chevronRight } from "react-icons-kit/feather/chevronRight";
-import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 

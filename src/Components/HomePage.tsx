@@ -1,5 +1,4 @@
 import React from "react";
-import { Theme } from "../theme";
 import HeroHome from "./HeroHome";
 import styled from "styled-components";
 import MainRecommendations from "./MainRecommendations";

@@ -1,5 +1,5 @@
 import React from 'react';
-import theme, {Theme} from '../theme';
+import {Theme} from '../theme';
 import styled from "styled-components";
 import { HeroConfig } from '../config/HomeConfig';
 import { useNavigate } from 'react-router-dom';
@@ -50,9 +50,6 @@ font-size: 56px;
 line-height: 66px;
 color: ${Theme.primaryText};
 margin-bottom: 20px;
-/* @media (max-width: 1000px) {
-    display: none;
-} */
 @media (max-width: 480px) {
     font-size: 40px;
 }
@@ -65,9 +62,6 @@ font-size: 18px;
 line-height: 28px;
 color: ${Theme.primaryText};
 margin-bottom: 20px;
-/* @media (max-width: 1000px) {
-    display: none;
-} */
 @media (max-width: 480px) {
     width: 80%;
 }

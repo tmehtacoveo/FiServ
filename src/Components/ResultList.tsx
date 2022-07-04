@@ -94,65 +94,12 @@ function FieldValue(props: FieldValueInterface) {
 }
 
 const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) => {
-  const navigate = useNavigate();
-  const {setResult} = useContext(SFKBContext)
+  
   const {controller,setResultLoading} = props;
   const engine = useContext(EngineContext)!;
   const [state, setState] = useState(controller.state);
   const headlessResultTemplateManager: ResultTemplatesManager<Template> =
     buildResultTemplatesManager(engine);
-
- /*  headlessResultTemplateManager.registerTemplates({
-    conditions: [],
-    content: (result: Result) => (
-      <ListItem disableGutters key={result.uniqueId}>
-        <Box my={2}>
-          <Box pb={1}>{ListItemLink(engine, result)}</Box>
-
-          {result.excerpt && (
-            <Box pb={1}>
-              <Typography color="textPrimary" variant="body2">
-                {result.excerpt}
-              </Typography>
-            </Box>
-          )}
-
-          {result.raw.source && (
-            <FieldValue caption="Source" value={result.raw.source} />
-          )}
-          {result.raw.objecttype && (
-            <FieldValue caption="Object Type" value={result.raw.objecttype} />
-          )}
-        </Box>
-      </ListItem>
-    ),
-  },{
-    conditions: [
-      ResultTemplatesHelpers.fieldMustMatch("source",["Salesforce KB"])
-    ],
-    content: (result: Result) => {
-      return <ListItem disableGutters key={result.uniqueId}>
-        <Box my={2}>
-          <Box pb={1}>{ListItemLink(engine, result,'Salesforce KB', setResult)}</Box>
-          {result.excerpt && (
-            <Box pb={1}>
-              <Typography color="textPrimary" variant="body2">
-                {result.excerpt}
-              </Typography>
-            </Box>
-          )}
-
-          {result.raw.source && (
-            <FieldValue caption="Source" value={result.raw.source} />
-          )}
-          {result.raw.objecttype && (
-            <FieldValue caption="Object Type" value={result.raw.objecttype} />
-          )}
-        </Box>
-      </ListItem>
-    },
-    priority : 1
-  }); */
   headlessResultTemplateManager.registerTemplates(...ResultTemplateConfig)
   useEffect(
     () => controller.subscribe(() => setState(controller.state)),

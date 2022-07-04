@@ -5,7 +5,6 @@ import { chevronRight } from "react-icons-kit/feather/chevronRight";
 import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useNavigate } from "react-router-dom";
 
 interface RecommendationCardType {
   title : string,

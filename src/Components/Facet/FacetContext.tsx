@@ -1,5 +1,5 @@
 import React,{useContext, useState, useEffect} from 'react';
-import {Facet as HeadlessFacet, buildFacet, FacetValue} from '@coveo/headless';
+import {Facet as HeadlessFacet, buildFacet} from '@coveo/headless';
 import { FacetConfig } from '../../config/SearchConfig';
 import EngineContext from '../../common/engineContext';
 
