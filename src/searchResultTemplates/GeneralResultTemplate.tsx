@@ -24,7 +24,10 @@ import { width } from "@mui/system";
 import pdfIcon from "../assets/FileTypeIcons/pdf.png";
 import { Theme } from "../theme";
 import { FileTypeIconsConfig } from "../config/SearchConfig";
-import { Quickview } from "../Components/QuickView";
+import {eye} from 'react-icons-kit/feather/eye'
+import Icon from "react-icons-kit";
+import QuickViewModal from "../Components/QuickViewModal";
+import { QuickViewModalContext } from "../Components/QuickViewModalContext";
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -45,6 +48,7 @@ function ListItemLink(
   engine: SearchEngine,
   result: Result,
   source?: string,
+  QuickViewOnClick? : boolean,
   setResult?: (x: Result) => void
 ) {
   const interactiveResult = buildInteractiveResult(engine, {
@@ -110,8 +114,9 @@ function FieldValue(props: FieldValueInterface) {
   );
 }
 
-const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
+const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boolean }> = ({ result, QuickViewOnClick = false }) => {
   const engine = useContext(EngineContext)!;
+  const {setOpenModal, setResult} = useContext(QuickViewModalContext)!;
   const filetype: any = result.raw.sysfiletype;
   const date = new Date(Number(result.raw.date));
   const isFileTypeIconIndex = () => {
@@ -159,7 +164,12 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
             )}
             <TextWrapper>
               <TitltAndDateWrapper>
-                <Title>{ListItemLink(engine, result)} </Title>
+                <Title>{ListItemLink(engine, result, "",QuickViewOnClick)}</Title>
+                {QuickViewOnClick &&
+                <Icon icon = {eye} style = {{cursor : 'pointer', marginRight: '10px'}} onClick={()=>{
+                  setResult(result);
+                  setOpenModal(true);
+                }}/>}
                 {result.raw.date && (
                   <Excerpt>
                     {date.getDate() +

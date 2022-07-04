@@ -60,10 +60,6 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
     controller.showLessValues();
   };
   return (
-    <>
-      {state.isLoading ? (
-        <SkeletonFacet />
-      ) : (
         <>
           {state.values.length > 0 ? (
             <Wrapper>
@@ -137,8 +133,6 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
             </Wrapper>
           ) : null}
         </>
-      )}
-    </>
   );
 };
 

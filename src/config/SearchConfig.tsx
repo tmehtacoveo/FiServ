@@ -50,7 +50,7 @@ export const FacetConfig = [
 export const ResultTemplateConfig = [
   {
     conditions: [],
-    content: (result: Result) => <GeneralResultTemplate result={result} />,
+    content: (result: Result) => <GeneralResultTemplate result={result} QuickViewOnClick = {true} />,
     priority: 1,
   },
   {

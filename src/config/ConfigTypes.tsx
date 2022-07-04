@@ -34,5 +34,5 @@ export interface SearchPageTabConfigType {
   expression : string;
   isActive : boolean;
   sideBarRecommendationConfig? : sideBarRecommendationConfigType[];
-  facetToInclude? : FacetFieldValue[]
+  facetToInclude? : FacetFieldValue[];
 }
