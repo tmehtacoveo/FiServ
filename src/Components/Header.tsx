@@ -11,17 +11,19 @@ import { x } from "react-icons-kit/feather/x";
 import Fade from "@mui/material/Fade";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderConfig } from "../config/HomeConfig";
+import Popover from "@mui/material/Popover";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import ContextForm from "./CustomContext/ContextForm";
 
-const Header : React.FC = () => {
+const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const onSearchPage = location.pathname.includes("search");
   const toggleSearchBox = () => {
-
-
     if (onSearchPage) {
-      const input = document.querySelector('#first_name');
+      const input = document.querySelector("#first_name");
       if (input instanceof HTMLElement) {
         input.focus();
       }
@@ -39,6 +41,21 @@ const Header : React.FC = () => {
     }
   }, [openSearch]);
 
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
   return (
     <>
       <Wrapper>
@@ -53,27 +70,43 @@ const Header : React.FC = () => {
               );
             })}
             <Divider></Divider>
-            <IconWrapper>
-            <div
-              style={{ color: Theme.headerIconColor, cursor: "pointer" }}
-              onClick={() => toggleSearchBox()}
-            >
-              {openSearch && !onSearchPage ? (
-                <Icon icon={x} size={24} />
-              ) : (
-                <Icon icon={search} size={24} />
-              )}
-            </div>
-            <div style={{ color: Theme.headerIconColor, cursor: "pointer" }}>
-              <Icon icon={user} size={24} />
-            </div>
-            </IconWrapper>
+            <IconsWrapper>
+              <IconContainer
+                style={{ color: Theme.headerIconColor, cursor: "pointer" }}
+                onClick={() => toggleSearchBox()}
+              >
+                {openSearch && !onSearchPage ? (
+                  <Icon icon={x} size={24} />
+                ) : (
+                  <Icon icon={search} size={24} />
+                )}
+              </IconContainer>
+              <IconContainer
+                style={{ color: Theme.headerIconColor, cursor: "pointer" }}
+                aria-describedby={id}
+                onClick={(event)=>handleClick(event)}
+              >
+                <Icon icon={user} size={24} />
+              </IconContainer>
+              <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  <ContextForm/>
+                </Popover>
+            </IconsWrapper>
           </LinkWrapper>
         </RightWrapper>
       </Wrapper>
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
-          <SearchBoxContainer >
+          <SearchBoxContainer>
             <HomeSearchBox toggleSearchBox={toggleSearchBox} />
           </SearchBoxContainer>
         </SearchContainer>
@@ -143,9 +176,9 @@ const Divider = styled.div`
   /* Primary/Grey/40 */
 
   background: #e5e8e8;
-  @media (max-width: 480px) {
-   display: none;
-}
+  @media (max-width:1000px) {
+    display: none;
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -161,10 +194,15 @@ const SearchContainer = styled.div`
   justify-content: center;
 `;
 
-const IconWrapper = styled.div`
-display: flex;
-width: 80px;
-justify-content: space-between;
+const IconsWrapper = styled.div`
+  display: flex;
+  width: 80px;
+  justify-content: space-between;
+`;
+
+const IconContainer = styled.button`
+background: none;
+border: 0px;
 `
 
 const SearchBoxContainer = styled.div`
@@ -172,8 +210,8 @@ const SearchBoxContainer = styled.div`
   max-width: 800px;
   min-width: 500px;
   @media (max-width: 480px) {
-  min-width: 80vw;
-}
-`
+    min-width: 80vw;
+  }
+`;
 
 export default Header;
