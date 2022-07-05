@@ -104,7 +104,7 @@ const MainRecommendationList = () => {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub: process.env.REACT_APP_SEARCH_HUB!,
-      pipeline : 'Investing'
+      pipeline : 'Homepage'
     },
   });
 
