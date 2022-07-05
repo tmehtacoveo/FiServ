@@ -5,7 +5,7 @@ import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
-import { DefaultSideBarRecommendationConfigType, FacetConfigType, FileTypeIconsConfigType, SearchPageTabConfigType } from "./ConfigTypes";
+import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./ConfigTypes";
 
 
 export const FacetConfig = [
@@ -99,7 +99,8 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "Video Rec Sidebar",
         NumberofResults: 3,
         title: "Related Videos",
-        video: true,
+        videoRecommendation: true,
+        imageField: 'ytthumbnailurl'
       }
     ],
     facetToInclude: ["source", "filetype", "concepts",],
@@ -113,7 +114,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "IRS test",
         NumberofResults: 6,
         title: "Related for Investing",
-        video: false,
+        videoRecommendation: false,
       },
     ],
     facetToInclude: ["concepts","mynav2b"],
@@ -133,7 +134,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "Glossary test",
         NumberofResults: 6,
         title: "Glossary",
-        video: false,
+        videoRecommendation: false,
       },
     ],
     facetToInclude: ["concepts"],
@@ -165,7 +166,8 @@ export const DefaultSideBarRecommendationConfig: DefaultSideBarRecommendationCon
   pipeline: "IRS test",
   NumberofResults: 5,
   title: "Related for Investing",
-  video : false
+  videoRecommendation: true,
+  imageField: 'ytthumbnailurl'
 }] */
 
 export const ResultsPerPagesConfig = [10, 25, 50];

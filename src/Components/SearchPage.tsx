@@ -33,6 +33,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
     engine.executeFirstSearch();
   }, [engine]);
 
+
   return (
     <>
       <Grid
@@ -86,52 +87,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
             </Grid>
             <Grid item xs={12} md={3} sm={12}>
-              {DefaultSideBarRecommendationConfig.length > 0? (
-                <>
-                  {DefaultSideBarRecommendationConfig.map((item) => {
-                    return (
-                      <React.Fragment key={item.title}>
-                        <SearchSideBarRecommendationList
-                          pipeline={item?.pipeline}
-                          NumberofResults={item?.NumberofResults}
-                          title={item?.title}
-                          video={item?.video}
-                        />
-                      </React.Fragment>
-                    );
-                  })}
-                </>
-              ) : (
-                <>
-                  {SearchPageTabConfig.map((tab, index) => {
-                    if (
-                      (filter?.toLowerCase() ===
-                        tab.caption.replace(/\s/g, "").toLowerCase() ||
-                        (index === 0 && filter === undefined)) &&
-                      tab.sideBarRecommendationConfig
-                    ) {
-                      return (
-                        <React.Fragment key={tab.caption}>
-                          <>
-                            {tab.sideBarRecommendationConfig.map((item) => {
-                              return (
-                                <React.Fragment key={item.title}>
-                                  <SearchSideBarRecommendationList
-                                    pipeline={item.pipeline}
-                                    NumberofResults={item.NumberofResults}
-                                    title={item.title}
-                                    video={item.video}
-                                  />
-                                </React.Fragment>
-                              );
-                            })}
-                          </>
-                        </React.Fragment>
-                      );
-                    }
-                  })}
-                </>
-              )}
+              <SideBarRecommendation filter = {filter}/>
             </Grid>
           </Grid>
         </Box>
@@ -141,6 +97,65 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
 };
 
 export default SearchPage;
+
+
+
+export const SideBarRecommendation :React.FC<{filter : string | undefined}> = ({filter})=>{
+
+  return  <>
+  {DefaultSideBarRecommendationConfig.length > 0? (
+    <>
+      {DefaultSideBarRecommendationConfig.map((item) => {
+        return (
+          <React.Fragment key={item.title}>
+            <SearchSideBarRecommendationList
+              pipeline={item?.pipeline}
+              NumberofResults={item?.NumberofResults}
+              title={item?.title}
+              videoRecommendation={item?.videoRecommendation}
+              imageField = {item.imageField}
+            />
+          </React.Fragment>
+        );
+      })}
+    </>
+  ) : (
+    <>
+      {SearchPageTabConfig.map((tab, index) => {
+        if (
+          (filter?.toLowerCase() ===
+            tab.caption.replace(/\s/g, "").toLowerCase() ||
+            (index === 0 && filter === undefined)) &&
+          tab.sideBarRecommendationConfig
+        ) {
+          return (
+            <React.Fragment key={tab.caption}>
+              <>
+                {tab.sideBarRecommendationConfig.map((item) => {
+                  return (
+                    <React.Fragment key={item.title}>
+                      <SearchSideBarRecommendationList
+                        pipeline={item.pipeline}
+                        NumberofResults={item.NumberofResults}
+                        title={item.title}
+                        videoRecommendation={item.videoRecommendation}
+                        imageField = {item.imageField}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </>
+            </React.Fragment>
+          );
+        }
+      })}
+    </>
+  )}
+  </>
+}
+
+
+
 
 
 const SearchBoxContainer = styled.div`

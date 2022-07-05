@@ -4,7 +4,8 @@ export interface DefaultSideBarRecommendationConfigType {
     pipeline: string,
     NumberofResults: number,
     title: string
-    video? : boolean
+    videoRecommendation? : boolean
+    imageField? : string
   }
 
 
@@ -26,7 +27,8 @@ interface sideBarRecommendationConfigType {
   pipeline : string;
   NumberofResults: number;
   title: string;
-  video: boolean;
+  videoRecommendation? : boolean
+  imageField? : string
 }
 
 export interface SearchPageTabConfigType {
