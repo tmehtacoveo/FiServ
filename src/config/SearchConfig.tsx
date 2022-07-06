@@ -5,7 +5,7 @@ import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
-import { DefaultSideBarRecommendationConfigType, FacetConfigType, FileTypeIconsConfigType, SearchPageTabConfigType } from "./ConfigTypes";
+import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./ConfigTypes";
 
 
 export const FacetConfig = [
@@ -38,6 +38,9 @@ export const FacetConfig = [
   },{
     field :"adcity",
     title : "City"
+  },{
+    title: "More Info",
+    field : "mynav4b"
   }
 ] as const;
 
@@ -47,7 +50,7 @@ export const FacetConfig = [
 export const ResultTemplateConfig = [
   {
     conditions: [],
-    content: (result: Result) => <GeneralResultTemplate result={result} />,
+    content: (result: Result) => <GeneralResultTemplate result={result} QuickViewOnClick = {true} />,
     priority: 1,
   },
   {
@@ -88,7 +91,7 @@ export const FieldToIncludesInSearchResults : string[] = [
 
 export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
-    caption: "All Content",
+    caption: "All",
     expression: "",
     isActive: true,
     sideBarRecommendationConfig: [
@@ -96,7 +99,8 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "Video Rec Sidebar",
         NumberofResults: 3,
         title: "Related Videos",
-        video: true,
+        videoRecommendation: true,
+        imageField: 'ytthumbnailurl'
       }
     ],
     facetToInclude: ["source", "filetype", "concepts",],
@@ -110,7 +114,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "IRS test",
         NumberofResults: 6,
         title: "Related for Investing",
-        video: false,
+        videoRecommendation: false,
       },
     ],
     facetToInclude: ["concepts","mynav2b"],
@@ -119,7 +123,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
     caption: "Money Matters",
     expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
     isActive: false,
-    facetToInclude: ["concepts","mynav2b"],
+    facetToInclude: ["concepts","mynav2b", "mynav4b"],
   },
   {
     caption: "Insurance Needs",
@@ -130,7 +134,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         pipeline: "Glossary test",
         NumberofResults: 6,
         title: "Glossary",
-        video: false,
+        videoRecommendation: false,
       },
     ],
     facetToInclude: ["concepts"],
@@ -162,7 +166,8 @@ export const DefaultSideBarRecommendationConfig: DefaultSideBarRecommendationCon
   pipeline: "IRS test",
   NumberofResults: 5,
   title: "Related for Investing",
-  video : false
+  videoRecommendation: true,
+  imageField: 'ytthumbnailurl'
 }] */
 
 export const ResultsPerPagesConfig = [10, 25, 50];

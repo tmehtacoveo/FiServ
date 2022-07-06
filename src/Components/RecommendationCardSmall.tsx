@@ -1,8 +1,6 @@
 import React from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import { chevronRight } from "react-icons-kit/feather/chevronRight";
-import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -140,7 +138,7 @@ const MainWrapper = styled.div`
   border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
-  margin: 10px 0px 10px 20px;
+  margin: 10px 10px 10px 10px;
   background: white;
   cursor: pointer;
   &:hover {

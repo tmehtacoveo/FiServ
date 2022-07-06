@@ -22,7 +22,8 @@ interface RecommendationListProps {
   engine: RecommendationEngine;
   NumberofResults: number;
   title: string;
-  video: boolean;
+  videoRecommendation: boolean;
+  imageField: string;
 }
 
 export const RecommendationListRenderer: FunctionComponent<
@@ -86,13 +87,13 @@ export const RecommendationListRenderer: FunctionComponent<
                   ?.slice(0, props.NumberofResults)
                   .map((recommendation, index) => {
 
-                    const temp: unknown = recommendation.raw.ytthumbnailurl;
+                    const temp: unknown = recommendation.raw[`${props.imageField}`];
                     const imageURL : string = temp as string;
 
                     return (
                       <div key={recommendation.title}>
                         <RecommendtionCardSmall
-                          video={recommendation.raw.sourcetype === "YouTube"}
+                          video={props.videoRecommendation? props.videoRecommendation : (recommendation.raw.sourcetype === "YouTube"? true : false)}
                           title={recommendation.title}
                           description={recommendation.excerpt}
                           clickUri={recommendation.clickUri}
@@ -132,7 +133,8 @@ interface SearSearchSideBarRecommendationListProps {
   pipeline?: string;
   NumberofResults?: number;
   title?: string;
-  video?: boolean;
+  videoRecommendation?: boolean;
+  imageField? : string;
 }
 
 const SearchSideBarRecommendationList: FunctionComponent<
@@ -141,7 +143,8 @@ const SearchSideBarRecommendationList: FunctionComponent<
   pipeline = "default",
   NumberofResults = 0,
   title = "",
-  video = false,
+  videoRecommendation = false,
+  imageField = ''
 }) => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
@@ -161,8 +164,9 @@ const SearchSideBarRecommendationList: FunctionComponent<
       controller={recController}
       engine={recommendationEngine}
       NumberofResults={NumberofResults}
-      title={title}
-      video={video}
+      videoRecommendation={videoRecommendation}
+      imageField={imageField}
+      title = {title}
     />
   );
 };
@@ -175,7 +179,8 @@ const Divider = styled.div`
   background: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 20px;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 const MainWrapper = styled.div`
@@ -188,7 +193,7 @@ const MainWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  margin-left: 20px;
+  margin-left: 10px;
   font-size: 20px;
   font-weight: 400;
   font-family: "Gibson";

@@ -63,7 +63,7 @@ const QuerySummaryRenderer: FunctionComponent<QuerySummaryProps> = (props) => {
     );
   };
 
-  return !state.hasResults ? renderNoResults() : renderHasResults();
+  return !state.hasResults && state.firstSearchExecuted ? renderNoResults() : renderHasResults();
 };
 
 const QuerySummary = () => {

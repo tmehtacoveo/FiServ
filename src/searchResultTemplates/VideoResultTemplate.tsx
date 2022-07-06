@@ -69,9 +69,14 @@ import React, {
       <>
         <ListItem disableGutters key={result.uniqueId}>
           <Box my={1}>
-            {result.isRecommendation && (
-              <RecommendationBadge>Recommended</RecommendationBadge>
-            )}
+          <BadgeWrapper>
+          {result.isRecommendation && (
+            <RecommendationBadge>Recommended</RecommendationBadge>
+          )}
+          {result.isTopResult && (
+            <RecommendationBadge>Featured</RecommendationBadge>
+          )}
+          </BadgeWrapper>
             <MainWrapper>
               {result.raw[imageField] && (
                 <ImageWrapper>
@@ -162,6 +167,12 @@ import React, {
     & a:hover {
       text-decoration: underline;
     }
+  @media (max-width: 480px) {
+   font-size: 18px;
+   & a {
+    -webkit-line-clamp: 2;
+   }
+  }
   `;
   
   const Excerpt = styled.p`
@@ -173,6 +184,9 @@ import React, {
     color: ${Theme.excerpt};
     font-family: inherit;
     font-weight: 300px;
+    @media (max-width: 480px) {
+   font-size: 12px;
+}
   `;
   
   const RecommendationBadge = styled.div`
@@ -202,5 +216,14 @@ import React, {
     display: flex;
     justify-content: flex-end;
     padding-left: 20px;
+    @media (max-width: 480px) {
+   font-size: 12px;
+}
   `
-  
+  const BadgeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 210px;
+  justify-content: space-between;
+
+`

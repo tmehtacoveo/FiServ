@@ -18,6 +18,8 @@ import {
   DefaultSideBarRecommendationConfig,
   SearchPageTabConfig,
 } from "../config/SearchConfig";
+import BreadcrumbManager from "./BreadcrumbManager";
+import styled from 'styled-components'
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -31,6 +33,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
     engine.executeFirstSearch();
   }, [engine]);
 
+
   return (
     <>
       <Grid
@@ -40,39 +43,32 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           background: "#F6F7F9",
         }}
       >
-        <Grid
-          item
-          md={5}
-          mt={6.5}
-          mb={6.5}
-          style={{
-            minWidth: "500px",
-            maxWidth: "800px",
-          }}
-        >
+          <SearchBoxContainer>
           <SearchBox />
-        </Grid>
+          </SearchBoxContainer>
       </Grid>
       <SearchTabs filterSelected={filter? filter : ""} />
       <Container maxWidth="xl" style={{ padding: "0px" }}>
-        <Grid item md={8.5} mt={3}>
+        <Grid item mt={3} mb={2}>
           <DidYouMean />
         </Grid>
-        <Box my={4}>
+        <Box my={2}>
           <Grid container style={{ opacity: resultLoading ? "0.6" : "1" }}>
-            <Grid item xs={3} md={3} sm={12}>
+            <Grid item xs={12} md={3} sm={12}>
               <FacetList />
             </Grid>
-            <Grid item xs={6} md={6} sm={12}>
-              <Box pl={3}>
+            <Grid item xs={12} md={6} sm={12}>
+            <BreadcrumbManager/>
+              <Box pl={3} pr={2}>
                 <Grid container alignItems="flex-end">
-                  <Grid item md={9.5}>
+                  <Grid item md={9} xs ={12} mb={2}>
                     <QuerySummary />
                   </Grid>
                   <Grid
                     item
                     md={2}
-                    sx={{ position: "relative", left: "-50px" }}
+                    xs ={12}
+                    mb={2}
                   >
                     <Sort />
                   </Grid>
@@ -81,62 +77,17 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
               </Box>
               <Box my={4}>
                 <Grid container>
-                  <Grid item md={6}>
+                  <Grid item md={6} ml = {2} mb={2}>
                     <Pager />
                   </Grid>
-                  <Grid item md={6}>
+                  <Grid item md={5} ml = {2}>
                     <ResultsPerPage />
                   </Grid>
                 </Grid>
               </Box>
             </Grid>
-            <Grid item xs={3} md={3} sm={12}>
-              {DefaultSideBarRecommendationConfig.length > 0? (
-                <>
-                  {DefaultSideBarRecommendationConfig.map((item) => {
-                    return (
-                      <React.Fragment key={item.title}>
-                        <SearchSideBarRecommendationList
-                          pipeline={item?.pipeline}
-                          NumberofResults={item?.NumberofResults}
-                          title={item?.title}
-                          video={item?.video}
-                        />
-                      </React.Fragment>
-                    );
-                  })}
-                </>
-              ) : (
-                <>
-                  {SearchPageTabConfig.map((tab, index) => {
-                    if (
-                      (filter?.toLowerCase() ===
-                        tab.caption.replace(/\s/g, "").toLowerCase() ||
-                        (index === 0 && filter === undefined)) &&
-                      tab.sideBarRecommendationConfig
-                    ) {
-                      return (
-                        <React.Fragment key={tab.caption}>
-                          <>
-                            {tab.sideBarRecommendationConfig.map((item) => {
-                              return (
-                                <React.Fragment key={item.title}>
-                                  <SearchSideBarRecommendationList
-                                    pipeline={item.pipeline}
-                                    NumberofResults={item.NumberofResults}
-                                    title={item.title}
-                                    video={item.video}
-                                  />
-                                </React.Fragment>
-                              );
-                            })}
-                          </>
-                        </React.Fragment>
-                      );
-                    }
-                  })}
-                </>
-              )}
+            <Grid item xs={12} md={3} sm={12}>
+              <SideBarRecommendation filter = {filter}/>
             </Grid>
           </Grid>
         </Box>
@@ -146,3 +97,73 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
 };
 
 export default SearchPage;
+
+
+
+export const SideBarRecommendation :React.FC<{filter : string | undefined}> = ({filter})=>{
+
+  return  <>
+  {DefaultSideBarRecommendationConfig.length > 0? (
+    <>
+      {DefaultSideBarRecommendationConfig.map((item) => {
+        return (
+          <React.Fragment key={item.title}>
+            <SearchSideBarRecommendationList
+              pipeline={item?.pipeline}
+              NumberofResults={item?.NumberofResults}
+              title={item?.title}
+              videoRecommendation={item?.videoRecommendation}
+              imageField = {item.imageField}
+            />
+          </React.Fragment>
+        );
+      })}
+    </>
+  ) : (
+    <>
+      {SearchPageTabConfig.map((tab, index) => {
+        if (
+          (filter?.toLowerCase() ===
+            tab.caption.replace(/\s/g, "").toLowerCase() ||
+            (index === 0 && filter === undefined)) &&
+          tab.sideBarRecommendationConfig
+        ) {
+          return (
+            <React.Fragment key={tab.caption}>
+              <>
+                {tab.sideBarRecommendationConfig.map((item) => {
+                  return (
+                    <React.Fragment key={item.title}>
+                      <SearchSideBarRecommendationList
+                        pipeline={item.pipeline}
+                        NumberofResults={item.NumberofResults}
+                        title={item.title}
+                        videoRecommendation={item.videoRecommendation}
+                        imageField = {item.imageField}
+                      />
+                    </React.Fragment>
+                  );
+                })}
+              </>
+            </React.Fragment>
+          );
+        }
+      })}
+    </>
+  )}
+  </>
+}
+
+
+
+
+
+const SearchBoxContainer = styled.div`
+  width: 50%;
+  max-width: 800px;
+  min-width: 500px;
+  padding: 50px 0px;
+  @media (max-width: 480px) {
+  min-width: 80vw;
+}
+`

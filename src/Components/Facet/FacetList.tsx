@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Facet from "./Facet";
 import { useParams } from "react-router-dom";

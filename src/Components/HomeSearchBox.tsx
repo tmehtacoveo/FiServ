@@ -2,12 +2,15 @@ import {FunctionComponent, useEffect, useState, useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
-  buildSearchBox,
   SearchBox as HeadlessSearchBox,
-  SearchBoxOptions,
+  StandaloneSearchBoxOptions,
+  buildStandaloneSearchBox
 } from '@coveo/headless';
 import EngineContext from '../common/engineContext';
 import { useNavigate } from 'react-router-dom';
+import parse from 'autosuggest-highlight/parse';
+import match from 'autosuggest-highlight/match';
+
 
 interface SearchBoxProps {
   controller: HeadlessSearchBox;
@@ -49,6 +52,26 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
             }
           }}/>
       )}
+      renderOption={(props, option, { inputValue }) => {
+        const matches = match(option, inputValue);
+        const parts = parse(option, matches);
+        return (
+          <li {...props}>
+            <div>
+              {parts.map((part, index) => (
+                <span
+                  key={index}
+                  style={{
+                    fontWeight: part.highlight ? 400 : 300,
+                  }}
+                >
+                  {part.text}
+                </span>
+              ))}
+            </div>
+          </li>
+        );
+      }}
     />
   );
 };
@@ -58,9 +81,9 @@ interface  SearchBoxType {
 }
 
 const SearchBox = ({toggleSearchBox}: SearchBoxType) => {
-  const options: SearchBoxOptions = {numberOfSuggestions: 8};
+  const options: StandaloneSearchBoxOptions = {numberOfSuggestions: 8, redirectionUrl: '/search'};
   const engine = useContext(EngineContext)!;
-  const controller = buildSearchBox(engine, {options});
+  const controller = buildStandaloneSearchBox(engine, {options});
   controller.updateText('');
   return <SearchBoxRenderer controller={controller} toggleSearchBox = {toggleSearchBox} />;
 };

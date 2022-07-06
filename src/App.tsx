@@ -18,6 +18,8 @@ import Footer from './Components/Footer';
 import FacetControllerProvider from './Components/Facet/FacetContext';
 import SFKBArticle from './Components/SFKBArticle';
 import SFKBProvider from './Components/SFKBContext';
+import QuickViewModal from './Components/QuickViewModal';
+import QuickViewModalProvider from './Components/QuickViewModalContext';
 
 
 export default function App() {
@@ -37,9 +39,11 @@ export default function App() {
     <EngineProvider value = {engine}>
       <SFKBProvider>
       <FacetControllerProvider>
+        <QuickViewModalProvider> 
     <Router>
       <NavBar/>
       <Header/>
+      <QuickViewModal/>
       <Routes>
         <Route
           path="/"
@@ -55,6 +59,7 @@ export default function App() {
       </Routes>
       <Footer/>
     </Router>
+    </QuickViewModalProvider>
     </FacetControllerProvider>
     </SFKBProvider>
     </EngineProvider> : <h2>Loading engine</h2>}

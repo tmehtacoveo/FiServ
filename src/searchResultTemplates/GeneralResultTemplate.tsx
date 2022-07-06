@@ -24,7 +24,10 @@ import { width } from "@mui/system";
 import pdfIcon from "../assets/FileTypeIcons/pdf.png";
 import { Theme } from "../theme";
 import { FileTypeIconsConfig } from "../config/SearchConfig";
-import { Quickview } from "../Components/QuickView";
+import {eye} from 'react-icons-kit/feather/eye'
+import Icon from "react-icons-kit";
+import QuickViewModal from "../Components/QuickViewModal";
+import { QuickViewModalContext } from "../Components/QuickViewModalContext";
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -45,6 +48,7 @@ function ListItemLink(
   engine: SearchEngine,
   result: Result,
   source?: string,
+  QuickViewOnClick? : boolean,
   setResult?: (x: Result) => void
 ) {
   const interactiveResult = buildInteractiveResult(engine, {
@@ -110,8 +114,9 @@ function FieldValue(props: FieldValueInterface) {
   );
 }
 
-const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
+const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boolean }> = ({ result, QuickViewOnClick = false }) => {
   const engine = useContext(EngineContext)!;
+  const {setOpenModal, setResult} = useContext(QuickViewModalContext)!;
   const filetype: any = result.raw.sysfiletype;
   const date = new Date(Number(result.raw.date));
   const isFileTypeIconIndex = () => {
@@ -121,13 +126,31 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
     return 0;
   };
 
+
+  const highlightedExcerpt = (result :  Result)=>{
+    let highlightedString = result.excerpt;
+    let adjustmentoffset = 0;
+    result.excerptHighlights.forEach((item)=>{
+    highlightedString =  highlightedString.slice(0,item.offset + adjustmentoffset) + "<b>" + highlightedString.slice(item.offset + adjustmentoffset,item.offset + adjustmentoffset + item.length) + "</b>" + highlightedString.slice(item.offset + adjustmentoffset + item.length);
+    adjustmentoffset = adjustmentoffset + 7;
+    })
+    return highlightedString;
+
+  }
+
+
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={1}>
+          <BadgeWrapper>
           {result.isRecommendation && (
             <RecommendationBadge>Recommended</RecommendationBadge>
           )}
+          {result.isTopResult && (
+            <RecommendationBadge>Featured</RecommendationBadge>
+          )}
+          </BadgeWrapper>
           <MainWrapper>
             {filetype in FileTypeIconsConfig && (
               <SourceTypeWrapper>
@@ -141,7 +164,12 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
             )}
             <TextWrapper>
               <TitltAndDateWrapper>
-                <Title>{ListItemLink(engine, result)} </Title>
+                <Title>{ListItemLink(engine, result, "",QuickViewOnClick)}</Title>
+                {QuickViewOnClick &&
+                <Icon icon = {eye} style = {{cursor : 'pointer', marginRight: '10px'}} onClick={()=>{
+                  setResult(result);
+                  setOpenModal(true);
+                }}/>}
                 {result.raw.date && (
                   <Excerpt>
                     {date.getDate() +
@@ -154,7 +182,7 @@ const GeneralResultTemplate: React.FC<{ result: Result }> = ({ result }) => {
               </TitltAndDateWrapper>
               {result.excerpt && (
                 <Box pb={1}>
-                  <Excerpt>{result.excerpt}</Excerpt>
+                  <Excerpt dangerouslySetInnerHTML={{ __html: highlightedExcerpt(result) }} />
                 </Box>
               )}
             </TextWrapper>
@@ -188,6 +216,9 @@ const SourceTypeWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 480px) {
+   display: none;
+}
 `;
 
 const IconImage = styled.img`
@@ -209,6 +240,7 @@ const Title = styled.h2`
   line-height: 24px;
   width: 80%;
 
+
   & a {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -222,9 +254,16 @@ const Title = styled.h2`
   & a:hover {
     text-decoration: underline;
   }
+  @media (max-width: 480px) {
+   font-size: 18px;
+   & a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+   }
+}
 `;
 
-const Excerpt = styled.p`
+const Excerpt = styled.span`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -233,6 +272,13 @@ const Excerpt = styled.p`
   color: ${Theme.excerpt};
   font-family: inherit;
   font-weight: 300px;
+  @media (max-width: 480px) {
+   font-size: 12px;
+}
+
+& b{
+  font-weight: 400;
+}
 `;
 
 const RecommendationBadge = styled.div`
@@ -252,3 +298,11 @@ const TitltAndDateWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+const BadgeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 210px;
+  justify-content: space-between;
+
+`

@@ -5,7 +5,6 @@ import { chevronRight } from "react-icons-kit/feather/chevronRight";
 import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useNavigate } from "react-router-dom";
 
 interface RecommendationCardType {
   title : string,
@@ -149,6 +148,9 @@ const MainWrapper = styled.div`
   &:hover ${ReferralLink} {
     opacity: 1;
   }
+  @media (max-width: 480px) {
+    width: 90vw;
+}
 `;
 
 export default RecommendtionCard;

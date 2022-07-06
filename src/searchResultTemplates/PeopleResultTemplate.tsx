@@ -61,9 +61,14 @@ const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
     <>
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={1}>
+        <BadgeWrapper>
           {result.isRecommendation && (
             <RecommendationBadge>Recommended</RecommendationBadge>
           )}
+          {result.isTopResult && (
+            <RecommendationBadge>Featured</RecommendationBadge>
+          )}
+          </BadgeWrapper>
           <MainWrapper>
             {result.raw[imageField] && (
               <ImageWrapper>
@@ -158,6 +163,13 @@ const Title = styled.h2`
   & a:hover {
     text-decoration: underline;
   }
+  @media (max-width: 480px) {
+   font-size: 18px;
+   & a {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+   }
+  }
 `;
 
 const Excerpt = styled.p`
@@ -169,6 +181,9 @@ const Excerpt = styled.p`
   color: ${Theme.excerpt};
   font-family: inherit;
   font-weight: 300px;
+  @media (max-width: 480px) {
+   font-size: 12px;
+}
 `;
 
 const RecommendationBadge = styled.div`
@@ -198,4 +213,14 @@ const DateWrapper = styled.p`
   display: flex;
   justify-content: flex-end;
   padding-left: 20px;
+  @media (max-width: 480px) {
+   font-size: 12px;
+}
 `;
+const BadgeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 210px;
+  justify-content: space-between;
+
+`

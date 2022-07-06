@@ -1,21 +1,24 @@
-import React, {FunctionComponent, useContext, useEffect, useState} from 'react';
-import List from '@mui/material/List';
-import {ListItem, Box, Typography} from '@mui/material';
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import List from "@mui/material/List";
 import {
   buildResultList,
   Result,
   buildResultTemplatesManager,
   ResultTemplatesManager,
   ResultList as HeadlessResultList,
-  buildInteractiveResult,
-  SearchEngine,
-  ResultTemplatesHelpers,
-} from '@coveo/headless';
-import EngineContext from '../common/engineContext';
-import {useNavigate} from 'react-router-dom'
-import { Link } from 'react-router-dom';
-import { SFKBContext } from './SFKBContext';
-import { FieldToIncludesInSearchResults, ResultTemplateConfig } from '../config/SearchConfig';
+} from "@coveo/headless";
+import EngineContext from "../common/engineContext";
+import {
+  FieldToIncludesInSearchResults,
+  ResultTemplateConfig,
+} from "../config/SearchConfig";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -24,171 +27,97 @@ export function filterProtocol(uri: string) {
   const isAbsolute = /^(https?|ftp|file|mailto|tel):/i.test(uri);
   const isRelative = /^(\/|\.\/|\.\.\/)/.test(uri);
 
-  return isAbsolute || isRelative ? uri : '';
-}
-
-interface FieldValueInterface {
-  value: string;
-  caption: string;
+  return isAbsolute || isRelative ? uri : "";
 }
 
 interface ResultListRendererProps {
   controller: HeadlessResultList;
-  setResultLoading : (x: boolean)=>void
-}
-function ListItemLink(engine: SearchEngine, result: Result,source? : string, setResult? : (x: Result)=>void) {
-  const interactiveResult = buildInteractiveResult(engine, {
-    options: {result},
-  });
-  return (
-    <>
-    {source === 'Salesforce KB'?
-    <Link to = {`/salesforcekb/${result.raw.sfid}`}
-      onClick={() => {
-        if(setResult){
-          setResult(result)
-        }
-        interactiveResult.select()}}
-     /*  onContextMenu={() => interactiveResult.select()} */
-    /*   onMouseDown={() => interactiveResult.select()}
-      onMouseUp={() => interactiveResult.select()} */
-      onTouchStart={() => interactiveResult.beginDelayedSelect()}
-      onTouchEnd={() => interactiveResult.cancelPendingSelect()}
-    >
-      <Typography variant="body1" color="primary">
-        {result.title}
-      </Typography>
-    </Link> : <a
-      href={filterProtocol(result.clickUri)}
-      target="_blank" rel="noopener noreferrer"
-      onClick={() => interactiveResult.select()}
-      onContextMenu={() => interactiveResult.select()}
-      onMouseDown={() => interactiveResult.select()}
-      onMouseUp={() => interactiveResult.select()}
-      onTouchStart={() => interactiveResult.beginDelayedSelect()}
-      onTouchEnd={() => interactiveResult.cancelPendingSelect()}
-    >
-      <Typography variant="body1" color="primary">
-        {result.title}
-      </Typography>
-    </a>}
-    </>
-  );
+  setResultLoading: (x: boolean) => void;
 }
 
-function FieldValue(props: FieldValueInterface) {
-  return (
-    <Box>
-      <Typography
-        color="textSecondary"
-        style={{fontWeight: 'bold'}}
-        variant="caption"
-      >
-        {props.caption}:&nbsp;
-      </Typography>
-      <Typography color="textSecondary" variant="caption">
-        {props.value}
-      </Typography>
-    </Box>
-  );
-}
-
-const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (props) => {
-  const navigate = useNavigate();
-  const {setResult} = useContext(SFKBContext)
-  const {controller,setResultLoading} = props;
+const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (
+  props
+) => {
+  const { controller, setResultLoading } = props;
   const engine = useContext(EngineContext)!;
   const [state, setState] = useState(controller.state);
   const headlessResultTemplateManager: ResultTemplatesManager<Template> =
     buildResultTemplatesManager(engine);
-
- /*  headlessResultTemplateManager.registerTemplates({
-    conditions: [],
-    content: (result: Result) => (
-      <ListItem disableGutters key={result.uniqueId}>
-        <Box my={2}>
-          <Box pb={1}>{ListItemLink(engine, result)}</Box>
-
-          {result.excerpt && (
-            <Box pb={1}>
-              <Typography color="textPrimary" variant="body2">
-                {result.excerpt}
-              </Typography>
-            </Box>
-          )}
-
-          {result.raw.source && (
-            <FieldValue caption="Source" value={result.raw.source} />
-          )}
-          {result.raw.objecttype && (
-            <FieldValue caption="Object Type" value={result.raw.objecttype} />
-          )}
-        </Box>
-      </ListItem>
-    ),
-  },{
-    conditions: [
-      ResultTemplatesHelpers.fieldMustMatch("source",["Salesforce KB"])
-    ],
-    content: (result: Result) => {
-      return <ListItem disableGutters key={result.uniqueId}>
-        <Box my={2}>
-          <Box pb={1}>{ListItemLink(engine, result,'Salesforce KB', setResult)}</Box>
-          {result.excerpt && (
-            <Box pb={1}>
-              <Typography color="textPrimary" variant="body2">
-                {result.excerpt}
-              </Typography>
-            </Box>
-          )}
-
-          {result.raw.source && (
-            <FieldValue caption="Source" value={result.raw.source} />
-          )}
-          {result.raw.objecttype && (
-            <FieldValue caption="Object Type" value={result.raw.objecttype} />
-          )}
-        </Box>
-      </ListItem>
-    },
-    priority : 1
-  }); */
-  headlessResultTemplateManager.registerTemplates(...ResultTemplateConfig)
+  headlessResultTemplateManager.registerTemplates(...ResultTemplateConfig);
   useEffect(
     () => controller.subscribe(() => setState(controller.state)),
     [controller]
   );
 
-  useEffect(()=>{
-    if(state.isLoading)
-    {
+  useEffect(() => {
+    if (state.isLoading) {
       setResultLoading(true);
+    } else {
+      setResultLoading(false);
     }
-    else{
-      setResultLoading(false)
-    }
-  },[state])
+  }, [state]);
+
+
+  /* console.log('state', ) */
 
   return (
     <List>
-      {state.results.map((result: Result) => {
-        const template = headlessResultTemplateManager.selectTemplate(result);
-        return <React.Fragment key = {result.uniqueId}> {template ? template(result) : null} </React.Fragment>;
-      })}
+      {state.results.length === 0 && (state.isLoading || !state.firstSearchExecuted) ? (
+        <ResultListSkeleton />
+      ) : (
+        <>
+          {state.results.map((result: Result) => {
+            const template =
+              headlessResultTemplateManager.selectTemplate(result);
+            return (
+              <React.Fragment key={result.uniqueId}>
+                {" "}
+                {template ? template(result) : null}{" "}
+              </React.Fragment>
+            );
+          })}
+        </>
+      )}
     </List>
   );
 };
 
 interface ResultListProps {
-  setResultLoading : (x: boolean)=>void
+  setResultLoading: (x: boolean) => void;
 }
 
-const ResultList:FunctionComponent<ResultListProps> = ({setResultLoading}) => {
+const ResultList: FunctionComponent<ResultListProps> = ({
+  setResultLoading,
+}) => {
   const engine = useContext(EngineContext)!;
-  const controller = buildResultList(engine,{
-    options : { fieldsToInclude: FieldToIncludesInSearchResults}
+  const controller = buildResultList(engine, {
+    options: { fieldsToInclude: FieldToIncludesInSearchResults },
   });
-  return <ResultListRenderer controller={controller} setResultLoading={setResultLoading} />;
+  return (
+    <ResultListRenderer
+      controller={controller}
+      setResultLoading={setResultLoading}
+    />
+  );
+};
+
+export const ResultListSkeleton: FunctionComponent = () => {
+  return (
+    <>
+      <div style={{ padding: "30px 20px" }}>
+        <Skeleton count={1} style={{ marginBottom: "20px", height: "40px" }} />
+        <Skeleton count={2} style={{ margin: "10px 0px" }} />
+      </div>
+      <div style={{ padding: "30px 20px" }}>
+        <Skeleton count={1} style={{ marginBottom: "20px", height: "40px" }} />
+        <Skeleton count={2} style={{ margin: "10px 0px" }} />
+      </div>
+      <div style={{ padding: "30px 20px" }}>
+        <Skeleton count={1} style={{ marginBottom: "20px", height: "40px" }} />
+        <Skeleton count={2} style={{ margin: "10px 0px" }} />
+      </div>
+    </>
+  );
 };
 
 export default ResultList;
