@@ -1,10 +1,32 @@
-# Getting Started with Create React App
+# Financial Service Demo Powered by Coveo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project is hosted live [here](https://fin-serv-coveo.web.app).
 
-## Setup environment
+The initial UI was created using [Coveo CLI - ui:create:react](https://docs.coveo.com/en/cli/#coveo-uicreatereact-name).
 
-You should have an `.env` file at the root of this project. You can use `.env.example` as starting point and make sure to replace all placeholder variables `<...>` by the proper information for your organization.
+## Prerequisite
+
+- Node v16 or greater
+
+- You should have an `.env` file at the root of this project. You can use `.env.example` as starting point and make sure to replace all placeholder variables `<...>` by the proper information for your organization.
+
+## Cloning and Running the Application in local
+
+Clone the project into local
+
+Install all the npm packages. Go into the project folder and type the following command to install all npm packages
+
+```bash
+npm install
+```
+
+In order to run the application Type the following command
+
+```bash
+npm start
+```
+
+The Application Runs on **localhost:3000**
 
 ## Available Scripts
 
@@ -21,10 +43,6 @@ You will also see any lint errors in the console.
 This command will also start an express server and will generate [Coveo search tokens](https://docs.coveo.com/en/1346/).
 _See [@coveo/search-token-server](https://www.npmjs.com/package/@coveo/search-token-server)_
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
