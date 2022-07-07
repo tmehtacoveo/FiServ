@@ -11,11 +11,11 @@ export const CustomContextContext = React.createContext();
 const CustomContextProvider = ({children})=>{
 
     const [profileSelected, setProfiledSelected] = usePersistedState(
-        "profile_selected",
+        "profile_selected_v1",
         InitialData[0].name
       );
       const [ContextData, setContextData] = usePersistedState(
-        "context_data",
+        "context_data_v1",
         InitialData
       );
 
