@@ -23,7 +23,7 @@ const Header: React.FC = () => {
   const onSearchPage = location.pathname.includes("search");
   const toggleSearchBox = () => {
     if (onSearchPage) {
-      const input = document.querySelector("#first_name");
+      const input = document.querySelector(".search-box input");
       if (input instanceof HTMLElement) {
         input.focus();
       }
