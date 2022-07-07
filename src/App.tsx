@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import {Grid, Typography, Box} from '@mui/material';
 import {initializeHeadlessEngine} from './common/Engine';
-import {SearchEngine} from '@coveo/headless';
+import {buildContext, SearchEngine} from '@coveo/headless';
 import HomePage from './Components/HomePage';
 import NavBar from './Components/NavBar';
 import Header from './Components/Header';
@@ -20,7 +20,7 @@ import SFKBArticle from './Components/SFKBArticle';
 import SFKBProvider from './Components/SFKBContext';
 import QuickViewModal from './Components/QuickViewModal';
 import QuickViewModalProvider from './Components/QuickViewModalContext';
-
+import CustomContextProvider from './Components/CustomContext/CustomContextContext';
 
 export default function App() {
 
@@ -40,6 +40,7 @@ export default function App() {
       <SFKBProvider>
       <FacetControllerProvider>
         <QuickViewModalProvider> 
+          <CustomContextProvider>
     <Router>
       <NavBar/>
       <Header/>
@@ -59,6 +60,7 @@ export default function App() {
       </Routes>
       <Footer/>
     </Router>
+    </CustomContextProvider>
     </QuickViewModalProvider>
     </FacetControllerProvider>
     </SFKBProvider>

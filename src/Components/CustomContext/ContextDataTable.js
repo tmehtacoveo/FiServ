@@ -4,8 +4,9 @@ import classes from './ContextDataTable.module.css'
 import {trash2} from 'react-icons-kit/feather/trash2'
 import {Icon} from 'react-icons-kit'
 import {plus} from 'react-icons-kit/feather/plus'
+import { Theme } from "../../theme";
 
-const ContextDataTable = ({ContextData, profileSelected, setContextData}) => {
+const ContextDataTable = ({ContextData, profileSelected, setContextData,handleSave}) => {
 
     const FilteredProfileContext = ContextData.filter((item)=> item.name === profileSelected)
     const handleInput = (e, index)=>{
@@ -50,8 +51,8 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData}) => {
 
 
   return (
+    <>
     <Wrapper>
-
       <table style={{ width: "100%" }} className = {classes.table}>
         <thead>
           <tr>
@@ -65,26 +66,9 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData}) => {
               <Title>Key Value</Title>
             </th>
             <th>
-              <Title>Custom QRF</Title>
-            </th>
-            <th>
               
             </th>
           </tr>
-          {/* <tr>
-            <th>
-              <input type="checkbox" />
-            </th>
-            <th>
-              <Input type="string" />
-            </th>
-            <th>
-              <Input type="string" />
-            </th>
-            <th>
-              <input type="checkbox" />
-            </th>
-          </tr> */}
         </thead>
         <tbody>
             {FilteredProfileContext[0].context.length >0? 
@@ -107,15 +91,7 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData}) => {
                   <Input type="string" name = 'keyValue' value={item.keyValue} onChange = {(ev)=>handleInput(ev,index)}/>
                 </td>
                 <td>
-                  <input
-                    type="checkbox" 
-                    name = 'customQRF'
-                    checked={item.customQRF}
-                    onChange = {(ev)=>handleInput(ev,index)}
-                  />
-                </td>
-                <td>
-                  <Icon icon ={trash2} onClick={(ev)=>handleDelete(ev,index)}/>
+                  <Icon style={{cursor : 'pointer'}} icon ={trash2} onClick={(ev)=>handleDelete(ev,index)}/>
                 </td>
               </tr>
             );
@@ -123,15 +99,20 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData}) => {
           </> : null}
         </tbody>
       </table>
-      <Icon icon ={plus} size={32} style = {{marginTop: '20px', border: '2px black solid', borderRadius : '20px', cursor:'pointer'}} onClick={handleNewRow}/>
+      <AddIcon icon ={plus} size={32} onClick={handleNewRow}/>
+      
     </Wrapper>
+    <Button onClick={handleSave}>Save</Button>
+    </>
   );
 };
 
 const Wrapper = styled.div`
+margin-top: 15px;
   width: 95%;
   padding: 20px;
   /* height: 200px; */
+  max-height: 250px;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -148,5 +129,41 @@ const Title = styled.h4`
   font-size: 16px;
   font-weight: 400;
 `;
+
+
+const AddIcon = styled(Icon)`
+/* marginTop: '20px', border: '2px black solid', borderRadius : '20px', cursor:'pointer' */
+margin-top: 20px;
+border : 2px ${Theme.primary} solid;
+border-radius: 20px;
+cursor: pointer;
+transition: 0.1s ease-in-out all;
+&:hover{
+  background: #D3D3D3;
+}
+
+`
+
+const Button = styled.button`
+position: absolute;
+bottom: 20px;
+padding: 8px 16px;
+width: 100px;
+height: 40px;
+background-color: ${Theme.button};
+border-radius: 8px;
+font-family: 'Gibson';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 24px;
+color: #FFFFFF;
+border: none;
+cursor: pointer;
+transition: 0.2s ease-in-out;
+&:hover {
+    background-color: ${Theme.button}CC;
+}
+`
 
 export default ContextDataTable;

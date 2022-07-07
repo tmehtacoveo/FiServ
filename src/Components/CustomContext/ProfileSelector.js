@@ -42,7 +42,7 @@ export default function ProfileSelector({ContextData,setProfiledSelected, profil
   };
 
   return (
-    <div style = {{display: 'flex', flexDirection: 'row', alignItems : "center", width: '75%', justifyContent:'space-between'}}>
+    <div style = {{display: 'flex', flexDirection: 'row', alignItems : "center", width: '90%', justifyContent:'space-between'}}>
       <Avatar
         alt="Remy Sharp"
         src={FilteredProfileContext[0].profile}
