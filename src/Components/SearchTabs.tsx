@@ -99,6 +99,7 @@ const TabTitle = styled.a<{isActive : boolean }>`
   text-align: center;
   color: ${Theme.secondaryText};
   cursor: pointer;
+  font-family: inherit;
   background: ${(props) => (props.isActive ? Theme.selection : null)};
   opacity: ${(props) => (props.isActive ? 1 : 0.8)};
   transition: 0.2s ease-in-out all;
