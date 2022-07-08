@@ -10,6 +10,7 @@ import { Theme } from "../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
 import SampleImage from "../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -106,6 +107,11 @@ const VideoRecommendation = () => {
 
     },
   });
+
+
+  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+
+  settingContextFromEngine(recommendationEngine)
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },

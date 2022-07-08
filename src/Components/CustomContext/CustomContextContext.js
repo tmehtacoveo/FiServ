@@ -40,6 +40,25 @@ const CustomContextProvider = ({children})=>{
         });
         controller.set(ContextSetObject);
       };
+
+
+      const settingContextFromEngine = (engine)=>{
+        const controller = buildContext(engine);
+        const filterdProfile = ContextData.filter(
+          (item) => item.name === profileSelected
+        );
+    
+        const filterdContext = filterdProfile[0].context;
+    
+        let ContextSetObject = {};
+    
+        filterdContext.forEach((item) => {
+          if (item.active && item.keyName && item.keyValue) {
+            ContextSetObject[item.keyName] = item.keyValue;
+          }
+        });
+        controller.set(ContextSetObject);
+      }
     
       useEffect(() => {
         settingContext();
@@ -61,7 +80,7 @@ const CustomContextProvider = ({children})=>{
         window.location.reload();
       };
 
-    return <CustomContextContext.Provider value = {{profileSelected, setProfiledSelected, ContextData, setContextData,settingContext,handleSave,getProfile}}>
+    return <CustomContextContext.Provider value = {{profileSelected, setProfiledSelected, ContextData, setContextData,settingContext,handleSave,getProfile,settingContextFromEngine}}>
         {children}
     </CustomContextContext.Provider>
 }

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState, FunctionComponent } from "react";
+import { useEffect, useState, FunctionComponent, useContext } from "react";
 import {
   RecommendationList as HeadlessRecommendationList,
   loadClickAnalyticsActions,
@@ -14,6 +14,7 @@ import RecommendtionCard, {
   SkeletonRecommendtionCard,
 } from "./RecommendationCard";
 import SampleImage from "../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -107,6 +108,12 @@ const MainRecommendationList = () => {
       pipeline : 'Homepage'
     },
   });
+
+ 
+  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+
+    settingContextFromEngine(recommendationEngine)
+
 
 /*   const contextController = buildContext(recommendationEngine);
 
