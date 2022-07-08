@@ -199,21 +199,20 @@ const SearchContainer = styled.div`
 
 const IconsWrapper = styled.div`
   display: flex;
-  width: 140px;
   justify-content: space-between;
 `;
 
 const IconContainer = styled.button`
 background: none;
 border: 0px;
+width: 40px;
 `
 
 const ProfileName = styled.span`
 font-size  : 16px;
 font-weight: 400;
 font-family: inherit;
-margin-left: 10px;
-width: 30px;
+margin-left: 15px;
 color : ${Theme.headerIconColor};
 text-overflow: ellipsis;
 `
@@ -222,6 +221,8 @@ text-overflow: ellipsis;
 const ProfileIconContainer = styled.button`
   background: none;
   border: 0px;
+  margin-left: 20px;
+  width: 90px;
   display: flex;
   align-items: center;
 
