@@ -125,7 +125,7 @@ const Wrapper = styled.header`
   padding: 0px 40px;
   align-items: center;
   box-shadow: 0px 6px 16px rgba(229, 232, 232, 0.75);
-  font-family: "Gibson";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
@@ -211,9 +211,11 @@ border: 0px;
 const ProfileName = styled.span`
 font-size  : 16px;
 font-weight: 400;
-font-family: 'Gibson';
+font-family: inherit;
 margin-left: 10px;
 width: 30px;
+color : ${Theme.headerIconColor};
+text-overflow: ellipsis;
 `
 
 

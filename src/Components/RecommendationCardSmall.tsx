@@ -93,7 +93,7 @@ const VideoWrapper = styled.div`
 `;
 
 const Title = styled.a`
-  font-family: "Gibson";
+  font-family: inherit;
   text-decoration: none;
   font-style: normal;
   align-self: flex-start;
@@ -108,7 +108,7 @@ const Title = styled.a`
 `;
 
 const SubTitle = styled.span`
-  font-family: "Gibson";
+  font-family: inherit;
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
@@ -121,7 +121,7 @@ const SubTitle = styled.span`
 `;
 
 const ReferralLink = styled.a`
-  font-family: "Gibson";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

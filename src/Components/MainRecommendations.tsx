@@ -147,7 +147,7 @@ const MainWrapper = styled.div`
 const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
-  font-family: "Gibson";
+  font-family: inherit;
   color: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 10px;

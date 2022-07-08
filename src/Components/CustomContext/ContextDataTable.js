@@ -152,7 +152,7 @@ width: 100px;
 height: 40px;
 background-color: ${Theme.button};
 border-radius: 8px;
-font-family: 'Gibson';
+font-family: inherit;
 font-style: normal;
 font-weight: 400;
 font-size: 13px;
