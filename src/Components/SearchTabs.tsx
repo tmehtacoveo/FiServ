@@ -89,7 +89,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Gibson;
   font-weight: 300;
   flex-wrap: wrap;
 `;
