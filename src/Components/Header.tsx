@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
 import HeaderLogo from "../assets/HeaderLogo.png";
@@ -15,11 +15,13 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import ContextForm from "./CustomContext/ContextForm";
+import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const {getProfile} = useContext(CustomContextContext)
   const onSearchPage = location.pathname.includes("search");
   const toggleSearchBox = () => {
     if (onSearchPage) {
@@ -81,13 +83,14 @@ const Header: React.FC = () => {
                   <Icon icon={search} size={24} />
                 )}
               </IconContainer>
-              <IconContainer
+              <ProfileIconContainer
                 style={{ color: Theme.headerIconColor, cursor: "pointer" }}
                 aria-describedby={id}
                 onClick={(event)=>handleClick(event)}
               >
-                <Icon icon={user} size={24} />
-              </IconContainer>
+                <ProfileAvatar src = {getProfile().profile} alt = {'profile pic'}/>
+                <ProfileName>{getProfile().name.split(' ').slice(0, -1).join(' ')}</ProfileName>
+              </ProfileIconContainer>
               <Popover
                   id={id}
                   open={open}
@@ -147,7 +150,7 @@ const LinkWrapper = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 700px;
+  width: 800px;
   @media (max-width: 1000px) {
     width: auto;
   }
@@ -196,13 +199,30 @@ const SearchContainer = styled.div`
 
 const IconsWrapper = styled.div`
   display: flex;
-  width: 80px;
+  width: 140px;
   justify-content: space-between;
 `;
 
 const IconContainer = styled.button`
 background: none;
 border: 0px;
+`
+
+const ProfileName = styled.span`
+font-size  : 16px;
+font-weight: 400;
+font-family: 'Gibson';
+margin-left: 10px;
+width: 30px;
+`
+
+
+const ProfileIconContainer = styled.button`
+  background: none;
+  border: 0px;
+  display: flex;
+  align-items: center;
+
 `
 
 const SearchBoxContainer = styled.div`
@@ -213,5 +233,13 @@ const SearchBoxContainer = styled.div`
     min-width: 80vw;
   }
 `;
+
+
+const ProfileAvatar = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 24px;
+  object-fit: cover;
+`
 
 export default Header;

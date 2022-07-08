@@ -38,20 +38,30 @@ const CustomContextProvider = ({children})=>{
             ContextSetObject[item.keyName] = item.keyValue;
           }
         });
-        console.log('sadasdasdasdas', ContextSetObject)
         controller.set(ContextSetObject);
       };
     
       useEffect(() => {
         settingContext();
-      }, []);
+      }, [profileSelected]);
+
+
+      const getProfile = ()=>{
+        const filterdProfile = ContextData.filter(
+          (item) => item.name === profileSelected
+        )[0];
+  
+
+        return filterdProfile;
+      }
+
 
       const handleSave = () => {
         settingContext();
         window.location.reload();
       };
 
-    return <CustomContextContext.Provider value = {{profileSelected, setProfiledSelected, ContextData, setContextData,settingContext,handleSave}}>
+    return <CustomContextContext.Provider value = {{profileSelected, setProfiledSelected, ContextData, setContextData,settingContext,handleSave,getProfile}}>
         {children}
     </CustomContextContext.Provider>
 }

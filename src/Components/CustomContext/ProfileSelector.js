@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Avatar from '@mui/material/Avatar';
+import { CustomContextContext } from './CustomContextContext';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -31,6 +32,7 @@ function getStyles(name, personName, theme) {
 export default function ProfileSelector({ContextData,setProfiledSelected, profileSelected}) {
 
   const FilteredProfileContext = ContextData.filter((item)=> item.name === profileSelected)
+  const {settingContext} = React.useContext(CustomContextContext)
   const theme = useTheme();
   /* const [personName, setPersonName] = React.useState([]); */
 
