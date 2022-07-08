@@ -163,5 +163,5 @@ const Wrapper = styled.div`
   border-radius: 16px;
   padding: 24px 16px;
   margin-bottom: 20px;
-  font-family: "Gibson";
+  font-family: inherit;
 `;

@@ -235,7 +235,7 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: "Gibson";
+  font-family: inherit;
   font-size: 20px;
   line-height: 24px;
   width: 80%;

@@ -10,6 +10,7 @@ import { Theme } from "../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
 import SampleImage from "../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -58,7 +59,7 @@ export const RecommendationListRenderer: FunctionComponent<
   return (
     <MainWrapper>
       <Title>Videos</Title>
-      <SubTitle>Here are your personalized recommendation</SubTitle>
+      <SubTitle>Here are your personalized recommendations</SubTitle>
       {state.recommendations.length > 0 ?
       <CardWrapper>
         {state?.recommendations?.slice(0, 3).map((recommendation, index) => {
@@ -107,6 +108,11 @@ const VideoRecommendation = () => {
     },
   });
 
+
+  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+
+  settingContextFromEngine(recommendationEngine)
+
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
   });
@@ -135,7 +141,7 @@ const MainWrapper = styled.div`
 const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
-  font-family: "Gibson";
+  font-family: inherit;
   color: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 10px;

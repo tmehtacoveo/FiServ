@@ -196,7 +196,7 @@ const Title = styled.h2`
   margin-left: 10px;
   font-size: 20px;
   font-weight: 400;
-  font-family: "Gibson";
+  font-family: inherit;
   color: ${Theme.primaryText};
 `;
 

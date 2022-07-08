@@ -149,7 +149,7 @@ import React, {
   
   const Title = styled.h2`
     margin-top: 10px;
-    font-family: "Gibson";
+    font-family: inherit;
     font-size: 20px;
     line-height: 28px;
     margin-bottom: 20px;

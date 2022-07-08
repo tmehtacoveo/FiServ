@@ -40,8 +40,9 @@ justify-content: space-around;
 align-items: center;
 @media (max-width: 480px) {
     margin-left: 0px;
-    width: 100%;
     padding-left: 0;
+    width: 100%;
+    min-width: auto;
 }
 `
 

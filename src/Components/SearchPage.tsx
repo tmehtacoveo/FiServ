@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -20,6 +20,7 @@ import {
 } from "../config/SearchConfig";
 import BreadcrumbManager from "./BreadcrumbManager";
 import styled from 'styled-components'
+import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -29,7 +30,9 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
   const { filter } = useParams();
   const { engine } = props;
   const [resultLoading, setResultLoading] = useState(false);
+  const {settingContext} = useContext(CustomContextContext)
   useEffect(() => {
+    settingContext(); 
     engine.executeFirstSearch();
   }, [engine]);
 

@@ -59,7 +59,7 @@ const Wrapper = styled.ul`
 `
 
 const BreadcrumbWrapper = styled.li`
-    font-family: 'Gibson';
+    font-family: inherit;
     width: auto;
     color : ${Theme.primaryText};
     margin-bottom: 5px;
