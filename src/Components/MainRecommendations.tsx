@@ -60,7 +60,7 @@ export const RecommendationListRenderer: FunctionComponent<
   return (
     <MainWrapper>
       <Title>Recommendations</Title>
-      <SubTitle>Here are your personalized recommendation</SubTitle>
+      <SubTitle>Here are your personalized recommendations</SubTitle>
       {state.recommendations.length > 0 ? (
         <CardWrapper>
           {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
@@ -108,14 +108,14 @@ const MainRecommendationList = () => {
     },
   });
 
-  const contextController = buildContext(recommendationEngine);
+/*   const contextController = buildContext(recommendationEngine);
 
   contextController.add("concepts", [
     "investment advisors ",
     " broker-dealer representatives ",
     " fiduciary standard ",
   ]);
-
+ */
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
   });

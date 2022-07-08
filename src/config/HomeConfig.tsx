@@ -22,7 +22,7 @@ export const NavBarConfig = [
 
 export const HeaderConfig = [
     {
-        title: "Bank Accout",
+        title: "Bank Account",
         redirectTo: "/home",
       },
       {
@@ -30,7 +30,7 @@ export const HeaderConfig = [
         redirectTo: "/",
       },
       {
-        title: "Mortages",
+        title: "Mortgages",
         redirectTo: "/",
       },
       {

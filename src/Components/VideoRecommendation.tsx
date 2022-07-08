@@ -58,7 +58,7 @@ export const RecommendationListRenderer: FunctionComponent<
   return (
     <MainWrapper>
       <Title>Videos</Title>
-      <SubTitle>Here are your personalized recommendation</SubTitle>
+      <SubTitle>Here are your personalized recommendations</SubTitle>
       {state.recommendations.length > 0 ?
       <CardWrapper>
         {state?.recommendations?.slice(0, 3).map((recommendation, index) => {
