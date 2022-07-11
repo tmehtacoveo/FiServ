@@ -43,7 +43,9 @@ const RecommendtionCard: React.FC<RecommendationCardType> = ({
       /* onMouseDown = {onMouseDown}
         onMouseUp = {onMouseUp} */
     >
+      <ImageContainer>
       <Image src={image} />
+      </ImageContainer>
       <TextWrapper>
         <Title>{title}</Title>
         <SubTitle>{description}</SubTitle>
@@ -72,10 +74,17 @@ export const SkeletonRecommendtionCard : React.FC = () => {
   );
 };
 
+
+const ImageContainer = styled.div`
+  overflow: hidden;
+`
+
 const Image = styled.img`
   height: 250px;
   width: 100%;
+  /* overflow: hidden; */
   object-fit: cover;
+  transition: 0.2s ease-in-out all;
 `;
 const TextWrapper = styled.div`
   display: flex;
@@ -143,6 +152,10 @@ const MainWrapper = styled.div`
 
   &:hover ${Title} {
     color: #1372ec;
+  }
+
+  &:hover ${Image} {
+    transform: scale(1.03);
   }
 
   &:hover ${ReferralLink} {
