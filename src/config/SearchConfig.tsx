@@ -6,6 +6,7 @@ import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate"
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
 import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./ConfigTypes";
+import CustomPeopleResultTemplate from "../searchResultTemplates/CustomPeopleResultTemplate";
 
 
 export const FacetConfig = [
@@ -56,7 +57,7 @@ export const ResultTemplateConfig = [
   {
     conditions: [ResultTemplatesHelpers.fieldMustMatch("source", ["Advisor"])],
     content: (result: Result) => (
-      <PeopleResultTemplate result={result} imageField={"adimage"} />
+      <CustomPeopleResultTemplate result={result} imageField={"adimage"} />
     ),
     priority: 2,
   },
@@ -85,6 +86,7 @@ export const FieldToIncludesInSearchResults : string[] = [
   "ytthumbnailurl",
   "sfimage__c",
   "sfimage_url__c",
+  'adspecial'
 ];
 
 
