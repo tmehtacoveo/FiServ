@@ -108,7 +108,6 @@ async function ensureClientTokenGenerated() {
        */
     })
    /*  .then((data: TokenModel) => {
-      console.log('sdfsdf',data.token)
       token =  data.token;
     })
     .catch((err) => {

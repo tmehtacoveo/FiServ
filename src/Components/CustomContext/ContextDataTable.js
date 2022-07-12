@@ -23,8 +23,6 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData,handleSa
 
     }
 
-    console.log(ContextData)
-
     const handleNewRow = ()=>{
 
         setContextData(prev => {
@@ -75,7 +73,7 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData,handleSa
             <>
           {FilteredProfileContext[0].context.map((item, index) => {
             return (
-              <tr>
+              <tr key = {item.keyName}>
                 <td>
                   <input
                     type="checkbox"
