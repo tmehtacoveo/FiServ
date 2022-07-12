@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../theme";
 import styled from "styled-components";
-import HeaderLogo from "../assets/HeaderLogo.png";
+import HeaderLogo from "../assets/HeaderLogo.svg";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
