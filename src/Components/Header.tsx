@@ -78,9 +78,9 @@ const Header: React.FC = () => {
                 onClick={() => toggleSearchBox()}
               >
                 {openSearch && !onSearchPage ? (
-                  <Icon icon={x} size={24} />
+                  <Icon icon={x} size={26} />
                 ) : (
-                  <Icon icon={search} size={24} />
+                  <Icon icon={search} size={26} />
                 )}
               </IconContainer>
               <ProfileIconContainer
@@ -206,6 +206,10 @@ const IconContainer = styled.button`
 background: none;
 border: 0px;
 width: 40px;
+transition: 0.2s ease-in-out all;
+&:hover{
+  transform: scale(0.95);
+}
 `
 
 const ProfileName = styled.span`
@@ -225,6 +229,10 @@ const ProfileIconContainer = styled.button`
   width: 90px;
   display: flex;
   align-items: center;
+  transition: 0.2s ease-in-out all;
+  &:hover{
+  transform: scale(0.95);
+}
 
 `
 
