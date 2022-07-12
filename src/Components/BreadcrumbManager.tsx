@@ -3,6 +3,7 @@ import {BreadcrumbManager as HeadlessBreadcrumbManager, buildBreadcrumbManager} 
 import EngineContext from '../common/engineContext';
 import styled from 'styled-components';
 import { Theme } from '../theme';
+import { FacetConfig } from '../config/SearchConfig';
  
 interface BreadcrumbManagerProps {
   controller: HeadlessBreadcrumbManager;
@@ -19,12 +20,14 @@ const BreadcrumbManagerRenderer: FunctionComponent<BreadcrumbManagerProps> = (
   if (!state?.hasBreadcrumbs) {
     return null;
   }
+
+  console.log(state.facetBreadcrumbs)
  
   return (
     <Wrapper>
       {state.facetBreadcrumbs.map((facet) => (
         <BreadcrumbWrapper key={facet.facetId}>
-          {facet.field}:{' '}
+          {FacetConfig.filter(item => item.field === facet.field)[0].title}:{' '}
           {facet.values.map((breadcrumb) => (
             <Breadcrumb
               key={breadcrumb.value.value}
