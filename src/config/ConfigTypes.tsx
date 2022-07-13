@@ -38,3 +38,12 @@ export interface SearchPageTabConfigType {
   sideBarRecommendationConfig? : sideBarRecommendationConfigType[];
   facetToInclude? : FacetFieldValue[];
 }
+
+export interface RecommendationType {
+  title? : string,
+  description? : string,
+  numberOfResults?: number,
+  imageField? : string,
+  pipeline? : string,
+  id? : string
+}

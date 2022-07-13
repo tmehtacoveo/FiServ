@@ -1,4 +1,5 @@
 import HeroImage from '../assets/Hero.jpg'
+import { RecommendationType } from './ConfigTypes';
 
 export const NavBarConfig = [
   {
@@ -54,7 +55,7 @@ export const HeroConfig = {
 }
 
 
-export const MainRecommendationConfig = {
+export const MainRecommendationConfig : RecommendationType= {
 
   title : 'Recommendations',
   description : "Here are your personalized recommendations",
@@ -64,7 +65,7 @@ export const MainRecommendationConfig = {
   id : 'Recommendation'
 }
 
-export const VideoRecommendationConfig = {
+export const VideoRecommendationConfig : RecommendationType  = {
 
   title : 'Videos',
   description : "Here are your personalized recommendations",

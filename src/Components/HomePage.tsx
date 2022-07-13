@@ -3,6 +3,7 @@ import HeroHome from "./HeroHome";
 import styled from "styled-components";
 import MainRecommendations from "./MainRecommendations";
 import VideoRecommendations from "./VideoRecommendation";
+import { MainRecommendationConfig, VideoRecommendationConfig } from "../config/HomeConfig";
 
 const HomePage: React.FC = () => {
 
@@ -10,8 +11,8 @@ const HomePage: React.FC = () => {
     <>
       <HeroHome />
       <MainWrapper>
-        <MainRecommendations />
-        <VideoRecommendations />
+        {Object.keys(MainRecommendationConfig).length !== 0 &&  <MainRecommendations />}
+        {Object.keys(VideoRecommendationConfig).length !== 0 && <VideoRecommendations />}
       </MainWrapper>
     </>
   );

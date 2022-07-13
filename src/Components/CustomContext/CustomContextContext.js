@@ -1,6 +1,6 @@
 import React,{useContext, useEffect} from 'react';
 import usePersistedState from '../../customHooks/usePersistedState';
-import { InitialData } from "./SampleData";
+import { InitialData } from "./InitialData";
 import EngineContext from '../../common/engineContext';
 import { buildContext } from '@coveo/headless';
 
