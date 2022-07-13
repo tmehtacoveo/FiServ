@@ -52,3 +52,24 @@ export const HeroConfig = {
     onClickButtonRedirect : '/search',
     
 }
+
+
+export const MainRecommendationConfig = {
+
+  title : 'Recommendations',
+  description : "Here are your personalized recommendations",
+  numberOfResults: 6,
+  imageField : 'sfimage_url__c',
+  pipeline : 'Homepage',
+  id : 'Recommendation'
+}
+
+export const VideoRecommendationConfig = {
+
+  title : 'Videos',
+  description : "Here are your personalized recommendations",
+  numberOfResults: 3,
+  imageField : 'ytthumbnailurl',
+  pipeline : 'Video Rec Sidebar',
+  id : 'Recommendation'
+}

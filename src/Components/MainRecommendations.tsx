@@ -15,6 +15,7 @@ import RecommendtionCard, {
 } from "./RecommendationCard";
 import SampleImage from "../assets/sampleImages/recommendation.png";
 import { CustomContextContext } from "./CustomContext/CustomContextContext";
+import { MainRecommendationConfig } from "../config/HomeConfig";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -58,14 +59,15 @@ export const RecommendationListRenderer: FunctionComponent<
   };
 
   const skeletonArray = [1, 2, 3];
+  const NumberOfResult = MainRecommendationConfig.numberOfResults
   return (
     <MainWrapper>
-      <Title>Recommendations</Title>
-      <SubTitle>Here are your personalized recommendations</SubTitle>
+      <Title>{MainRecommendationConfig.title}</Title>
+      <SubTitle>{MainRecommendationConfig.description}</SubTitle>
       {state.recommendations.length > 0 ? (
         <CardWrapper>
-          {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
-            const temp: unknown = recommendation.raw.sfimage_url__c;
+          {state?.recommendations?.slice(0, NumberOfResult).map((recommendation, index) => {
+            const temp: unknown = recommendation.raw[`${MainRecommendationConfig.imageField}`]
             const imageURL : string = temp as string;
             return (
               <div key={recommendation.title}>
@@ -100,17 +102,18 @@ export const RecommendationListRenderer: FunctionComponent<
 };
 
 const MainRecommendationList = () => {
+
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub: process.env.REACT_APP_SEARCH_HUB!,
-      pipeline : 'Homepage'
+      pipeline : MainRecommendationConfig.pipeline
     },
   });
 
  
-  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+  const {settingContextFromEngine} = useContext(CustomContextContext)
 
     settingContextFromEngine(recommendationEngine)
 
@@ -124,7 +127,7 @@ const MainRecommendationList = () => {
   ]);
  */
   const recController = buildRecommendationList(recommendationEngine, {
-    options: { id: "Recommendation" },
+    options: { id: MainRecommendationConfig.id },
   });
 
   return (
