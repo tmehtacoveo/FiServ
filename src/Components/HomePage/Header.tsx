@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
-import HeaderLogo from "../assets/HeaderLogo.svg";
+import HeaderLogo from "../../assets/HeaderLogo.svg";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
@@ -9,10 +9,10 @@ import HomeSearchBox from "./HomeSearchBox";
 import { x } from "react-icons-kit/feather/x";
 import Fade from "@mui/material/Fade";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HeaderConfig } from "../config/HomeConfig";
+import { HeaderConfig } from "../../config/HomeConfig";
 import Popover from "@mui/material/Popover";
-import ContextForm from "./CustomContext/ContextForm";
-import { CustomContextContext } from "./CustomContext/CustomContextContext";
+import ContextForm from "../CustomContext/ContextForm";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
 
 const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState<boolean>(false);

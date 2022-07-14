@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import { buildTab, Tab } from "@coveo/headless";
-import EngineContext from "../common/engineContext";
+import EngineContext from "../../common/engineContext";
 import styled from "styled-components";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import { useNavigate } from "react-router-dom";
-import { SearchPageTabConfig } from "../config/SearchConfig";
-import { SearchPageTabConfigType } from "../config/Types/ConfigTypes";
+import { SearchPageTabConfig } from "../../config/SearchConfig";
+import { SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
 
 
 const isRouteMatching  = (param : string, caption : string) => {

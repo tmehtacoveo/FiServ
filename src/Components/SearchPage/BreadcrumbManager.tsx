@@ -1,9 +1,9 @@
 import {useEffect, useState, FunctionComponent, useContext} from 'react';
 import {BreadcrumbManager as HeadlessBreadcrumbManager, buildBreadcrumbManager} from '@coveo/headless';
-import EngineContext from '../common/engineContext';
+import EngineContext from '../../common/engineContext';
 import styled from 'styled-components';
-import { Theme } from '../theme';
-import { FacetConfig } from '../config/SearchConfig';
+import { Theme } from '../../theme';
+import { FacetConfig } from '../../config/SearchConfig';
  
 interface BreadcrumbManagerProps {
   controller: HeadlessBreadcrumbManager;

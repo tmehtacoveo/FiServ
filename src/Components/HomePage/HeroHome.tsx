@@ -1,7 +1,7 @@
 import React from 'react';
-import {Theme} from '../theme';
+import {Theme} from '../../theme';
 import styled from "styled-components";
-import { HeroConfig } from '../config/HomeConfig';
+import { HeroConfig } from '../../config/HomeConfig';
 import { useNavigate } from 'react-router-dom';
 
 const HeroHome: React.FC = ()=>{

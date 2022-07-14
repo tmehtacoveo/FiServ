@@ -3,7 +3,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import { QuickViewModalContext } from "./QuickViewModalContext";
 import { buildQuickview } from "@coveo/headless";
-import EngineContext from "../common/engineContext";
+import EngineContext from "../../common/engineContext";
 import { DialogContent } from "@mui/material";
 import { x } from "react-icons-kit/feather/x";
 import { Icon } from "react-icons-kit";

@@ -6,12 +6,12 @@ import {
   buildRecommendationEngine,
   buildRecommendationList,
 } from "@coveo/headless/recommendation";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assets/sampleImages/recommendation.png";
-import { CustomContextContext } from "./CustomContext/CustomContextContext";
-import { VideoRecommendationConfig } from "../config/HomeConfig";
+import SampleImage from "../../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
+import { VideoRecommendationConfig } from "../../config/HomeConfig";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;

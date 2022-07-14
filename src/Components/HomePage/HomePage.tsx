@@ -1,9 +1,9 @@
 import React from "react";
 import HeroHome from "./HeroHome";
 import styled from "styled-components";
-import MainRecommendations from "./MainRecommendations";
-import VideoRecommendations from "./VideoRecommendations";
-import { MainRecommendationConfig, VideoRecommendationConfig } from "../config/HomeConfig";
+import MainRecommendations from "../Recommendations/MainRecommendations";
+import VideoRecommendations from "../Recommendations/VideoRecommendations";
+import { MainRecommendationConfig, VideoRecommendationConfig } from "../../config/HomeConfig";
 
 const HomePage: React.FC = () => {
 
