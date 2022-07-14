@@ -11,7 +11,7 @@ const NavBar: React.FC = ()=>{
         return <Wrapper>
         <NavigationWrapper>
             {NavBarConfig.map((item)=>{
-                return<NavigationLink key = {item.title} to={item.redirectTo}>{item.title}</NavigationLink>
+                return<NavigationLink key = {item.title} href={item.redirectTo}>{item.title}</NavigationLink>
             })}
         </NavigationWrapper>
     </Wrapper>
