@@ -1,11 +1,11 @@
-import { FacetConfig } from "../SearchConfig";
+import { FacetConfig, FieldToIncludesInSearchResults } from "../SearchConfig";
 
 export interface DefaultSideBarRecommendationConfigType {
     pipeline: string,
     NumberofResults: number,
     title: string
     videoRecommendation? : boolean
-    imageField? : string
+    imageField? : typeof FieldToIncludesInSearchResults[number]
   }
 
 
@@ -28,7 +28,7 @@ interface sideBarRecommendationConfigType {
   NumberofResults: number;
   title: string;
   videoRecommendation? : boolean
-  imageField? : string
+  imageField? : typeof FieldToIncludesInSearchResults[number]
 }
 
 export interface SearchPageTabConfigType {
@@ -43,7 +43,7 @@ export interface RecommendationType {
   title? : string,
   description? : string,
   numberOfResults?: number,
-  imageField? : string,
+  imageField? : typeof FieldToIncludesInSearchResults[number],
   pipeline? : string,
   id? : string
 }
