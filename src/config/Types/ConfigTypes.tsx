@@ -1,4 +1,4 @@
-import { FacetConfig } from "./SearchConfig";
+import { FacetConfig } from "../SearchConfig";
 
 export interface DefaultSideBarRecommendationConfigType {
     pipeline: string,

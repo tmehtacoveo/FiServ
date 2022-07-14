@@ -5,7 +5,7 @@ import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
-import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./ConfigTypes";
+import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./Types/ConfigTypes";
 import CustomPeopleResultTemplate from "../searchResultTemplates/CustomPeopleResultTemplate";
 
 

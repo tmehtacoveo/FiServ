@@ -1,5 +1,5 @@
 import HeroImage from '../assets/Hero.jpg'
-import { RecommendationType } from './ConfigTypes';
+import { RecommendationType } from './Types/ConfigTypes';
 
 export const NavBarConfig = [
   {

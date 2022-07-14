@@ -37,8 +37,8 @@ const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
         window.open(clickUri, "_blank", "noopener,noreferrer");
       }}
       onContextMenu={onContextMenu}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
+     /*  onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp} */
     >
       {video ? (
         <VideoWrapper>

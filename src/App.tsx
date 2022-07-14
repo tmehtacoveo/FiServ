@@ -16,8 +16,6 @@ import SearchBox from './Components/SearchBox';
 import SearchPage from './Components/SearchPage';
 import Footer from './Components/Footer';
 import FacetControllerProvider from './Components/Facet/FacetContext';
-import SFKBArticle from './Components/SFKBArticle';
-import SFKBProvider from './Components/SFKBContext';
 import QuickViewModal from './Components/QuickViewModal';
 import QuickViewModalProvider from './Components/QuickViewModalContext';
 import CustomContextProvider from './Components/CustomContext/CustomContextContext';
@@ -37,7 +35,6 @@ export default function App() {
     <>
     {engine? 
     <EngineProvider value = {engine}>
-      <SFKBProvider>
       <FacetControllerProvider>
         <QuickViewModalProvider> 
           <CustomContextProvider>
@@ -55,7 +52,7 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage engine = {engine} />} />
         <Route path="/search/:filter" element={<SearchPage engine = {engine} />} />
-        <Route path="/salesforcekb/:sfid" element={<SFKBArticle/>} />
+        {/* <Route path="/salesforcekb/:sfid" element={<SFKBArticle/>} /> */}
         <Route path="/error" element={<Error />} />
       </Routes>
       <Footer/>
@@ -63,7 +60,6 @@ export default function App() {
     </CustomContextProvider>
     </QuickViewModalProvider>
     </FacetControllerProvider>
-    </SFKBProvider>
     </EngineProvider> : <h2>Loading engine</h2>}
     </>
   );

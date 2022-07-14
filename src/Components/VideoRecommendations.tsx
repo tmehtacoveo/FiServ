@@ -42,10 +42,6 @@ export const RecommendationListRenderer: FunctionComponent<
     );
   }
 
-/*   if (!state.recommendations.length) {
-    return <button onClick={() => controller.refresh()}>Refresh</button>;
-  } */
-
   const logClick = (recommendation: Result) => {
     if (!engine) {
       return;
@@ -110,7 +106,7 @@ const VideoRecommendation = () => {
   });
 
 
-  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+  const {settingContextFromEngine} = useContext(CustomContextContext)
 
   settingContextFromEngine(recommendationEngine)
 

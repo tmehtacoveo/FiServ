@@ -5,20 +5,17 @@ import HeaderLogo from "../assets/HeaderLogo.svg";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
-import { user } from "react-icons-kit/feather/user";
 import HomeSearchBox from "./HomeSearchBox";
 import { x } from "react-icons-kit/feather/x";
 import Fade from "@mui/material/Fade";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HeaderConfig } from "../config/HomeConfig";
 import Popover from "@mui/material/Popover";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import ContextForm from "./CustomContext/ContextForm";
 import { CustomContextContext } from "./CustomContext/CustomContextContext";
 
 const Header: React.FC = () => {
-  const [openSearch, setOpenSearch] = useState(false);
+  const [openSearch, setOpenSearch] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
   const {getProfile} = useContext(CustomContextContext)
@@ -71,7 +68,7 @@ const Header: React.FC = () => {
                 </NavigationLink>
               );
             })}
-            <Divider></Divider>
+            <Divider/>
             <IconsWrapper>
               <IconContainer
                 style={{ color: Theme.headerIconColor, cursor: "pointer" }}
@@ -129,8 +126,6 @@ const Wrapper = styled.header`
   font-style: normal;
   font-weight: 400;
   line-height: 100%;
-  /* identical to box height, or 16px */
-
   letter-spacing: 0.01em;
 `;
 
@@ -175,9 +170,6 @@ const Divider = styled.div`
   border-right-width: 2px;
   width: 1px;
   height: 48px;
-
-  /* Primary/Grey/40 */
-
   background: #e5e8e8;
   @media (max-width:1000px) {
     display: none;
@@ -210,6 +202,9 @@ transition: 0.2s ease-in-out all;
 &:hover{
   transform: scale(0.95);
 }
+&:active{
+  transform: scale(0.85);
+}
 `
 
 const ProfileName = styled.span`
@@ -232,6 +227,9 @@ const ProfileIconContainer = styled.button`
   transition: 0.2s ease-in-out all;
   &:hover{
   transform: scale(0.95);
+}
+&:active{
+  transform: scale(0.85);
 }
 
 `

@@ -7,16 +7,16 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 interface RecommendationCardType {
-  title : string,
-  description : string,
-  image : string,
-  video? : boolean,
-  clickUri : string,
-  onClick : ()=>void,
-  onContextMenu : ()=>void,
-  onMouseDown : ()=>void,
-  onMouseUp : ()=>void,
-  source? : string,
+  title: string;
+  description: string;
+  image: string;
+  video?: boolean;
+  clickUri: string;
+  onClick: () => void;
+  onContextMenu: () => void;
+  onMouseDown: () => void;
+  onMouseUp: () => void;
+  source?: string;
 }
 
 const RecommendtionCard: React.FC<RecommendationCardType> = ({
@@ -31,7 +31,6 @@ const RecommendtionCard: React.FC<RecommendationCardType> = ({
   onMouseUp,
   source = "",
 }) => {
-
   return (
     <MainWrapper
       key={title}
@@ -44,7 +43,7 @@ const RecommendtionCard: React.FC<RecommendationCardType> = ({
         onMouseUp = {onMouseUp} */
     >
       <ImageContainer>
-      <Image src={image} />
+        <Image src={image} />
       </ImageContainer>
       <TextWrapper>
         <Title>{title}</Title>
@@ -60,7 +59,7 @@ const RecommendtionCard: React.FC<RecommendationCardType> = ({
   );
 };
 
-export const SkeletonRecommendtionCard : React.FC = () => {
+export const SkeletonRecommendtionCard: React.FC = () => {
   return (
     <MainWrapper>
       <Skeleton
@@ -74,15 +73,13 @@ export const SkeletonRecommendtionCard : React.FC = () => {
   );
 };
 
-
 const ImageContainer = styled.div`
   overflow: hidden;
-`
+`;
 
 const Image = styled.img`
   height: 250px;
   width: 100%;
-  /* overflow: hidden; */
   object-fit: cover;
   transition: 0.2s ease-in-out all;
 `;
@@ -163,7 +160,7 @@ const MainWrapper = styled.div`
   }
   @media (max-width: 480px) {
     width: 90vw;
-}
+  }
 `;
 
 export default RecommendtionCard;

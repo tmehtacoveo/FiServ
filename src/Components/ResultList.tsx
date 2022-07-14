@@ -58,8 +58,6 @@ const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (
   }, [state]);
 
 
-  /* console.log('state', ) */
-
   return (
     <List>
       {state.results.length === 0 && (state.isLoading || !state.firstSearchExecuted) ? (
