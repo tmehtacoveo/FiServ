@@ -3,7 +3,7 @@ import {Pagination} from '@mui/material';
 import {buildPager, Pager as HeadlessPager} from '@coveo/headless';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import EngineContext from '../common/engineContext';
+import EngineContext from '../../common/engineContext';
 
 interface PagerProps {
   controller: HeadlessPager;

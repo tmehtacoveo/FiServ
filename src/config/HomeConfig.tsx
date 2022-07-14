@@ -1,4 +1,5 @@
 import HeroImage from '../assets/Hero.jpg'
+import { RecommendationType } from './Types/ConfigTypes';
 
 export const NavBarConfig = [
   {
@@ -22,7 +23,7 @@ export const NavBarConfig = [
 
 export const HeaderConfig = [
     {
-        title: "Bank Accout",
+        title: "Bank Account",
         redirectTo: "/home",
       },
       {
@@ -30,7 +31,7 @@ export const HeaderConfig = [
         redirectTo: "/",
       },
       {
-        title: "Mortages",
+        title: "Mortgages",
         redirectTo: "/",
       },
       {
@@ -51,4 +52,25 @@ export const HeroConfig = {
     buttonText : 'Learn More',
     onClickButtonRedirect : '/search',
     
+}
+
+
+export const MainRecommendationConfig : RecommendationType= {
+
+  title : 'Recommendations',
+  description : "Here are your personalized recommendations",
+  numberOfResults: 6,
+  imageField : 'sfimage_url__c',
+  pipeline : 'Homepage',
+  id : 'Recommendation'
+}
+
+export const VideoRecommendationConfig : RecommendationType  = {
+
+  title : 'Videos',
+  description : "Here are your personalized recommendations",
+  numberOfResults: 3,
+  imageField : 'ytthumbnailurl',
+  pipeline : 'Video Rec Sidebar',
+  id : 'Recommendation'
 }

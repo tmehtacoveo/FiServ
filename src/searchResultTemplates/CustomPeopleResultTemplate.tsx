@@ -1,15 +1,10 @@
-import React, {
-  useContext,
-} from "react";
+import React, { useContext } from "react";
 import { ListItem, Box, Typography } from "@mui/material";
-import {
-  Result,
-  buildInteractiveResult,
-  SearchEngine,
-} from "@coveo/headless";
+import { Result, buildInteractiveResult, SearchEngine } from "@coveo/headless";
 import EngineContext from "../common/engineContext";
 import styled from "styled-components";
 import { Theme } from "../theme";
+import { FacetContext } from "../Components/Facet/FacetContext";
 
 export function filterProtocol(uri: string) {
   // Filters out dangerous URIs that can create XSS attacks such as `javascript:`.
@@ -17,11 +12,6 @@ export function filterProtocol(uri: string) {
   const isRelative = /^(\/|\.\/|\.\.\/)/.test(uri);
 
   return isAbsolute || isRelative ? uri : "";
-}
-
-interface FieldValueInterface {
-  value: string;
-  caption: string;
 }
 
 function ListItemLink(
@@ -50,24 +40,41 @@ function ListItemLink(
   );
 }
 
-
-const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
-  result,
-  imageField,
-}) => {
+const CustomPeopleResultTemplate: React.FC<{
+  result: any;
+  imageField: string;
+}> = ({ result, imageField }) => {
   const engine = useContext(EngineContext)!;
   const date = new Date(Number(result.raw.date));
+
+  const { facetController } = useContext(FacetContext);
+
+  /* console.log(facetController.adspecial.state.values) */
+
+  const handleFacetSelect = (item: string) => {
+    console.log("ahdsdhagsdbasd");
+    const facetValue = facetController.adspecial.state.values.filter(
+      (facet) =>
+        facet.value.toLowerCase().replace(/\s/g, "") ===
+        item.toLowerCase().replace(/\s/g, "")
+    )[0];
+    console.log(facetValue);
+    if (facetValue) {
+      facetController.adspecial.toggleSelect(facetValue);
+    }
+  };
+
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
         <Box my={1}>
-        <BadgeWrapper>
-          {result.isRecommendation && (
-            <RecommendationBadge>Recommended</RecommendationBadge>
-          )}
-          {result.isTopResult && (
-            <RecommendationBadge>Featured</RecommendationBadge>
-          )}
+          <BadgeWrapper>
+            {result.isRecommendation && (
+              <RecommendationBadge>Recommended</RecommendationBadge>
+            )}
+            {result.isTopResult && (
+              <RecommendationBadge>Featured</RecommendationBadge>
+            )}
           </BadgeWrapper>
           <MainWrapper>
             {result.raw[imageField] && (
@@ -91,11 +98,45 @@ const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
                   </DateWrapper>
                 )}
               </TitltAndDateWrapper>
-              {result.excerpt && (
-                <Box pb={1}>
-                  <Excerpt>{result.excerpt}</Excerpt>
-                </Box>
-              )}
+              <div style={{ display: "inline-block" }}>
+                <Excerpt
+                  style={{
+                    display: "inline-block",
+                    fontWeight: "400",
+                    fontSize: "16px",
+                  }}
+                >
+                  Area of Practice:
+                </Excerpt>{" "}
+                {result.raw.adspecial.map((item: any) => {
+                  if (
+                    facetController.adspecial.state.values.filter(
+                      (facet) =>
+                        facet.value.toLowerCase().replace(/\s/g, "") ===
+                        item.toLowerCase().replace(/\s/g, "")
+                    )[0]?.state === "selected"
+                  ) {
+                    return (
+                      <Excerpt
+                        style={{ display: "inline-block", fontWeight: "400" }}
+                        key={item}
+                      >
+                        {item}
+                        {", "}
+                      </Excerpt>
+                    );
+                  }
+                  return (
+                    <Excerpt
+                      style={{ display: "inline-block" }}
+                      key={item} /* onClick={()=>handleFacetSelect(item)} */
+                    >
+                      {item}
+                      {", "}
+                    </Excerpt>
+                  );
+                })}
+              </div>
             </TextWrapper>
           </MainWrapper>
         </Box>
@@ -111,7 +152,7 @@ const PeopleResultTemplate: React.FC<{ result: any; imageField: string }> = ({
   );
 };
 
-export default PeopleResultTemplate;
+export default CustomPeopleResultTemplate;
 
 const MainWrapper = styled.div`
   width: 95%;
@@ -164,11 +205,11 @@ const Title = styled.h2`
     text-decoration: underline;
   }
   @media (max-width: 480px) {
-   font-size: 18px;
-   & a {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-   }
+    font-size: 18px;
+    & a {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+    }
   }
 `;
 
@@ -177,13 +218,17 @@ const Excerpt = styled.p`
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 14px;
   color: ${Theme.excerpt};
   font-family: inherit;
   font-weight: 300px;
+  /*  cursor: pointer;
+    &:hover{
+        font-weight: 400;
+    } */
   @media (max-width: 480px) {
-   font-size: 12px;
-}
+    font-size: 12px;
+  }
 `;
 
 const RecommendationBadge = styled.div`
@@ -214,13 +259,12 @@ const DateWrapper = styled.p`
   justify-content: flex-end;
   padding-left: 20px;
   @media (max-width: 480px) {
-   font-size: 12px;
-}
+    font-size: 12px;
+  }
 `;
 const BadgeWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 210px;
   justify-content: space-between;
-
-`
+`;

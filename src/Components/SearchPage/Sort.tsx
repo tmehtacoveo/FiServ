@@ -11,7 +11,7 @@ import {
   SortCriterion,
 } from '@coveo/headless';
 import {InputLabel, MenuItem, Select} from '@mui/material';
-import EngineContext from '../common/engineContext';
+import EngineContext from '../../common/engineContext';
 
 export interface SortProps {
   controller: HeadlessSort;

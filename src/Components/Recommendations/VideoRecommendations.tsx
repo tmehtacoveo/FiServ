@@ -6,10 +6,12 @@ import {
   buildRecommendationEngine,
   buildRecommendationList,
 } from "@coveo/headless/recommendation";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
 import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
-import SampleImage from "../assets/sampleImages/recommendation.png";
+import SampleImage from "../../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
+import { VideoRecommendationConfig } from "../../config/HomeConfig";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -40,10 +42,6 @@ export const RecommendationListRenderer: FunctionComponent<
     );
   }
 
-/*   if (!state.recommendations.length) {
-    return <button onClick={() => controller.refresh()}>Refresh</button>;
-  } */
-
   const logClick = (recommendation: Result) => {
     if (!engine) {
       return;
@@ -54,16 +52,16 @@ export const RecommendationListRenderer: FunctionComponent<
   };
 
   const skeletonArray = [1,2,3]
-
+  const NumberOfResult = VideoRecommendationConfig.numberOfResults
   return (
     <MainWrapper>
-      <Title>Videos</Title>
-      <SubTitle>Here are your personalized recommendation</SubTitle>
+      <Title>{VideoRecommendationConfig.title}</Title>
+      <SubTitle>{VideoRecommendationConfig.description}</SubTitle>
       {state.recommendations.length > 0 ?
       <CardWrapper>
-        {state?.recommendations?.slice(0, 3).map((recommendation, index) => {
+        {state?.recommendations?.slice(0, NumberOfResult).map((recommendation, index) => {
 
-        const temp: unknown = recommendation.raw.ytthumbnailurl;
+        const temp: unknown = recommendation.raw[`${VideoRecommendationConfig.imageField}`];
         const imgeURL : string = temp as string;
 
           return (
@@ -102,13 +100,18 @@ const VideoRecommendation = () => {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub : process.env.REACT_APP_SEARCH_HUB!,
-      pipeline : 'Video Rec Sidebar',
+      pipeline : VideoRecommendationConfig.pipeline,
 
     },
   });
 
+
+  const {settingContextFromEngine} = useContext(CustomContextContext)
+
+  settingContextFromEngine(recommendationEngine)
+
   const recController = buildRecommendationList(recommendationEngine, {
-    options: { id: "Recommendation" },
+    options: { id: VideoRecommendationConfig.id },
   });
 
   return (
@@ -135,7 +138,7 @@ const MainWrapper = styled.div`
 const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
-  font-family: "Gibson";
+  font-family: inherit;
   color: ${Theme.primaryText};
   margin-top: 30px;
   margin-bottom: 10px;

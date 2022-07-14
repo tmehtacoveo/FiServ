@@ -26,8 +26,8 @@ import { Theme } from "../theme";
 import { FileTypeIconsConfig } from "../config/SearchConfig";
 import {eye} from 'react-icons-kit/feather/eye'
 import Icon from "react-icons-kit";
-import QuickViewModal from "../Components/QuickViewModal";
-import { QuickViewModalContext } from "../Components/QuickViewModalContext";
+import QuickViewModal from "../Components/SearchPage/QuickViewModal";
+import { QuickViewModalContext } from "../Components/SearchPage/QuickViewModalContext";
 
 type Template = (result: Result) => React.ReactNode;
 
@@ -235,7 +235,7 @@ const TextWrapper = styled.div`
 `;
 
 const Title = styled.h2`
-  font-family: "Gibson";
+  font-family: inherit;
   font-size: 20px;
   line-height: 24px;
   width: 80%;

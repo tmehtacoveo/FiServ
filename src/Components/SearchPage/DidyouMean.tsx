@@ -1,6 +1,6 @@
 import {useEffect, useState, FunctionComponent, useContext} from 'react';
 import {buildDidYouMean, DidYouMean as HeadlessDidYouMean} from '@coveo/headless';
-import EngineContext from '../common/engineContext';
+import EngineContext from '../../common/engineContext';
  
 interface DidYouMeanProps {
   controller: HeadlessDidYouMean;

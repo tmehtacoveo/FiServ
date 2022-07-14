@@ -7,20 +7,18 @@ import {
 } from 'react-router-dom';
 import {Grid, Typography, Box} from '@mui/material';
 import {initializeHeadlessEngine} from './common/Engine';
-import {SearchEngine} from '@coveo/headless';
-import HomePage from './Components/HomePage';
-import NavBar from './Components/NavBar';
-import Header from './Components/Header';
+import {buildContext, SearchEngine} from '@coveo/headless';
+import HomePage from './Components/HomePage/HomePage';
+import NavBar from './Components/HomePage/NavBar';
+import Header from './Components/HomePage/Header';
 import { EngineProvider } from './common/engineContext';
-import SearchBox from './Components/SearchBox';
-import SearchPage from './Components/SearchPage';
-import Footer from './Components/Footer';
+import SearchBox from './Components/SearchPage/SearchBox';
+import SearchPage from './Components/SearchPage/SearchPage';
+import Footer from './Components/HomePage/Footer';
 import FacetControllerProvider from './Components/Facet/FacetContext';
-import SFKBArticle from './Components/SFKBArticle';
-import SFKBProvider from './Components/SFKBContext';
-import QuickViewModal from './Components/QuickViewModal';
-import QuickViewModalProvider from './Components/QuickViewModalContext';
-
+import QuickViewModal from './Components/SearchPage/QuickViewModal';
+import QuickViewModalProvider from './Components/SearchPage/QuickViewModalContext';
+import CustomContextProvider from './Components/CustomContext/CustomContextContext';
 
 export default function App() {
 
@@ -37,9 +35,9 @@ export default function App() {
     <>
     {engine? 
     <EngineProvider value = {engine}>
-      <SFKBProvider>
       <FacetControllerProvider>
         <QuickViewModalProvider> 
+          <CustomContextProvider>
     <Router>
       <NavBar/>
       <Header/>
@@ -54,14 +52,14 @@ export default function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage engine = {engine} />} />
         <Route path="/search/:filter" element={<SearchPage engine = {engine} />} />
-        <Route path="/salesforcekb/:sfid" element={<SFKBArticle/>} />
+        {/* <Route path="/salesforcekb/:sfid" element={<SFKBArticle/>} /> */}
         <Route path="/error" element={<Error />} />
       </Routes>
       <Footer/>
     </Router>
+    </CustomContextProvider>
     </QuickViewModalProvider>
     </FacetControllerProvider>
-    </SFKBProvider>
     </EngineProvider> : <h2>Loading engine</h2>}
     </>
   );

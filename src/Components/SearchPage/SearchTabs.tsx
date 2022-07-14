@@ -1,11 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import { buildTab, Tab } from "@coveo/headless";
-import EngineContext from "../common/engineContext";
+import EngineContext from "../../common/engineContext";
 import styled from "styled-components";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import { useNavigate } from "react-router-dom";
-import { SearchPageTabConfig } from "../config/SearchConfig";
-import { SearchPageTabConfigType } from "../config/ConfigTypes";
+import { SearchPageTabConfig } from "../../config/SearchConfig";
+import { SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
 
 
 const isRouteMatching  = (param : string, caption : string) => {
@@ -84,12 +84,10 @@ const SearchTabs : React.FC<SearchTabsType> = ({ filterSelected }) => {
 
 const Wrapper = styled.div`
   width: 100%;
-  /* padding: 0px 10%; */
   background: ${Theme.navbar};
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: Gibson;
   font-weight: 300;
   flex-wrap: wrap;
 `;
@@ -99,6 +97,7 @@ const TabTitle = styled.a<{isActive : boolean }>`
   text-align: center;
   color: ${Theme.secondaryText};
   cursor: pointer;
+  font-family: inherit;
   background: ${(props) => (props.isActive ? Theme.selection : null)};
   opacity: ${(props) => (props.isActive ? 1 : 0.8)};
   transition: 0.2s ease-in-out all;

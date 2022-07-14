@@ -37,7 +37,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Gibson, Avenir, Helvetica, Arial, sans-serif',
+    fontFamily: 'Gibson,Noto Sans, Avenir, Helvetica, Arial, sans-serif',
     // Material-UI uses rem units for the font size. This will change the base size for the entire search page
     // More info at https://material-ui.com/customization/typography/#font-size
     fontSize: 16,
