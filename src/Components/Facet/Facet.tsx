@@ -28,7 +28,7 @@ import styled from "styled-components";
 import { chevronDown } from "react-icons-kit/feather/chevronDown";
 import { chevronUp } from "react-icons-kit/feather/chevronUp";
 import { Icon } from "react-icons-kit";
-import SkeletonFacet from "./FacetSkeleton";
+
 interface FacetProps {
   title: string | undefined;
   field: string;

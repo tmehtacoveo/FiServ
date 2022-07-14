@@ -1,3 +1,14 @@
+/* 
+Before you edit:
+
+When editing the 'InitialData', make sure to delete keys 'profile_selected' and 'context_data' in your localStorage to see the changes. 
+
+To access localStorage:
+
+Developer tools > Application > Storage > LocalStorage
+
+*/
+
 export const InitialData = [
   {
     name: "Anonymous",
@@ -42,3 +53,6 @@ export const InitialData = [
     ],
   },
 ];
+
+
+

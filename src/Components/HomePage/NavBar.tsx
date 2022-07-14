@@ -1,8 +1,8 @@
 import React from 'react';
-import {Theme} from '../theme';
+import {Theme} from '../../theme';
 import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
-import { NavBarConfig } from '../config/HomeConfig';
+import { NavBarConfig } from '../../config/HomeConfig';
 
 
 const NavBar: React.FC = ()=>{

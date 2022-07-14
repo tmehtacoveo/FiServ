@@ -7,7 +7,7 @@ import QuerySummary from "./QuerySummary";
 import ResultList from "./ResultList";
 import Pager from "./Pager";
 import Sort from "./Sort";
-import FacetList from "./Facet/FacetList";
+import FacetList from "../Facet/FacetList";
 import ResultsPerPage from "./ResultsPerPage";
 import { SearchEngine } from "@coveo/headless";
 import DidYouMean from "./DidyouMean";
@@ -17,10 +17,11 @@ import SearchTabs from "./SearchTabs";
 import {
   DefaultSideBarRecommendationConfig,
   SearchPageTabConfig,
-} from "../config/SearchConfig";
+} from "../../config/SearchConfig";
 import BreadcrumbManager from "./BreadcrumbManager";
 import styled from 'styled-components'
-import { CustomContextContext } from "./CustomContext/CustomContextContext";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
+import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -108,7 +109,7 @@ export const SideBarRecommendation :React.FC<{filter : string | undefined}> = ({
   return  <>
   {DefaultSideBarRecommendationConfig.length > 0? (
     <>
-      {DefaultSideBarRecommendationConfig.map((item) => {
+      {DefaultSideBarRecommendationConfig.map((item : DefaultSideBarRecommendationConfigType) => {
         return (
           <React.Fragment key={item.title}>
             <SearchSideBarRecommendationList
@@ -124,7 +125,7 @@ export const SideBarRecommendation :React.FC<{filter : string | undefined}> = ({
     </>
   ) : (
     <>
-      {SearchPageTabConfig.map((tab, index) => {
+      {SearchPageTabConfig.map((tab : SearchPageTabConfigType, index: number) => {
         if (
           (filter?.toLowerCase() ===
             tab.caption.replace(/\s/g, "").toLowerCase() ||

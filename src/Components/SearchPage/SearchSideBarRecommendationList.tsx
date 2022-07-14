@@ -8,14 +8,14 @@ import {
   loadAdvancedSearchQueryActions,
   RecommendationEngine,
 } from "@coveo/headless/recommendation";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
 import RecommendtionCardSmall, {
   SkeletonRecommendtionCardSmall,
-} from "./RecommendationCardSmall";
-import EngineContext from "../common/engineContext";
+} from "../Recommendations/RecommendationCardSmall";
+import EngineContext from "../../common/engineContext";
 import { Typography } from "@mui/material";
-import SampleImage from "../assets/sampleImages/recommendation.png";
+import SampleImage from "../../assets/sampleImages/recommendation.png";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;

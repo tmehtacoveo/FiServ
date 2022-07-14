@@ -1,7 +1,7 @@
 import React from 'react';
-import {Theme} from '../theme';
+import {Theme} from '../../theme';
 import styled from "styled-components";
-import { HeroConfig } from '../config/HomeConfig';
+import { HeroConfig } from '../../config/HomeConfig';
 import { useNavigate } from 'react-router-dom';
 
 const HeroHome: React.FC = ()=>{
@@ -31,7 +31,6 @@ background-position: right center;
 background-size: cover;
 @media (max-width: 480px) {
     padding-left: 10px;
-   /*  text-align: center; */
    width: 100vw;
    justify-content: flex-start;
    padding-top: 80px;
@@ -85,6 +84,7 @@ transition: 0.2s ease-in-out;
 &:hover {
     background-color: ${Theme.button}CC;
 }
+
 `
 
 export default HeroHome;

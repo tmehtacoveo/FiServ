@@ -1,33 +1,35 @@
 import React from "react";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
+import { chevronRight } from "react-icons-kit/feather/chevronRight";
+import { Icon } from "react-icons-kit";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-
-interface RecommendationCardSmallType {
-  title : string,
-  description : string,
-  image : string,
-  video? : boolean,
-  clickUri : string,
-  onClick : ()=>void,
-  onContextMenu : ()=>void,
-  onMouseDown : ()=>void,
-  onMouseUp : ()=>void,
+interface RecommendationCardType {
+  title: string;
+  description: string;
+  image: string;
+  video?: boolean;
+  clickUri: string;
+  onClick: () => void;
+  onContextMenu: () => void;
+  onMouseDown: () => void;
+  onMouseUp: () => void;
+  source?: string;
 }
 
-
-const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
+const RecommendtionCard: React.FC<RecommendationCardType> = ({
   title,
   description,
-  video = false,
+  image,
+  video = true,
   clickUri,
   onClick,
   onContextMenu,
   onMouseDown,
   onMouseUp,
-  image
+  source = "",
 }) => {
   return (
     <MainWrapper
@@ -37,55 +39,54 @@ const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
         window.open(clickUri, "_blank", "noopener,noreferrer");
       }}
       onContextMenu={onContextMenu}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
+      /* onMouseDown = {onMouseDown}
+        onMouseUp = {onMouseUp} */
     >
-      {video ? (
-        <VideoWrapper>
-            <Image src = {image}/>
-            <Title>{title}</Title>
-        </VideoWrapper>
-      ) : (
-        <TextWrapper>
-          <Title>{title}</Title>
-          <SubTitle>{description}</SubTitle>
-        </TextWrapper>
-      )}
+      <ImageContainer>
+        <Image src={image} />
+      </ImageContainer>
+      <TextWrapper>
+        <Title>{title}</Title>
+        <SubTitle>{description}</SubTitle>
+        <ReferralLink>
+          {!video ? "Learn more" : "Watch now"}{" "}
+          <div style={{ marginLeft: "5px", color: Theme.link }}>
+            <Icon icon={chevronRight} />
+          </div>
+        </ReferralLink>
+      </TextWrapper>
     </MainWrapper>
   );
 };
 
-export const SkeletonRecommendtionCardSmall : React.FC = () => {
+export const SkeletonRecommendtionCard: React.FC = () => {
   return (
     <MainWrapper>
+      <Skeleton
+        style={{ height: "250px", position: "relative", top: "-5px" }}
+      />
       <div style={{ padding: "30px 20px" }}>
-        <Skeleton count={1} style={{ marginBottom: "20px", height: "40px" }} />
+        <Skeleton count={1} style={{ marginBottom: "20px", height: "50px" }} />
         <Skeleton count={2} style={{ margin: "10px 0px" }} />
       </div>
     </MainWrapper>
   );
 };
 
-const TextWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 140px;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 20px;
-  flex-direction: column;
+const ImageContainer = styled.div`
+  overflow: hidden;
 `;
 
 const Image = styled.img`
-width: 90%;
-object-fit : "center";
-margin-bottom: 10px;
-`
-
-const VideoWrapper = styled.div`
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  transition: 0.2s ease-in-out all;
+`;
+const TextWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 250px;
+  height: 230px;
   align-items: center;
   justify-content: space-around;
   padding: 10px 20px;
@@ -98,11 +99,11 @@ const Title = styled.a`
   font-style: normal;
   align-self: flex-start;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 32px;
   color: ${Theme.primaryText};
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 `;
@@ -111,7 +112,7 @@ const SubTitle = styled.span`
   font-family: inherit;
   font-style: normal;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 26px;
   color: ${Theme.primaryText};
   display: -webkit-box;
@@ -134,11 +135,12 @@ const ReferralLink = styled.a`
 `;
 
 const MainWrapper = styled.div`
-  /* width: 100%; */
+  height: 500px;
+  width: 400px;
   border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
-  margin: 10px 10px 10px 10px;
+  margin: 20px;
   background: white;
   cursor: pointer;
   &:hover {
@@ -149,9 +151,16 @@ const MainWrapper = styled.div`
     color: #1372ec;
   }
 
+  &:hover ${Image} {
+    transform: scale(1.03);
+  }
+
   &:hover ${ReferralLink} {
     opacity: 1;
   }
+  @media (max-width: 480px) {
+    width: 90vw;
+  }
 `;
 
-export default RecommendtionCardSmall;
+export default RecommendtionCard;

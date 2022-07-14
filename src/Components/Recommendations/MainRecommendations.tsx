@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useEffect, useState, FunctionComponent, useContext } from "react";
 import {
   RecommendationList as HeadlessRecommendationList,
@@ -6,15 +5,15 @@ import {
   Result,
   buildRecommendationEngine,
   buildRecommendationList,
-  buildContext,
 } from "@coveo/headless/recommendation";
-import { Theme } from "../theme";
+import { Theme } from "../../theme";
 import styled from "styled-components";
 import RecommendtionCard, {
   SkeletonRecommendtionCard,
 } from "./RecommendationCard";
-import SampleImage from "../assets/sampleImages/recommendation.png";
-import { CustomContextContext } from "./CustomContext/CustomContextContext";
+import SampleImage from "../../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
+import { MainRecommendationConfig } from "../../config/HomeConfig";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -44,10 +43,6 @@ export const RecommendationListRenderer: FunctionComponent<
     );
   }
 
-  /*   if (!state.recommendations.length) {
-    return <button onClick={() => controller.refresh()}>Refresh</button>;
-  } */
-
   const logClick = (recommendation: Result) => {
     if (!engine) {
       return;
@@ -58,38 +53,42 @@ export const RecommendationListRenderer: FunctionComponent<
   };
 
   const skeletonArray = [1, 2, 3];
+  const NumberOfResult = MainRecommendationConfig.numberOfResults;
   return (
     <MainWrapper>
-      <Title>Recommendations</Title>
-      <SubTitle>Here are your personalized recommendations</SubTitle>
+      <Title>{MainRecommendationConfig.title}</Title>
+      <SubTitle>{MainRecommendationConfig.description}</SubTitle>
       {state.recommendations.length > 0 ? (
         <CardWrapper>
-          {state?.recommendations?.slice(0, 6).map((recommendation, index) => {
-            const temp: unknown = recommendation.raw.sfimage_url__c;
-            const imageURL : string = temp as string;
-            return (
-              <div key={recommendation.title}>
-                <RecommendtionCard
-                  video={false}
-                  title={recommendation.title}
-                  description={recommendation.excerpt}
-                  image={imageURL? imageURL : SampleImage}
-                  clickUri={recommendation.clickUri}
-                  onClick={() => logClick(recommendation)}
-                  onContextMenu={() => logClick(recommendation)}
-                  onMouseDown={() => logClick(recommendation)}
-                  onMouseUp={() => logClick(recommendation)}
-                />
-              </div>
-            );
-          })}
+          {state?.recommendations
+            ?.slice(0, NumberOfResult)
+            .map((recommendation, index) => {
+              const temp: unknown =
+                recommendation.raw[`${MainRecommendationConfig.imageField}`];
+              const imageURL: string = temp as string;
+              return (
+                <div key={recommendation.title}>
+                  <RecommendtionCard
+                    video={false}
+                    title={recommendation.title}
+                    description={recommendation.excerpt}
+                    image={imageURL ? imageURL : SampleImage}
+                    clickUri={recommendation.clickUri}
+                    onClick={() => logClick(recommendation)}
+                    onContextMenu={() => logClick(recommendation)}
+                    onMouseDown={() => logClick(recommendation)}
+                    onMouseUp={() => logClick(recommendation)}
+                  />
+                </div>
+              );
+            })}
         </CardWrapper>
       ) : (
         <CardWrapper>
           {skeletonArray.map((item, index) => {
             return (
               <div key={item}>
-                <SkeletonRecommendtionCard keyID={item} />
+                <SkeletonRecommendtionCard />
               </div>
             );
           })}
@@ -105,26 +104,16 @@ const MainRecommendationList = () => {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub: process.env.REACT_APP_SEARCH_HUB!,
-      pipeline : 'Homepage'
+      pipeline: MainRecommendationConfig.pipeline,
     },
   });
 
- 
-  const {settingContextFromEngine, profileSelected} = useContext(CustomContextContext)
+  const { settingContextFromEngine } = useContext(CustomContextContext);
 
-    settingContextFromEngine(recommendationEngine)
+  settingContextFromEngine(recommendationEngine);
 
-
-/*   const contextController = buildContext(recommendationEngine);
-
-  contextController.add("concepts", [
-    "investment advisors ",
-    " broker-dealer representatives ",
-    " fiduciary standard ",
-  ]);
- */
   const recController = buildRecommendationList(recommendationEngine, {
-    options: { id: "Recommendation" },
+    options: { id: MainRecommendationConfig.id },
   });
 
   return (

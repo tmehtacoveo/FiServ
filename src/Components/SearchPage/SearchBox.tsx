@@ -2,30 +2,28 @@ import {FunctionComponent, useEffect, useState, useContext} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
+  buildSearchBox,
   SearchBox as HeadlessSearchBox,
-  StandaloneSearchBoxOptions,
-  buildStandaloneSearchBox
+  SearchBoxOptions,
 } from '@coveo/headless';
-import EngineContext from '../common/engineContext';
-import { useNavigate } from 'react-router-dom';
+import EngineContext from '../../common/engineContext';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 
 
 interface SearchBoxProps {
   controller: HeadlessSearchBox;
-  toggleSearchBox : ()=>void;
 }
 
 const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
   const {controller} = props;
   const [state, setState] = useState(controller.state);
-  let navigate = useNavigate();
 
   useEffect(
     () => controller.subscribe(() => setState(controller.state)),
     [controller]
   );
+
   return (
     <Autocomplete
       inputValue={state.value}
@@ -33,24 +31,17 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
         controller.updateText(newInputValue);
       }}
       onChange={() => {
-          if (controller.state.value !== '')
-          {
-            props.toggleSearchBox();
-            controller.submit();
-            navigate('/search');
-          }
+        controller.submit();
       }}
       options={state.suggestions.map((suggestion) => suggestion.rawValue)}
       freeSolo
-      style={{width: 'auto'}}
+      style={{width: 'auto', background: 'white'}}
       renderInput={(params) => (
-        <TextField {...params} className='home-search-box' placeholder="Search" size="small" onKeyDown={e => {
-            if (e.code === 'Enter' && controller.state.value !== '') {
-                navigate('/search');
-                props.toggleSearchBox();
-                controller.submit();
-            }
-          }}/>
+        <TextField {...params} placeholder="Search" size="small" className='search-box'  onKeyDown={e => {
+          if (e.code === 'Enter' && controller.state.value === '') {
+              controller.submit();
+          }
+        }}/>
       )}
       renderOption={(props, option, { inputValue }) => {
         const matches = match(option, inputValue);
@@ -76,16 +67,11 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
   );
 };
 
-interface  SearchBoxType {
-    toggleSearchBox : ()=>void
-}
-
-const SearchBox = ({toggleSearchBox}: SearchBoxType) => {
-  const options: StandaloneSearchBoxOptions = {numberOfSuggestions: 8, redirectionUrl: '/search'};
+const SearchBox = () => {
+  const options: SearchBoxOptions = {numberOfSuggestions: 8};
   const engine = useContext(EngineContext)!;
-  const controller = buildStandaloneSearchBox(engine, {options});
-  controller.updateText('');
-  return <SearchBoxRenderer controller={controller} toggleSearchBox = {toggleSearchBox} />;
+  const controller = buildSearchBox(engine, {options});
+  return <SearchBoxRenderer controller={controller} />;
 };
 
 export default SearchBox;

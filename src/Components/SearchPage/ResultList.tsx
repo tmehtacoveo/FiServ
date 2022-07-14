@@ -12,11 +12,11 @@ import {
   ResultTemplatesManager,
   ResultList as HeadlessResultList,
 } from "@coveo/headless";
-import EngineContext from "../common/engineContext";
+import EngineContext from "../../common/engineContext";
 import {
   FieldToIncludesInSearchResults,
   ResultTemplateConfig,
-} from "../config/SearchConfig";
+} from "../../config/SearchConfig";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -57,8 +57,6 @@ const ResultListRenderer: FunctionComponent<ResultListRendererProps> = (
     }
   }, [state]);
 
-
-  /* console.log('state', ) */
 
   return (
     <List>
