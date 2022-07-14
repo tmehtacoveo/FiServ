@@ -68,7 +68,6 @@ margin-bottom: 20px;
 
 const Button = styled.button`
 padding: 8px 16px;
-width: 100px;
 height: 40px;
 background-color: ${Theme.button};
 border-radius: 8px;
