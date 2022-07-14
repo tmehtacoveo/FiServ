@@ -112,7 +112,7 @@ When setting imageField in this file, make sure the field is included in the Fie
 The fields 'date', 'ytthumbnailurl', 'sysfiletype' should NOT be removed. 
 */
 
-export const FieldToIncludesInSearchResults = [
+export const FieldToIncludesInSearchResults : string[] = [
   "sfanswer__c",
   "sfid",
   "sysfiletype", 
@@ -122,7 +122,7 @@ export const FieldToIncludesInSearchResults = [
   "sfimage__c",
   "sfimage_url__c",
   'adspecial'
-] as const;
+];
 
 
 
