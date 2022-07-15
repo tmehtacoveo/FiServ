@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Facet from "./Facet";
 import { useParams } from "react-router-dom";
-import { FacetConfig, SearchPageTabConfig } from "../../config/SearchConfig";
+import { FacetConfig, SearchPageTabConfig } from "../../../config/SearchConfig";
 import React from "react";
 
 const FacetList = () => {

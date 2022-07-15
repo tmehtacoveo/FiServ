@@ -7,7 +7,7 @@ import QuerySummary from "./QuerySummary";
 import ResultList from "./ResultList";
 import Pager from "./Pager";
 import Sort from "./Sort";
-import FacetList from "../Facet/FacetList";
+import FacetList from "./Facet/FacetList";
 import ResultsPerPage from "./ResultsPerPage";
 import { SearchEngine } from "@coveo/headless";
 import DidYouMean from "./DidyouMean";

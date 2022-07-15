@@ -1,7 +1,7 @@
 import React,{useContext, useState, useEffect} from 'react';
 import {Facet as HeadlessFacet, buildFacet} from '@coveo/headless';
-import { FacetConfig } from '../../config/SearchConfig';
-import EngineContext from '../../common/engineContext';
+import { FacetConfig } from '../../../config/SearchConfig';
+import EngineContext from '../../../common/engineContext';
 
 export type FacetContextType =  {
     facetController: {[x:string] : HeadlessFacet} ,

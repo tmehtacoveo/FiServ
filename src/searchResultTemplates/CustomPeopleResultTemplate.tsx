@@ -4,7 +4,7 @@ import { Result, buildInteractiveResult, SearchEngine } from "@coveo/headless";
 import EngineContext from "../common/engineContext";
 import styled from "styled-components";
 import { Theme } from "../theme";
-import { FacetContext } from "../Components/Facet/FacetContext";
+import { FacetContext } from "../Components/SearchPage/Facet/FacetContext";
 
 export function filterProtocol(uri: string) {
   // Filters out dangerous URIs that can create XSS attacks such as `javascript:`.
