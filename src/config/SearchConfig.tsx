@@ -1,6 +1,10 @@
 import GeneralResultTemplate from "../searchResultTemplates/GeneralResultTemplate";
-import pdfIcon from "../assets/FileTypeIcons/pdf.png";
-import htmlIcon from "../assets/FileTypeIcons/html.png";
+import pdfIcon from "../assets/FileTypeIcons/pdf.svg";
+import htmlIcon from "../assets/FileTypeIcons/html.svg";
+import docIcon from "../assets/FileTypeIcons/doc.svg";
+import pptIcon from "../assets/FileTypeIcons/ppt.svg";
+import pubIcon from "../assets/FileTypeIcons/pub.svg";
+import sfIcon from "../assets/FileTypeIcons/sf.svg";
 import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
@@ -99,6 +103,9 @@ You can add more images to the assets/FileTypeIcons folder. Make sure to import 
 export const FileTypeIconsConfig  = {
   pdf: pdfIcon,
   html: htmlIcon,
+  epub: pubIcon,
+  doc : docIcon,
+  SalesforceItem : sfIcon,
 };
 
 
