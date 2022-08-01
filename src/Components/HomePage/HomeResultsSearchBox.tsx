@@ -36,7 +36,8 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
   const [state, setState] = useState(searchBoxController.state);
   const [resultList, setResultList] = useState<Result[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+  const [openPopper, setOpenPopper] = useState(false);
+
   let navigate = useNavigate();
 
   useEffect(
@@ -90,7 +91,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
 
   return (
     <MainWrapper>
-      <Autocomplete
+     {/*  <Autocomplete
         inputValue={searchTerm}
         onInputChange={(_, newInputValue) => {
           searchBoxController.updateText(newInputValue);
@@ -106,9 +107,21 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
         options={state.suggestions.map((suggestion) => suggestion.rawValue)}
         freeSolo
         style={{ width: "auto"}}
-        renderInput={(params) => (
+        renderInput={(params) => ( */}
           <TextField
-            {...params}
+            /* {...params} */
+            value = {searchTerm}
+            onChange={(event) => {
+              const newInputValue = event.target.value
+              searchBoxController.updateText(newInputValue);
+                setSearchTerm(newInputValue);
+            }}
+            onFocus = {()=>{
+              setOpenPopper(true)
+            }}
+            onBlur = {()=>{
+              setOpenPopper(false)
+            }}
             className="home-search-box"
             placeholder="Search"
             size="small"
@@ -123,33 +136,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
               }
             }}
           />
-        )}
-      /*   renderOption={(props, option, { inputValue }) => {
-          const matches = match(option, inputValue);
-          const parts = parse(option, matches);
-          return (
-            <>
-              <li
-                {...props}
-              >
-                <div>
-                  {parts.map((part, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        fontWeight: part.highlight ? 400 : 300,
-                      }}
-                    >
-                      {part.text}
-                    </span>
-                  ))}
-                </div>
-              </li>
-            </>
-          );
-        }} */
-        PopperComponent = {(props)=> {
-          return <PopperStyledComponent  {...props}  
+           <PopperStyledComponent  {...props}  
           modifiers={[
             {
               name: "offset",
@@ -162,7 +149,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
            style ={{
           width: '1000px',
         }}
-        open = {true}
+        open = {openPopper}
         >
           
           <PopperMainWrapper>
@@ -209,8 +196,6 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
           <PopperAdContainer></PopperAdContainer>
           </PopperMainWrapper>
         </PopperStyledComponent>
-        }}
-      />
     </MainWrapper>
   );
 };
@@ -256,6 +241,7 @@ const PopperStyledComponent = styled(Popper)`
   border-radius: 6px;
   box-shadow: 0px 7px 13px -2px rgba(0,0,0,0.45);
   padding: 10px;
+  position: relative;
 `
 
 const PopperMainWrapper = styled.div`
