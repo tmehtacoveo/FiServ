@@ -50,8 +50,8 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         }}
       >
           <SearchBoxContainer>
-         {/*  <SearchBox /> */}
-         <FeaturedResultSearchBox/>
+          <SearchBox />
+         {/* <FeaturedResultSearchBox/> */}
           </SearchBoxContainer>
       </Grid>
       <SearchTabs filterSelected={filter? filter : ""} />
