@@ -22,6 +22,8 @@ import BreadcrumbManager from "./BreadcrumbManager";
 import styled from 'styled-components'
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
 import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
+import FeaturedResultSearchBox from "./FeatureResultSearchBox";
+import HomeSearchBox from '../HomePage/HomeSearchBox';
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -48,7 +50,8 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         }}
       >
           <SearchBoxContainer>
-          <SearchBox />
+         {/*  <SearchBox /> */}
+         <FeaturedResultSearchBox/>
           </SearchBoxContainer>
       </Grid>
       <SearchTabs filterSelected={filter? filter : ""} />
