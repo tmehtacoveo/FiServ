@@ -1,17 +1,13 @@
 import { FunctionComponent, useEffect, useState, useContext } from "react";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
 import {
   SearchBox as HeadlessSearchBox,
   StandaloneSearchBoxOptions,
-  buildStandaloneSearchBox,
   buildResultList,
   ResultList,
   buildSearchBox,
   loadSearchActions,
   loadSearchAnalyticsActions,
-  Suggestion,
-  loadAdvancedSearchQueryActions,
   loadQueryActions,
   Result,
 } from "@coveo/headless";
@@ -20,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import parse from "autosuggest-highlight/parse";
 import match from "autosuggest-highlight/match";
 import styled from "styled-components";
-import { ClickAwayListener, Popper } from "@mui/material";
+import { ClickAwayListener } from "@mui/material";
 import { Theme } from "../../theme";
 
 interface HomeResultsSearchBoxProps {
@@ -88,43 +84,23 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
     });
   }, []);
 
-  /* console.log(engine.state.search) */
-
   return (
     <MainWrapper>
-      <ClickAwayListener onClickAway={()=>setOpenPopper(false)}>
+      <ClickAwayListener onClickAway={() => setOpenPopper(false)}>
         <>
-     {/*  <Autocomplete
-        inputValue={searchTerm}
-        onInputChange={(_, newInputValue) => {
-          searchBoxController.updateText(newInputValue);
-          setSearchTerm(newInputValue);
-        }}
-        onChange={() => {
-          if (searchBoxController.state.value !== "") {
-            props.toggleSearchBox();
-            searchBoxController.submit();
-            navigate("/search");
-          }
-        }}
-        options={state.suggestions.map((suggestion) => suggestion.rawValue)}
-        freeSolo
-        style={{ width: "auto"}}
-        renderInput={(params) => ( */}
           <TextField
-            /* {...params} */
             autoComplete="off"
-            value = {searchTerm}
+            value={searchTerm}
             onChange={(event) => {
-              const newInputValue = event.target.value
+              const newInputValue = event.target.value;
               searchBoxController.updateText(newInputValue);
-                setSearchTerm(newInputValue);
+              setSearchTerm(newInputValue);
             }}
-            onFocus = {()=>{
-              setOpenPopper(true)
+            onFocus={() => {
+              setOpenPopper(true);
             }}
-            onBlur = {()=>{
-              setOpenPopper(false)
+            onBlur={() => {
+              setOpenPopper(false);
             }}
             className="home-search-box"
             placeholder="Search"
@@ -140,67 +116,85 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
               }
             }}
           />
-           <PopperStyledComponent   
-           hidden = {!openPopper}
-           style ={{
-          width: '140%',
-        }}
-        >
-          
-          <PopperMainWrapper>
-            <PopperQSContainer>
-              {state.suggestions.map((suggestion)=>{
-
-
-          const matches = match(suggestion.rawValue, searchTerm);
-          const parts = parse(suggestion.rawValue, matches);
-          return (
-            <>
-              <PopperResultListItem>
-                <div onMouseDown={(event)=>{
-                event.stopPropagation()
-                searchBoxController.updateText(suggestion.rawValue);
-                setSearchTerm(suggestion.rawValue)
-                props.toggleSearchBox();
-                searchBoxController.submit()
-                navigate("/search");
-                
-                
-              }}>
-                  {parts.map((part, index) => (
-                    <span
-                      key={index}
-                      style={{
-                        fontWeight: part.highlight ? 400 : 300,
-                      }}
-                    >
-                      {part.text}
-                    </span>
-                  ))}
-                </div>
-              </PopperResultListItem>
-            </>
-          );
-              })}
-
-            </PopperQSContainer>
-            <PopperResultsContainer>
-            <ResultContainer>
-        {resultList.slice(0,5).map((result, index) => {
-          return <PopperResultItem>
-          <PopperResultTitle href={result.clickUri} onMouseDown = {()=>{
-            window.open(result.clickUri, '_blank')
-          }}>{result.title}</PopperResultTitle>
-          <PopperResultDescription>{result.excerpt}</PopperResultDescription>
-          </PopperResultItem>;
-        })}
-      </ResultContainer>
-            </PopperResultsContainer>
-          <PopperAdContainer></PopperAdContainer>
-          </PopperMainWrapper>
-        </PopperStyledComponent>
+          <PopperStyledComponent
+            hidden={!openPopper}
+            style={{
+              width: "140%",
+            }}
+          >
+            <PopperMainWrapper>
+              <PopperQSContainer>
+                {state.suggestions.map((suggestion) => {
+                  const matches = match(suggestion.rawValue, searchTerm);
+                  const parts = parse(suggestion.rawValue, matches);
+                  return (
+                    <>
+                      <PopperQSListItem>
+                        <div
+                          onMouseDown={(event) => {
+                            event.stopPropagation();
+                            searchBoxController.updateText(suggestion.rawValue);
+                            setSearchTerm(suggestion.rawValue);
+                            props.toggleSearchBox();
+                            searchBoxController.submit();
+                            navigate("/search");
+                          }}
+                        >
+                          {parts.map((part, index) => (
+                            <span
+                              key={index}
+                              style={{
+                                fontWeight: part.highlight ? 400 : 300,
+                              }}
+                            >
+                              {part.text}
+                            </span>
+                          ))}
+                        </div>
+                      </PopperQSListItem>
+                    </>
+                  );
+                })}
+              </PopperQSContainer>
+              <PopperResultsContainer>
+                <PopperTitle>Featured Results</PopperTitle>
+                <ResultContainer>
+                  {resultList.slice(0, 5).map((result, index) => {
+                    return (
+                      <PopperResultItem
+                        onMouseDown={() => {
+                          window.open(result.clickUri, "_blank");
+                        }}
+                      >
+                        <PopperResultTitle
+                          href={result.clickUri}
+                          onMouseDown={() => {
+                            window.open(result.clickUri, "_blank");
+                          }}
+                        >
+                          {result.title}
+                        </PopperResultTitle>
+                        <PopperResultDescription>
+                          {result.excerpt}
+                        </PopperResultDescription>
+                      </PopperResultItem>
+                    );
+                  })}
+                  <PopperSeeMore onMouseDown={(event)=>{
+                    event.stopPropagation();
+                    props.toggleSearchBox();
+                    searchBoxController.submit();
+                    navigate("/search");
+                  }}>See More Results</PopperSeeMore>
+                </ResultContainer>
+              </PopperResultsContainer>
+              <PopperAdContainer>
+                <PopperAdImage src="https://docs.citrix.com/assets/images/image-5.png" />
+              </PopperAdContainer>
+            </PopperMainWrapper>
+          </PopperStyledComponent>
         </>
-        </ClickAwayListener>
+      </ClickAwayListener>
     </MainWrapper>
   );
 };
@@ -217,7 +211,6 @@ const HomeResultsSearchBox = ({ toggleSearchBox }: SearchBoxType) => {
   const engine = useContext(EngineContext)!;
   const searchBoxController = buildSearchBox(engine, { options });
   const resultListController = buildResultList(engine);
-  /* engine.executeFirstSearch(); */
   searchBoxController.updateText("");
   return (
     <HomeResultsSearchBoxRenderer
@@ -230,9 +223,6 @@ const HomeResultsSearchBox = ({ toggleSearchBox }: SearchBoxType) => {
 
 export default HomeResultsSearchBox;
 
-
-
-
 const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -243,68 +233,113 @@ const MainWrapper = styled.div`
 
 const PopperStyledComponent = styled.div`
   background: white;
-  
+
   border-radius: 6px;
-  box-shadow: 0px 7px 13px -2px rgba(0,0,0,0.45);
-  padding: 10px;
+  box-shadow: 0px 7px 13px -2px rgba(0, 0, 0, 0.45);
+  /* padding: 10px; */
   position: relative;
-`
+`;
 
 const PopperMainWrapper = styled.div`
   width: 100%;
   display: flex;
-
-`
+`;
 
 const PopperQSContainer = styled.div`
   flex: 2;
-`
+  margin: 10px 0px;
+`;
 const PopperResultsContainer = styled.div`
   flex: 3;
-  padding: 0 10px;
-`
+  border-left: 2px ${Theme.primaryText} solid;
+  padding-bottom: 20px;
+`;
+const ResultContainer = styled.div`
+  /*  padding: 0 15px; */
+`;
 
-const PopperResultListItem = styled.li`
+const PopperQSListItem = styled.li`
   list-style: none;
-  padding: 5px 0px;
+  padding: 5px 10px;
   cursor: pointer;
-  &:hover{
-    background-color: #D3D3D3;
+  &:hover {
+    background-color: #e9e9e9;
   }
-  &.active{
-    background-color: #D3D3D3;
+  &.active {
+    background-color: #e9e9e9;
   }
-
-`
+`;
 
 const PopperResultTitle = styled.a`
-  color : ${Theme.primaryText};
-  font-family: 'Gibson';
+  color: ${Theme.primaryText};
+  font-family: inherit;
+  font-size: 16px;
   font-weight: 400;
   text-decoration: none;
-cursor: pointer;
-  &:hover{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  cursor: pointer;
+  &:hover {
     text-decoration: underline;
   }
-`
+`;
 
 const PopperResultDescription = styled.p`
-  color : ${Theme.excerpt};
-  font-size : 12px;
+  color: ${Theme.excerpt};
+  font-size: 12px;
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-`
+`;
+const PopperTitle = styled.h3`
+  color: ${Theme.primaryText};
+  font-size: 16px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 5px;
+`;
 
 const PopperAdContainer = styled.div`
   flex: 2;
-  background: url('https://docs.citrix.com/assets/images/image-5.png') no-repeat;
-`
+  background: url("https://docs.citrix.com/assets/images/image-5.png") no-repeat;
+  background: ${Theme.background};
+`;
+
+const PopperAdImage = styled.img`
+  width: 100%;
+`;
 
 const PopperResultItem = styled.li`
-padding : 5px 0;
-list-style: none;
-`
+  padding: 5px 15px;
+  list-style: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #e9e9e9;
+  }
+  &.active {
+    background-color: #e9e9e9;
+  }
 
-const ResultContainer = styled.div``
+  &:hover ${PopperResultTitle} {
+    text-decoration: underline;
+  }
+`;
+
+
+const PopperSeeMore = styled.span`
+  font-size: 16px;
+  font-family: inherit;
+  display: flex;
+  font-weight: 400;
+  opacity: 0.8;
+  justify-content: center;
+  margin-top: 20px;
+  transition: 0.1s ease-in-out all;
+  cursor: pointer;
+  &:hover{
+    opacity: 1;
+  }
+`
