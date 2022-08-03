@@ -43,18 +43,6 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
     [searchBoxController]
   );
 
-  /*   useEffect(()=>{
-    setSuggestions(searchBoxController.state.suggestions)
-  },[searchBoxController]) */
-
-  /*   useEffect(
-    () =>
-      resultListController.subscribe(() =>setResultListState(resultListController.state)),
-    [resultListController]
-  ); */
-
-  /*  console.log(state.suggestions) */
-
   useEffect(() => {
     const unsub = setTimeout(async () => {
       const queryAction = loadQueryActions(engine);
@@ -128,8 +116,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
                   const matches = match(suggestion.rawValue, searchTerm);
                   const parts = parse(suggestion.rawValue, matches);
                   return (
-                    <>
-                      <PopperQSListItem>
+                      <PopperQSListItem key = {suggestion.rawValue}>
                         <div
                           onMouseDown={(event) => {
                             event.stopPropagation();
@@ -152,7 +139,6 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
                           ))}
                         </div>
                       </PopperQSListItem>
-                    </>
                   );
                 })}
               </PopperQSContainer>
@@ -162,6 +148,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
                   {resultList.slice(0, 5).map((result, index) => {
                     return (
                       <PopperResultItem
+                        key = {result.uniqueId}
                         onMouseDown={() => {
                           window.open(result.clickUri, "_blank");
                         }}
