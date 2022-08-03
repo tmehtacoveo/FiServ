@@ -108,8 +108,9 @@ const Header: React.FC = () => {
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
           <SearchBoxContainer>
-            {/* <HomeSearchBox toggleSearchBox={toggleSearchBox} /> */}
+            {!onSearchPage && 
             <HomeResultsSearchBox toggleSearchBox={toggleSearchBox} />
+            }
           </SearchBoxContainer>
         </SearchContainer>
       </Fade>

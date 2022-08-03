@@ -22,16 +22,14 @@ import { Theme } from "../../theme";
 interface HomeResultsSearchBoxProps {
   searchBoxController: HeadlessSearchBox;
   toggleSearchBox: () => void;
-  resultListController: ResultList;
 }
 
 const HomeResultsSearchBoxRenderer: FunctionComponent<
   HomeResultsSearchBoxProps
 > = (props) => {
-  const { searchBoxController, resultListController } = props;
+  const { searchBoxController } = props;
   const engine = useContext(EngineContext)!;
   const [state, setState] = useState(searchBoxController.state);
-  const [resultList, setResultList] = useState<Result[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [openPopper, setOpenPopper] = useState(false);
 
@@ -66,11 +64,6 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
     return () => clearTimeout(unsub);
   }, [searchTerm]);
 
-  useEffect(() => {
-    engine.subscribe(() => {
-      setResultList(engine.state.search.results);
-    });
-  }, []);
 
   return (
     <MainWrapper>
@@ -145,7 +138,7 @@ const HomeResultsSearchBoxRenderer: FunctionComponent<
               <PopperResultsContainer>
                 <PopperTitle>Featured Results</PopperTitle>
                 <ResultContainer>
-                  {resultList.slice(0, 5).map((result, index) => {
+                  {engine.state.search.results.slice(0, 5).map((result, index) => {
                     return (
                       <PopperResultItem
                         key = {result.uniqueId}
@@ -191,17 +184,17 @@ interface SearchBoxType {
 }
 
 const HomeResultsSearchBox = ({ toggleSearchBox }: SearchBoxType) => {
+
   const options: StandaloneSearchBoxOptions = {
     numberOfSuggestions: 8,
     redirectionUrl: "/search",
   };
   const engine = useContext(EngineContext)!;
   const searchBoxController = buildSearchBox(engine, { options });
-  const resultListController = buildResultList(engine);
-  searchBoxController.updateText("");
+  searchBoxController.updateText('');
+
   return (
     <HomeResultsSearchBoxRenderer
-      resultListController={resultListController}
       searchBoxController={searchBoxController}
       toggleSearchBox={toggleSearchBox}
     />
