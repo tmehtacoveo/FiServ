@@ -137,7 +137,8 @@ border-radius: 20px;
 cursor: pointer;
 transition: 0.1s ease-in-out all;
 &:hover{
-  background: #D3D3D3;
+  background: ${Theme.primaryText};
+  color : ${Theme.secondaryText}
 }
 
 `

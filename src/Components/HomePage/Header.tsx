@@ -13,6 +13,7 @@ import { HeaderConfig } from "../../config/HomeConfig";
 import Popover from "@mui/material/Popover";
 import ContextForm from "../CustomContext/ContextForm";
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
+import HomeResultsSearchBox from "./HomeResultsSearchBox";
 
 const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState<boolean>(false);
@@ -107,7 +108,9 @@ const Header: React.FC = () => {
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
           <SearchBoxContainer>
+            {!onSearchPage && 
             <HomeSearchBox toggleSearchBox={toggleSearchBox} />
+            }
           </SearchBoxContainer>
         </SearchContainer>
       </Fade>

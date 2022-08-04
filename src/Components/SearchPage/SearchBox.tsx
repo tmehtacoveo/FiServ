@@ -24,6 +24,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
     [controller]
   );
 
+
   return (
     <Autocomplete
       inputValue={state.value}
@@ -71,6 +72,12 @@ const SearchBox = () => {
   const options: SearchBoxOptions = {numberOfSuggestions: 8};
   const engine = useContext(EngineContext)!;
   const controller = buildSearchBox(engine, {options});
+
+// This is added to fix a bug which does not allow to see query suggestion on first click.  
+  if(controller.state.value === ""){
+    controller.updateText('');
+  }
+  
   return <SearchBoxRenderer controller={controller} />;
 };
 
