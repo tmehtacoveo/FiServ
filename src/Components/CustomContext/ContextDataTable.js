@@ -73,7 +73,7 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData,handleSa
             <>
           {FilteredProfileContext[0].context.map((item, index) => {
             return (
-              <tr key = {item.keyName}>
+              <tr key = {item.keyName + index }>
                 <td>
                   <input
                     type="checkbox"
@@ -83,7 +83,7 @@ const ContextDataTable = ({ContextData, profileSelected, setContextData,handleSa
                   />
                 </td>
                 <td>
-                  <Input type="string" name = 'keyName' value={item.keyName} onChange = {(ev)=>handleInput(ev,index)}/>
+                  <Input autoFocus type="string" name = 'keyName' value={item.keyName} onChange = {(ev)=>handleInput(ev,index)}/>
                 </td>
                 <td>
                   <Input type="string" name = 'keyValue' value={item.keyValue} onChange = {(ev)=>handleInput(ev,index)}/>

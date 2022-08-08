@@ -16,6 +16,7 @@ import RecommendtionCardSmall, {
 import EngineContext from "../../common/engineContext";
 import { Typography } from "@mui/material";
 import SampleImage from "../../assets/sampleImages/recommendation.png";
+import { CustomContextContext } from "../CustomContext/CustomContextContext";
 
 interface RecommendationListProps {
   controller: HeadlessRecommendationList;
@@ -154,6 +155,10 @@ const SearchSideBarRecommendationList: FunctionComponent<
       pipeline: pipeline,
     },
   });
+
+  const { settingContextFromEngine } = useContext(CustomContextContext);
+
+  settingContextFromEngine(recommendationEngine);
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: "Recommendation" },
