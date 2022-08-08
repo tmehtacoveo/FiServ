@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../../theme";
 import styled from "styled-components";
-import HeaderLogo from "../../assets/HeaderLogo.svg";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
@@ -13,7 +12,8 @@ import { HeaderConfig } from "../../config/HomeConfig";
 import Popover from "@mui/material/Popover";
 import ContextForm from "../CustomContext/ContextForm";
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
-import HomeResultsSearchBox from "./HomeResultsSearchBox";
+import {cart} from 'react-icons-kit/icomoon/cart'
+import navBar from "./NavBar";
 
 const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState<boolean>(false);
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
   }, [openSearch]);
 
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
+      null
   );
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,69 +57,71 @@ const Header: React.FC = () => {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <>
-      <Wrapper>
-        <Logo src={HeaderLogo} onClick={() => navigate("/home")} />
-        <RightWrapper>
-          <LinkWrapper>
-            {HeaderConfig.map((item) => {
-              return (
-                <NavigationLink key={item.title} to={item.redirectTo}>
-                  {item.title}
-                </NavigationLink>
-              );
-            })}
-            <Divider/>
-            <IconsWrapper>
-              <IconContainer
-                style={{ color: Theme.headerIconColor, cursor: "pointer" }}
-                onClick={() => toggleSearchBox()}
-              >
-                {openSearch && !onSearchPage ? (
-                  <Icon icon={x} size={26} />
-                ) : (
-                  <Icon icon={search} size={26} />
-                )}
-              </IconContainer>
-              <ProfileIconContainer
-                style={{ color: Theme.headerIconColor, cursor: "pointer" }}
-                aria-describedby={id}
-                onClick={(event)=>handleClick(event)}
-              >
-                <ProfileAvatar src = {getProfile().profile} alt = {'profile pic'}/>
-                <ProfileName>{getProfile().name.split(' ').slice(0, -1).join(' ')}</ProfileName>
-              </ProfileIconContainer>
-              <Popover
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
+      <>
+        <Wrapper>
+          <Logo src={Theme.companyLogo} onClick={() => navigate("/home")} />
+          <RightWrapper>
+            <LinkWrapper>
+              {HeaderConfig.map((item) => {
+                return (
+                    <NavigationLink key={item.title} to={item.redirectTo}>
+                      {item.title}
+                    </NavigationLink>
+                );
+              })}
+              <IconsWrapper>
+                <IconContainer
+                    style={{ color: Theme.headerIconColor, cursor: "pointer" }}
+                    onClick={() => toggleSearchBox()}
+                >
+                  {openSearch && !onSearchPage ? (
+                      <Icon icon={x} size={26} />
+                  ) : (
+                      <Icon icon={search} size={26} />
+                  )}
+                </IconContainer>
+                <IconContainer
+                    style={{ color: Theme.headerIconColor, cursor: "pointer" }}
+                >
+                  <Icon icon={cart} size={26} />
+                </IconContainer>
+                <ProfileIconContainer
+                    style={{ color: Theme.headerIconColor, cursor: "pointer" }}
+                    aria-describedby={id}
+                    onClick={(event)=>handleClick(event)}
+                >
+                  <ProfileAvatar src = {getProfile().profile} alt = {'profile pic'}/>
+                  <ProfileName>{getProfile().name.split(' ').slice(0, -1).join(' ')}</ProfileName>
+                </ProfileIconContainer>
+                <Popover
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
                 >
                   <ContextForm/>
                 </Popover>
-            </IconsWrapper>
-          </LinkWrapper>
-        </RightWrapper>
-      </Wrapper>
-      <Fade in={openSearch && !onSearchPage}>
-        <SearchContainer>
-          <SearchBoxContainer>
-            {!onSearchPage && 
-            <HomeSearchBox toggleSearchBox={toggleSearchBox} />
-            }
-          </SearchBoxContainer>
-        </SearchContainer>
-      </Fade>
-    </>
+              </IconsWrapper>
+            </LinkWrapper>
+          </RightWrapper>
+        </Wrapper>
+        <Fade in={openSearch && !onSearchPage}>
+          <SearchContainer>
+            <SearchBoxContainer>
+              <HomeSearchBox toggleSearchBox={toggleSearchBox} />
+            </SearchBoxContainer>
+          </SearchContainer>
+        </Fade>
+      </>
   );
 };
 
 const Wrapper = styled.header`
-  height: 80px;
+  height: 72px;
   background-color: ${Theme.secondaryText};
   display: flex;
   padding: 0px 40px;
@@ -136,11 +138,14 @@ const Logo = styled.img`
   height: 50px;
   width: 150px;
   object-fit: contain;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const RightWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex: 1;
 `;
 
@@ -148,7 +153,8 @@ const LinkWrapper = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 800px;
+  width: 100%;
+  padding: 0;
   @media (max-width: 1000px) {
     width: auto;
   }
@@ -157,24 +163,15 @@ const LinkWrapper = styled.ul`
 const NavigationLink = styled(Link)`
   color: ${Theme.primaryText};
   text-decoration: none;
-  font-size: 16px;
+  font-size: 24px;
   opacity: 1;
   transition: 0.2s ease-in-out all;
+  margin-right: 3%;
   &:hover {
-    opacity: 0.7;
+    color: ${Theme.primaryText};
+    opacity: 0.5;
   }
   @media (max-width: 1000px) {
-    display: none;
-  }
-`;
-
-const Divider = styled.div`
-  height: 50px;
-  border-right-width: 2px;
-  width: 1px;
-  height: 48px;
-  background: #e5e8e8;
-  @media (max-width:1000px) {
     display: none;
   }
 `;
@@ -182,7 +179,7 @@ const Divider = styled.div`
 const SearchContainer = styled.div`
   width: 100%;
   height: 150px;
-  box-shadow: 0px 6px 16px rgba(229, 232, 232, 0.75);
+  box-shadow: 0px 6px 16px ${Theme.bodyBackground};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -195,28 +192,29 @@ const SearchContainer = styled.div`
 const IconsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-left:auto;
 `;
 
 const IconContainer = styled.button`
-background: none;
-border: 0px;
-width: 40px;
-transition: 0.2s ease-in-out all;
-&:hover{
-  transform: scale(0.95);
-}
-&:active{
-  transform: scale(0.85);
-}
+  background: none;
+  border: 0px;
+  width: 40px;
+  transition: 0.2s ease-in-out all;
+  &:hover{
+    transform: scale(0.95);
+  }
+  &:active{
+    transform: scale(0.85);
+  }
 `
 
 const ProfileName = styled.span`
-font-size  : 16px;
-font-weight: 400;
-font-family: inherit;
-margin-left: 15px;
-color : ${Theme.headerIconColor};
-text-overflow: ellipsis;
+  font-size  : 16px;
+  font-weight: 400;
+  font-family: inherit;
+  margin-left: 15px;
+  color : ${Theme.headerIconColor};
+  text-overflow: ellipsis;
 `
 
 
@@ -229,11 +227,11 @@ const ProfileIconContainer = styled.button`
   align-items: center;
   transition: 0.2s ease-in-out all;
   &:hover{
-  transform: scale(0.95);
-}
-&:active{
-  transform: scale(0.85);
-}
+    transform: scale(0.95);
+  }
+  &:active{
+    transform: scale(0.85);
+  }
 
 `
 

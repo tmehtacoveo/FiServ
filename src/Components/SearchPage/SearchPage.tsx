@@ -22,6 +22,7 @@ import BreadcrumbManager from "./BreadcrumbManager";
 import styled from 'styled-components'
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
 import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
+import {Theme} from "../../theme";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -44,7 +45,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
         container
         justifyContent="center"
         style={{
-          background: "#F6F7F9",
+          background: "#ccccccFF",
         }}
       >
           <SearchBoxContainer>
@@ -52,7 +53,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
           </SearchBoxContainer>
       </Grid>
       <SearchTabs filterSelected={filter? filter : ""} />
-      <Container maxWidth="xl" style={{ padding: "0px" }}>
+      <StyledContainer maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item mt={3} mb={2}>
           <DidYouMean />
         </Grid>
@@ -95,7 +96,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
             </Grid>
           </Grid>
         </Box>
-      </Container>
+      </StyledContainer>
     </>
   );
 };
@@ -170,4 +171,8 @@ const SearchBoxContainer = styled.div`
   @media (max-width: 480px) {
   min-width: 80vw;
 }
+`
+
+const StyledContainer= styled(Container)`
+  background: ${Theme.bodyBackground};
 `

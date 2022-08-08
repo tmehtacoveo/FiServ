@@ -128,15 +128,13 @@ export default MainRecommendationList;
 
 const MainWrapper = styled.div`
   width: 95%;
-  background-color: white;
+  background-color: ${Theme.bodyBackground};
   border-radius: 24px;
   position: relative;
-  top: -40px;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 10px 25px rgba(229, 232, 232, 0.6);
   margin-bottom: 30px;
 `;
 

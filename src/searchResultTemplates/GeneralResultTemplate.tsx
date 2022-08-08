@@ -239,7 +239,7 @@ const Title = styled.h2`
   font-size: 20px;
   line-height: 24px;
   width: 80%;
-
+  color: ${Theme.primaryText};
 
   & a {
     display: -webkit-box;
@@ -248,11 +248,11 @@ const Title = styled.h2`
     overflow: hidden;
     font-weight: 400;
     text-decoration: none;
-    color: ${Theme.resultLink};
+    color: ${Theme.primaryText};
   }
 
   & a:hover {
-    text-decoration: underline;
+    opacity: 0.8;
   }
   @media (max-width: 480px) {
    font-size: 18px;

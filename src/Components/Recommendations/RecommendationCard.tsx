@@ -78,7 +78,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 250px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
   transition: 0.2s ease-in-out all;
@@ -89,7 +89,7 @@ const TextWrapper = styled.div`
   height: 230px;
   align-items: center;
   justify-content: space-around;
-  padding: 10px 20px;
+  padding: 20px 30px;
   flex-direction: column;
 `;
 
@@ -101,7 +101,7 @@ const Title = styled.a`
   font-weight: 400;
   font-size: 24px;
   line-height: 32px;
-  color: ${Theme.primaryText};
+  color: ${Theme.cardTitle};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -114,7 +114,7 @@ const SubTitle = styled.span`
   font-weight: 300;
   font-size: 16px;
   line-height: 26px;
-  color: ${Theme.primaryText};
+  color: ${Theme.excerpt};
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -137,7 +137,6 @@ const ReferralLink = styled.a`
 const MainWrapper = styled.div`
   height: 500px;
   width: 400px;
-  border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 20px;
@@ -148,7 +147,8 @@ const MainWrapper = styled.div`
   }
 
   &:hover ${Title} {
-    color: #1372ec;
+    opacity: 0.8;
+    color:${Theme.cardTitle}
   }
 
   &:hover ${Image} {
@@ -156,7 +156,7 @@ const MainWrapper = styled.div`
   }
 
   &:hover ${ReferralLink} {
-    opacity: 1;
+    opacity: 0.8;
   }
   @media (max-width: 480px) {
     width: 90vw;

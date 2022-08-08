@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Theme } from "../../theme";
-import WhiteLogo from "../../assets/FooterLogo.svg";
 
 
 const Footer: React.FC = () => {
   return (
     <Wrapper>
-      <Logo src={WhiteLogo} />
+      <Logo src={Theme.companyLogo} />
     </Wrapper>
   );
 };
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 150px;
+  width: 65px;
   object-fit: contain;
 `;
 

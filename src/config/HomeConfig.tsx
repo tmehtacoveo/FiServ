@@ -1,4 +1,4 @@
-import HeroImage from '../assets/Hero.jpg'
+import HeroImage from '../assets/HeroBanner.jpeg'
 import { RecommendationType } from './Types/ConfigTypes';
 
 export const NavBarConfig = [
@@ -10,46 +10,26 @@ export const NavBarConfig = [
     title: "Business",
     redirectTo: "/",
   },
-  {
-    title: "Commerical",
-    redirectTo: "/",
-  },
-  {
-    title: "About",
-    redirectTo: "/",
-  },
 ];
 
 
 export const HeaderConfig = [
     {
-        title: "Bank Account",
+        title: "V-Hub:Home",
         redirectTo: "/home",
       },
       {
-        title: "Credit Card",
-        redirectTo: "/",
-      },
-      {
-        title: "Mortgages",
-        redirectTo: "/",
-      },
-      {
-        title: "Investment",
-        redirectTo: "/",
-      },
-      {
-        title: "Insurance",
+        title: "Advice Centre",
         redirectTo: "/",
       },
 ]
 
 
 export const HeroConfig = {
-    title  : 'Life changes fast',
-    description : 'A BTEP Mortgage gives you the flexibility to use the equity from your home when you need it.',
+    title  : 'Business Advice Centre',
+    description : 'Insightful articles to help you run and grow your business',
     background : HeroImage,
-    buttonText : 'Learn More',
+    buttonText : 'Read the latest article',
     onClickButtonRedirect : '/search',
     
 }

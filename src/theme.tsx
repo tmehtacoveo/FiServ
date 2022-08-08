@@ -1,20 +1,25 @@
 import {createTheme} from '@mui/material/styles';
 import {red} from '@mui/material/colors';
+import CompanyLogo from "./assets/VodafoneLogo.svg";
+import Cart from "./assets/Cart.svg";
 
 export const Theme = {
-  primaryText : '#333357',
+  primaryText : '#666666FF',
   secondaryText: '#FFFFFF',
+  cardTitle: "#333333",
   primary : '#062D70',
   secondary: '#004990',
-  selection : '#1372EC',
-  link: '#1372EC',
-  navbar: '#062D70',
+  selection : '#e60000FF',
+  link: '#333333',
+  navbar: '#4a4d4e',
   background: '#E5E5E5',
-  button : '#1372EC',
-  footer: '#262646',
+  button : '#e60000FF',
+  footer: '#333',
   resultLink: '#1372EC',
-  excerpt : '#626971',
-  headerIconColor : "grey"
+  excerpt : '#333333',
+  headerIconColor : "grey",
+  companyLogo: CompanyLogo,
+  bodyBackground: "#f4f4f4",
 }
 
 const theme = createTheme({
@@ -37,7 +42,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'Gibson,Noto Sans, Avenir, Helvetica, Arial, sans-serif',
+    fontFamily: '"Vodafone Lt Regular", Arial, Helvetica, sans-serif',
     // Material-UI uses rem units for the font size. This will change the base size for the entire search page
     // More info at https://material-ui.com/customization/typography/#font-size
     fontSize: 16,

@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Vodafone Lt Regular';
+  src: url('Vodafone Lt Regular.eot');
+  src: url('Vodafone Lt Regular.eot?#iefix') format('embedded-opentype'),
+       url('Vodafone Lt Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'VodafoneLt-Regular';
+  src: url('VodafoneLt-Regular.svg#VodafoneLt-Regular') format('svg'),
+       url('VodafoneLt-Regular.ttf') format('truetype'),
+       url('VodafoneLt-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+

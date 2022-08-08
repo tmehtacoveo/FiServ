@@ -18,7 +18,7 @@ const HeroHome: React.FC = ()=>{
 
 
 const Wrapper = styled.div`
-height: 553px;
+height: 400px;
 width: 100%;
 background-color: aliceblue;
 font-family: inherit;
@@ -27,7 +27,7 @@ flex-direction: column;
 justify-content: center;
 padding-left: 120px;
 background: url(${HeroConfig.background}) no-repeat;
-background-position: right center;
+background-position: 50%;
 background-size: cover;
 @media (max-width: 480px) {
     padding-left: 10px;
@@ -38,7 +38,7 @@ background-size: cover;
 `
 
 const TextWrapper = styled.div`
-width: 450px;
+max-width: 60%;
 
 `
 
@@ -47,7 +47,7 @@ const Title = styled.h1`
 font-weight: 400;
 font-size: 56px;
 line-height: 66px;
-color: ${Theme.primaryText};
+color: ${Theme.secondaryText};
 margin-bottom: 20px;
 @media (max-width: 480px) {
     font-size: 40px;
@@ -57,9 +57,9 @@ margin-bottom: 20px;
 
 const SubTitle = styled.p`
 font-weight: 300;
-font-size: 18px;
+font-size: 20px;
 line-height: 28px;
-color: ${Theme.primaryText};
+color: ${Theme.secondaryText};
 margin-bottom: 20px;
 @media (max-width: 480px) {
     width: 80%;
@@ -67,16 +67,15 @@ margin-bottom: 20px;
 `
 
 const Button = styled.button`
-padding: 8px 16px;
-height: 40px;
+padding: 11px 37px;
 background-color: ${Theme.button};
-border-radius: 8px;
 font-family: inherit;
 font-style: normal;
-font-weight: 400;
-font-size: 13px;
+font-weight: bold;
+font-size: 20px;
 line-height: 24px;
-color: #FFFFFF;
+text-align: center;
+color: ${Theme.secondaryText};
 border: none;
 cursor: pointer;
 transition: 0.2s ease-in-out;

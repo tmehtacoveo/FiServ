@@ -160,8 +160,8 @@ export default memo(Facet);
 
 const Wrapper = styled.div`
   border: 1px #e5e8e8 solid;
-  border-radius: 16px;
   padding: 24px 16px;
   margin-bottom: 20px;
   font-family: inherit;
+  background: white;
 `;
