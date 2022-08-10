@@ -10,7 +10,7 @@ export const Theme = {
   primary : '#062D70',
   secondary: '#004990',
   selection : '#e60000FF',
-  link: '#333333',
+  link: '#FFFFFF',
   navbar: '#4a4d4e',
   background: '#E5E5E5',
   button : '#e60000FF',
