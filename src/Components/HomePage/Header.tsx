@@ -109,7 +109,7 @@ const Header: React.FC = () => {
         <SearchContainer>
           <SearchBoxContainer>
             {!onSearchPage && 
-            <HomeResultsSearchBox toggleSearchBox={toggleSearchBox} />
+            <HomeSearchBox toggleSearchBox={toggleSearchBox} />
             }
           </SearchBoxContainer>
         </SearchContainer>
