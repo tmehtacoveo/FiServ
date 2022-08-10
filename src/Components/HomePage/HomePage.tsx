@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
       <HeroHome />
       <MainWrapper>
         {Object.keys(MainRecommendationConfig).length !== 0 &&  <MainRecommendations />}
-        {Object.keys(VideoRecommendationConfig).length !== 0 && <VideoRecommendations />}
+        {/*{Object.keys(VideoRecommendationConfig).length !== 0 && <VideoRecommendations />}*/}
       </MainWrapper>
     </>
   );

@@ -32,6 +32,7 @@ interface sideBarRecommendationConfigType {
 }
 
 export interface SearchPageTabConfigType {
+    pipeline?: string,
   caption : string;
   expression : string;
   isActive : boolean;

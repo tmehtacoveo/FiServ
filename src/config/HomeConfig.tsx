@@ -41,7 +41,7 @@ export const MainRecommendationConfig : RecommendationType= {
   description : "Here are your personalized recommendations",
   numberOfResults: 6,
   imageField : 'sfimage_url__c',
-  pipeline : 'Homepage',
+  pipeline : 'Vodacom Business SA',
   id : 'Recommendation'
 }
 

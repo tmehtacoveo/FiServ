@@ -152,67 +152,41 @@ You can leave the Array empty if you don't want any tabs
 export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
     caption: "All",
-    expression: "",
+    expression: ``,
     isActive: true,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Video Rec Sidebar",
+        pipeline: "Vodacom Business SA",
         NumberofResults: 3,
-        title: "Related Videos",
+        title: "Other Useful Articles",
         videoRecommendation: true,
-        imageField: 'ytthumbnailurl'
       }
     ],
-    facetToInclude: ["source", "filetype", "concepts",],
+    facetToInclude: ["filetype", "concepts",],
   },
   {
-    caption: "Investing",
-    expression: `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
+    caption: "Data Storage",
+    expression: `@title=Data Storage`,
     isActive: false,
-    sideBarRecommendationConfig: [
-      {
-        pipeline: "IRS test",
-        NumberofResults: 6,
-        title: "Related for Investing",
-        videoRecommendation: false,
-      },
-    ],
-    facetToInclude: ["concepts","mynav2b"],
+  //   sideBarRecommendationConfig: [
+  //     {
+  //       pipeline: "IRS test",
+  //       NumberofResults: 6,
+  //       title: "Related for Investing",
+  //       videoRecommendation: false,
+  //     },
+  //   ],
+  //   facetToInclude: ["concepts"],
   },
   {
-    caption: "Money Matters",
-    expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
+    caption: "Cloud Computing",
+    expression: `@title=Cloud Computing`,
     isActive: false,
-    facetToInclude: ["concepts","mynav2b", "mynav4b"],
-  },
-  {
-    caption: "Insurance Needs",
-    expression: `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
-    isActive: false,
-    sideBarRecommendationConfig: [
-      {
-        pipeline: "Glossary test",
-        NumberofResults: 6,
-        title: "Glossary",
-        videoRecommendation: false,
-      },
-    ],
-    facetToInclude: ["concepts"],
-  },
-  {
-    caption: "Banking Info",
-    expression: `@source==("Bankrate")`,
-    isActive: false,
-    facetToInclude: ["concepts","mynav2b","mynav3b"],
-  },
-  {
-    caption: "Advisors",
-    expression: `@source==("Advisor")`,
-    isActive: false,
-    facetToInclude: ["adspecial","adminimums","adstate","adcity"],
+    facetToInclude: ["concepts","filetype"],
   },
   {
     caption: "Youtube",
+    pipeline:"Youtube SA",
     expression: `@filetype=="youtubevideo"`,
     isActive: false,
     facetToInclude: ["concepts"],
