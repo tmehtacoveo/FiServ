@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="caf1de2f-2f91-417d-bd1a-a9ec819d61d4" name="Changes" comment="initial commit to vodafone SA">
+      <change afterPath="$PROJECT_DIR$/src/assets/VodafoneHUHeroBanner.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HeroHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HeroHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HomePage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HomeSearchBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HomeSearchBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/Pager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/Pager.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/ResultsPerPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/ResultsPerPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/SearchBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/SearchBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/Sort.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/Sort.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/HomeConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/HomeConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/SearchConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/SearchConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2D4HeGZye1rUA4YNaKS7l2BF4dP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Git-Projects/FiServ/src/assets&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Git-Projects\\FiServ\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Git-Projects\FiServ\src\assets" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="caf1de2f-2f91-417d-bd1a-a9ec819d61d4" name="Changes" comment="" />
+      <created>1659951529939</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659951529939</updated>
+      <workItem from="1659951531644" duration="10848000" />
+      <workItem from="1660048828967" duration="627000" />
+      <workItem from="1660123142803" duration="10335000" />
+      <workItem from="1660210138432" duration="6432000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1659974151531</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659974151531</updated>
+    </task>
+    <task id="LOCAL-00002" summary="initial commit to vodafone SA">
+      <created>1660141556608</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660141556608</updated>
+    </task>
+    <task id="LOCAL-00003" summary="initial commit to vodafone SA">
+      <created>1660144250848</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660144250848</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="initial commit to vodafone SA" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial commit to vodafone SA" />
+  </component>
+</project>

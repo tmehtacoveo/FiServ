@@ -38,7 +38,7 @@ const SearchBoxRenderer: FunctionComponent<SearchBoxProps> = (props) => {
       freeSolo
       style={{width: 'auto', background: 'white'}}
       renderInput={(params) => (
-        <TextField {...params} placeholder="Search" size="small" className='search-box'  onKeyDown={e => {
+        <TextField {...params} placeholder="Keresés" size="small" className='search-box'  onKeyDown={e => {
           if (e.code === 'Enter' && controller.state.value === '') {
               controller.submit();
           }

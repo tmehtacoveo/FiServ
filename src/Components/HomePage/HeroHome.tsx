@@ -47,7 +47,7 @@ const Title = styled.h1`
 font-weight: 400;
 font-size: 56px;
 line-height: 66px;
-color: ${Theme.secondaryText};
+color: ${Theme.HeroBannerText};
 margin-bottom: 20px;
 @media (max-width: 480px) {
     font-size: 40px;
@@ -59,7 +59,7 @@ const SubTitle = styled.p`
 font-weight: 300;
 font-size: 20px;
 line-height: 28px;
-color: ${Theme.secondaryText};
+color: ${Theme.HeroBannerText};
 margin-bottom: 20px;
 @media (max-width: 480px) {
     width: 80%;

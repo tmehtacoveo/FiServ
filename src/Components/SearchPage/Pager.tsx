@@ -27,7 +27,7 @@ const PagerRenderer: FunctionComponent<PagerProps> = (props) => {
 
   return (
     <Box>
-      <Typography gutterBottom>Current page</Typography>
+      <Typography gutterBottom>Aktuális oldal</Typography>
       <Pagination
         page={state.currentPage}
         count={state.maxPage}

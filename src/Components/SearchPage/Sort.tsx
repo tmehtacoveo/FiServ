@@ -39,7 +39,7 @@ const SortRenderer: FunctionComponent<SortProps> = (props) => {
   return (
     <Box>
       <FormControl>
-        <InputLabel id="sort-by-label">Sort by</InputLabel>
+        <InputLabel id="sort-by-label">Sorrend</InputLabel>
         <Select
           labelId="sort-by-label"
           label="Sort by"
@@ -64,9 +64,9 @@ const Sort = () => {
   const engine = React.useContext(EngineContext)!;
 
   const criteria: [string, SortCriterion][] = [
-    ['Relevance', buildRelevanceSortCriterion()],
-    ['Date (Ascending)', buildDateSortCriterion(SortOrder.Ascending)],
-    ['Date (Descending)', buildDateSortCriterion(SortOrder.Descending)],
+    ['Relevancia', buildRelevanceSortCriterion()],
+    ['Dátum (növekvő)', buildDateSortCriterion(SortOrder.Ascending)],
+    ['Dátum (csökkenő)', buildDateSortCriterion(SortOrder.Descending)],
   ];
   const initialCriterion = criteria[0][1];
   const controller = buildSort(engine, {

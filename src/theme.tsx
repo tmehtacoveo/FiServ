@@ -6,6 +6,7 @@ import Cart from "./assets/Cart.svg";
 export const Theme = {
   primaryText : '#666666FF',
   secondaryText: '#FFFFFF',
+  HeroBannerText: "#000000",
   cardTitle: "#333333",
   primary : '#062D70',
   secondary: '#004990',
