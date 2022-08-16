@@ -41,7 +41,7 @@ export const MainRecommendationConfig : RecommendationType= {
   description : "Here are your personalized recommendations",
   numberOfResults: 6,
   imageField : 'sfimage_url__c',
-  pipeline : 'Vodacom Business SA',
+  pipeline : 'Vodafone SA',
   id : 'Recommendation'
 }
 
@@ -51,6 +51,6 @@ export const VideoRecommendationConfig : RecommendationType  = {
   description : "Here are your personalized recommendations",
   numberOfResults: 3,
   imageField : 'ytthumbnailurl',
-  pipeline : 'Video Rec Sidebar',
+  pipeline : 'Youtube SA',
   id : 'Recommendation'
 }

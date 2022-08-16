@@ -156,7 +156,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
     isActive: true,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Vodacom Business SA",
+        pipeline: "Vodafone SA",
         NumberofResults: 3,
         title: "Other Useful Articles",
         videoRecommendation: true,
@@ -186,8 +186,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   },
   {
     caption: "Youtube",
-    pipeline:"Youtube SA",
-    expression: `@filetype=="youtubevideo"`,
+    expression: `@filetype=="youtubevideo" `,
     isActive: false,
     facetToInclude: ["concepts"],
   },
