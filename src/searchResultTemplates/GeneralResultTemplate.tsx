@@ -166,7 +166,7 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
               <TitltAndDateWrapper>
                 <Title>{ListItemLink(engine, result, "",QuickViewOnClick)}</Title>
                 {QuickViewOnClick &&
-                <Icon icon = {eye} style = {{cursor : 'pointer', marginRight: '10px'}} onClick={()=>{
+                <StyledIcon icon = {eye} style = {{cursor : 'pointer', marginRight: '10px'}} onClick={()=>{
                   setResult(result);
                   setOpenModal(true);
                 }}/>}
@@ -239,7 +239,7 @@ const Title = styled.h2`
   font-size: 20px;
   line-height: 24px;
   width: 80%;
-  color: ${Theme.primaryText};
+  color: ${Theme.secondaryText};
 
   & a {
     display: -webkit-box;
@@ -248,7 +248,7 @@ const Title = styled.h2`
     overflow: hidden;
     font-weight: 400;
     text-decoration: none;
-    color: ${Theme.primaryText};
+    color: ${Theme.secondaryText};
   }
 
   & a:hover {
@@ -304,5 +304,8 @@ const BadgeWrapper = styled.div`
   flex-direction: row;
   width: 210px;
   justify-content: space-between;
+`
 
+const StyledIcon = styled(Icon)`
+  color:white;
 `

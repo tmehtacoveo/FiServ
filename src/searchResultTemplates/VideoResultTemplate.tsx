@@ -124,19 +124,20 @@ import React, {
   const MainWrapper = styled.div`
     width: 95%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 10px 0px;
   `;
   
   const ImageWrapper = styled.div`
     flex: 1;
     display: flex;
-    align-items: center;
+    justify-content: space-around;
   `;
   
   const IconImage = styled.img`
     width: 100%;
     border-radius: 8px;
+    max-width: 350px;
   `;
   
   const TextWrapper = styled.div`

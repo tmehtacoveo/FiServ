@@ -4,6 +4,7 @@ import styled from "styled-components";
 import MainRecommendations from "../Recommendations/MainRecommendations";
 import VideoRecommendations from "../Recommendations/VideoRecommendations";
 import { MainRecommendationConfig, VideoRecommendationConfig } from "../../config/HomeConfig";
+import {Theme} from "../../theme";
 
 const HomePage: React.FC = () => {
 
@@ -20,7 +21,7 @@ const HomePage: React.FC = () => {
 
 const MainWrapper = styled.div`
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: ${Theme.bodyBackground};
   display: flex;
   flex-direction: column;
   align-items: center;

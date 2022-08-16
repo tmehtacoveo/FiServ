@@ -6,8 +6,8 @@ import Cart from "./assets/Cart.svg";
 export const Theme = {
   primaryText : '#666666FF',
   secondaryText: '#FFFFFF',
-  HeroBannerText: "#000000",
-  cardTitle: "#333333",
+  HeroBannerText: "#FFFFFF",
+  cardTitle: "#FFFFFF",
   primary : '#062D70',
   secondary: '#004990',
   selection : '#e60000FF',
@@ -15,12 +15,12 @@ export const Theme = {
   navbar: '#4a4d4e',
   background: '#E5E5E5',
   button : '#e60000FF',
-  footer: '#333',
+  footer: '#666666',
   resultLink: '#1372EC',
-  excerpt : '#333333',
+  excerpt : '#FFFFFF',
   headerIconColor : "grey",
   companyLogo: CompanyLogo,
-  bodyBackground: "#f4f4f4",
+  bodyBackground: "#333333",
 }
 
 const theme = createTheme({

@@ -5,17 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="caf1de2f-2f91-417d-bd1a-a9ec819d61d4" name="Changes" comment="initial commit to vodafone SA">
-      <change afterPath="$PROJECT_DIR$/src/assets/VodafoneHUHeroBanner.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/assets/VodafonePTHeroBanner.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HeroHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HeroHome.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HomePage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/HomePage/HomeSearchBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/HomePage/HomeSearchBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Recommendations/MainRecommendations.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Recommendations/MainRecommendations.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Recommendations/RecommendationCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Recommendations/RecommendationCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Recommendations/RecommendationCardSmall.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Recommendations/RecommendationCardSmall.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Recommendations/VideoRecommendations.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Recommendations/VideoRecommendations.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/Facet/Facet.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/Facet/Facet.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/Pager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/Pager.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/QuerySummary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/QuerySummary.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/ResultsPerPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/ResultsPerPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/SearchBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/SearchBox.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/SearchPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/SearchPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/SearchSideBarRecommendationList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/SearchSideBarRecommendationList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/SearchPage/Sort.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SearchPage/Sort.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/HeroBanner.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/VodafoneHUHeroBanner.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/HomeConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/HomeConfig.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/SearchConfig.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/SearchConfig.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/searchResultTemplates/GeneralResultTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/searchResultTemplates/GeneralResultTemplate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/searchResultTemplates/VideoResultTemplate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/searchResultTemplates/VideoResultTemplate.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/theme.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,21 +47,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Git-Projects/FiServ/src/assets&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Git-Projects\\FiServ\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Git-Projects/FiServ2/FiServ",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "C:\\Git-Projects\\FiServ\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Git-Projects\FiServ\src\assets" />
@@ -65,7 +78,9 @@
       <workItem from="1659951531644" duration="10848000" />
       <workItem from="1660048828967" duration="627000" />
       <workItem from="1660123142803" duration="10335000" />
-      <workItem from="1660210138432" duration="6432000" />
+      <workItem from="1660210138432" duration="6727000" />
+      <workItem from="1660298974238" duration="14179000" />
+      <workItem from="1660640478891" duration="4533000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1659974151531</created>

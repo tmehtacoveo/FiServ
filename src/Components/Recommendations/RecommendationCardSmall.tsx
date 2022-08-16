@@ -90,6 +90,7 @@ const VideoWrapper = styled.div`
   justify-content: space-around;
   padding: 10px 20px;
   flex-direction: column;
+  background:#cccccc;
 `;
 
 const Title = styled.a`
@@ -139,7 +140,6 @@ const MainWrapper = styled.div`
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 10px 10px 10px 10px;
-  background: white;
   cursor: pointer;
   &:hover {
     border-color: ${Theme.link};

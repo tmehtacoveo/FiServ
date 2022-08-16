@@ -18,16 +18,15 @@ const HeroHome: React.FC = ()=>{
 
 
 const Wrapper = styled.div`
-height: 400px;
+height: 260px;
 width: 100%;
-background-color: aliceblue;
+background: aliceblue center;
 font-family: inherit;
 display: flex;
 flex-direction: column;
 justify-content: center;
 padding-left: 120px;
 background: url(${HeroConfig.background}) no-repeat;
-background-position: 50%;
 background-size: cover;
 @media (max-width: 480px) {
     padding-left: 10px;

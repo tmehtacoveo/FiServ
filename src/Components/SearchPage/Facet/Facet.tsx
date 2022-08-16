@@ -28,6 +28,7 @@ import styled from "styled-components";
 import { chevronDown } from "react-icons-kit/feather/chevronDown";
 import { chevronUp } from "react-icons-kit/feather/chevronUp";
 import { Icon } from "react-icons-kit";
+import {Theme} from "../../../theme";
 
 interface FacetProps {
   title: string | undefined;
@@ -98,7 +99,6 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
                           style={{ padding: 0 }}
                           key={value.value}
                           role={undefined}
-                          button
                           onClick={() => toggleSelect(value)}
                         >
                           <Checkbox
@@ -124,9 +124,9 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
                     </Button>
                   )}
                   {state.canShowMoreValues && (
-                    <Button size="small" onClick={() => showMore()}>
+                    <StyledButton size="small" onClick={() => showMore()}>
                       Show More
-                    </Button>
+                    </StyledButton>
                   )}
                 </Collapse>
               </Box>
@@ -163,5 +163,9 @@ const Wrapper = styled.div`
   padding: 24px 16px;
   margin-bottom: 20px;
   font-family: inherit;
-  background: white;
+  background: #cccccc;
 `;
+
+const StyledButton = styled(Button)`
+  color:${Theme.primaryText};
+`

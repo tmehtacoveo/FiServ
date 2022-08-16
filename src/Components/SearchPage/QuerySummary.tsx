@@ -5,6 +5,8 @@ import {
 } from '@coveo/headless';
 import {Box, Divider} from '@mui/material';
 import EngineContext from '../../common/engineContext';
+import styled from "styled-components";
+import {Theme} from "../../theme";
 
 interface QuerySummaryProps {
   controller: HeadlessQuerySummary;
@@ -20,7 +22,7 @@ const QuerySummaryRenderer: FunctionComponent<QuerySummaryProps> = (props) => {
   );
 
   const renderNoResults = () => {
-    return <Box mt={5}>No results</Box>;
+    return <StyledBox mt={5}>No results</StyledBox>;
   };
 
   const renderBold = (input: string) => {
@@ -51,15 +53,14 @@ const QuerySummaryRenderer: FunctionComponent<QuerySummaryProps> = (props) => {
 
   const renderHasResults = () => {
     return (
-      <Box>
+      <StyledBox>
         <Box fontWeight="fontWeightBold">
           Results{renderRange()}
           {renderTotal()}
           {renderQuery()}
           {renderDuration()}
         </Box>
-        <Divider />
-      </Box>
+      </StyledBox>
     );
   };
 
@@ -73,3 +74,7 @@ const QuerySummary = () => {
 };
 
 export default QuerySummary;
+
+const StyledBox = styled(Box)`
+  color:${Theme.secondaryText};
+`;

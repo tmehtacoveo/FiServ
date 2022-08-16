@@ -152,13 +152,13 @@ You can leave the Array empty if you don't want any tabs
 export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
     caption: "All",
-    expression: `@source=="Vodafone HU"`,
+    expression: ``,
     isActive: true,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Vodafone HU",
+        pipeline: "Vodafone PT",
         NumberofResults: 3,
-        title: "Egyéb hasznos cikkek",
+        title: "Outros artigos úteis",
         videoRecommendation: true,
       }
     ],
@@ -186,7 +186,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   },
   {
     caption: "Youtube",
-    pipeline:"Vodafone HU Youtube",
+    pipeline:"Youtube PT",
     expression: `@filetype=="youtubevideo"`,
     isActive: false,
     facetToInclude: ["concepts"],

@@ -140,7 +140,7 @@ const Title = styled.h2`
   font-size: 32px;
   font-weight: 400;
   font-family: inherit;
-  color: ${Theme.primaryText};
+  color: ${Theme.secondaryText};
   margin-top: 30px;
   margin-bottom: 10px;
 `;
@@ -149,7 +149,7 @@ const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: ${Theme.primaryText};
+  color: ${Theme.secondaryText};
   margin-bottom: 20px;
 `;
 

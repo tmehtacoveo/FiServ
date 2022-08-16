@@ -1,4 +1,4 @@
-import HeroImage from '../assets/VodafoneHUHeroBanner.png'
+import HeroImage from '../assets/VodafonePTHeroBanner.jpeg'
 import { RecommendationType } from './Types/ConfigTypes';
 
 export const NavBarConfig = [
@@ -15,21 +15,21 @@ export const NavBarConfig = [
 
 export const HeaderConfig = [
     {
-        title: "V-Hub:Kezdőlap",
+        title: "V-Hub",
         redirectTo: "/home",
       },
       {
-        title: "Tudástér",
+        title: "Espaço de conhecimento",
         redirectTo: "/",
       },
 ]
 
 
 export const HeroConfig = {
-    title  : 'Digitális Tudástér',
-    description : 'Értelmes cikkek, amelyek segítenek vállalkozása működtetésében és fejlesztésében',
+    title  : 'Estudos',
+    description : 'Artigos perspicazes para ajudá-lo a administrar e expandir seus negócios\n',
     background : HeroImage,
-    buttonText : 'Olvassa el a legújabb cikket',
+    buttonText : 'Leia o artigo mais recente',
     onClickButtonRedirect : '/search',
     
 }
@@ -37,20 +37,20 @@ export const HeroConfig = {
 
 export const MainRecommendationConfig : RecommendationType= {
 
-  title : 'Ajánlások',
-  description : "Itt vannak az Ön személyre szabott ajánlásai",
+  title : 'Recomendações',
+  description : "Aqui estão suas recomendações personalizadas",
   numberOfResults: 6,
   imageField : 'sfimage_url__c',
-  pipeline : 'Vodafone HU',
+  pipeline : 'Vodafone PT',
   id : 'Recommendation'
 }
 
 export const VideoRecommendationConfig : RecommendationType  = {
 
-  title : 'Videók',
-  description : "Itt vannak az Ön személyre szabott ajánlásai",
+  title : 'Vídeos',
+  description : "Aqui estão suas recomendações personalizadas",
   numberOfResults: 3,
   imageField : 'ytthumbnailurl',
-  pipeline : 'Youtube HU',
+  pipeline : 'Youtube PT',
   id : 'Recommendation'
 }

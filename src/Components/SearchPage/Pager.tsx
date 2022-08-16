@@ -4,6 +4,8 @@ import {buildPager, Pager as HeadlessPager} from '@coveo/headless';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import EngineContext from '../../common/engineContext';
+import styled from "styled-components";
+import {Theme} from "../../theme";
 
 interface PagerProps {
   controller: HeadlessPager;
@@ -27,7 +29,7 @@ const PagerRenderer: FunctionComponent<PagerProps> = (props) => {
 
   return (
     <Box>
-      <Typography gutterBottom>Aktuális oldal</Typography>
+      <Typography gutterBottom>Pagina atual</Typography>
       <Pagination
         page={state.currentPage}
         count={state.maxPage}

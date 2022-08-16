@@ -79,9 +79,9 @@ export const RecommendationListRenderer: FunctionComponent<
           {state.recommendations.length > 0 && (
             <>
               <Divider />
-              <Typography variant="h6" component="h6" sx = {{marginLeft : '20px'}}>
+              <StyledTypography variant="h6" sx = {{marginLeft : '20px'}}>
               {props.title}
-              </Typography>
+              </StyledTypography>
               <CardWrapper>
                 {state?.recommendations
                   ?.slice(0, props.NumberofResults)
@@ -198,14 +198,14 @@ const Title = styled.h2`
   font-size: 20px;
   font-weight: 400;
   font-family: inherit;
-  color: ${Theme.primaryText};
+  color: ${Theme.secondaryText};
 `;
 
 const SubTitle = styled.p`
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
-  color: ${Theme.primaryText};
+  color: ${Theme.secondaryText};
   margin-bottom: 20px;
 `;
 
@@ -214,3 +214,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   /* max-width: 1500px; */
 `;
+
+const StyledTypography= styled(Typography)`
+  color:${Theme.secondaryText}
+`

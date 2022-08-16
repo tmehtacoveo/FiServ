@@ -23,7 +23,7 @@ const ResultsPerPageRenderer: FunctionComponent<ResultsPerPageProps> = (
 
   return (
     <FormControl component="fieldset">
-      <Typography>Találatok száma oldalanként</Typography>
+      <Typography>Número de acessos por página</Typography>
       <RadioGroup
         row
         value={selected}

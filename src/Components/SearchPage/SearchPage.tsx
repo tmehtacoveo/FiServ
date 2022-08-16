@@ -80,7 +80,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                 </Grid>
                 <ResultList setResultLoading={setResultLoading} />
               </Box>
-              <Box my={4}>
+              <StyledBottomBox my={4}>
                 <Grid container>
                   <Grid item md={6} ml = {2} mb={2}>
                     <Pager />
@@ -89,7 +89,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
                     <ResultsPerPage />
                   </Grid>
                 </Grid>
-              </Box>
+              </StyledBottomBox>
             </Grid>
             <Grid item xs={12} md={3} sm={12}>
               <SideBarRecommendation filter = {filter}/>
@@ -175,4 +175,7 @@ const SearchBoxContainer = styled.div`
 
 const StyledContainer= styled(Container)`
   background: ${Theme.bodyBackground};
+`
+const StyledBottomBox = styled(Box)`
+  background: #cccccc;
 `

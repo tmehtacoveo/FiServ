@@ -78,7 +78,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 200px;
+  height: 330px;
   width: 100%;
   object-fit: cover;
   transition: 0.2s ease-in-out all;
@@ -136,11 +136,9 @@ const ReferralLink = styled.a`
 
 const MainWrapper = styled.div`
   height: 500px;
-  width: 400px;
-  border: 1px solid #e5e8e8;
+  width: 650px;
   overflow: hidden;
   margin: 20px;
-  background: white;
   cursor: pointer;
   &:hover {
     border-color: ${Theme.link};
