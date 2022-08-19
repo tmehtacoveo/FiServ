@@ -28,44 +28,22 @@ npm start
 
 The Application Runs on **localhost:3000**
 
-## Available Scripts
+## Hosting
 
-In the project directory, you can run:
+Follow the guide below to host it on Netlify
 
-### `npm start`
+Add the [_redirects](https://github.com/mhsumbal-coveo/FiServ/blob/main/public/_redirects) in the public folder if you have an older version of FiServ. [Guide](https://ridbay.medium.com/react-routing-and-netlify-redirects-fd1f00eeee95)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-This command will also start an express server and will generate [Coveo search tokens](https://docs.coveo.com/en/1346/).
-_See [@coveo/search-token-server](https://www.npmjs.com/package/@coveo/search-token-server)_
-
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Install Netlify CLI using ```npm install netlify-cli -g``` (close the terminal after installation and open it again)
+- Build the application ```npm run build```
+- Deploy using ```netlify deploy --prod```. You will be asked to login for the first time and answer the questions as below.
+  - Create & configure a new site
+  - select team => ```<select the team it shows>```
+  - site name => ```<name-of-your-poc>```
+  - Publish directory => ```build```
+  
+ After hosting is complete, the website URL will show up in the terminal. 
+ 
+ To re-deploy, follow the steps below.
+- Build the application again ```npm run build```
+- Deploy using ```netlify deploy --prod```
