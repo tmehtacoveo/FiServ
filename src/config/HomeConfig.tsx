@@ -74,3 +74,6 @@ export const VideoRecommendationConfig : RecommendationType  = {
   pipeline : 'Video Rec Sidebar',
   id : 'Recommendation'
 }
+
+
+export const EnableAuthentication = false;

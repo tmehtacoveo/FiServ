@@ -5,6 +5,9 @@ import App from './App';
 import theme from './theme';
 import './index.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import { EnableAuthentication } from './config/HomeConfig';
+import Authenticate from './Components/Authentication/Authenticate';
+
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -13,7 +16,7 @@ root.render(
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <App />
+      {EnableAuthentication? <Authenticate/> : <App/>}
     </ThemeProvider>
   </StyledEngineProvider>
 );
