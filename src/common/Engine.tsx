@@ -4,6 +4,24 @@ import {
   RestUserIdType,
   TokenModel,
 } from '@coveord/platform-client';
+import { KEY_NAME_CONTEXT_DATA, KEY_NAME_PROFILE_SELECTED } from '../Components/CustomContext/InitialData';
+
+
+const PROFILE_SELECTED : string | null = localStorage.getItem(KEY_NAME_PROFILE_SELECTED);
+const CONTEXT_DATA = localStorage.getItem(KEY_NAME_CONTEXT_DATA);
+let USER_ID_EMAIL = "";
+
+
+if(CONTEXT_DATA !==null && CONTEXT_DATA.length > 0 && typeof PROFILE_SELECTED === 'string'){
+  USER_ID_EMAIL =  JSON.parse(CONTEXT_DATA).filter((item : any)=>{
+    return item.name === JSON.parse(PROFILE_SELECTED);
+  })[0].email;
+}
+
+
+
+
+
 
 const getEndpointToLocalServer = () => {
   if (!process.env.REACT_APP_SERVER_PORT) {
@@ -83,7 +101,7 @@ async function ensureClientTokenGenerated() {
        */
       userIds: [
         {
-          name: process.env.REACT_APP_USER_EMAIL!,
+          name: USER_ID_EMAIL? USER_ID_EMAIL : process.env.REACT_APP_USER_EMAIL!,
           provider: 'Email Security Provider',
           type: RestUserIdType.User,
         },
