@@ -49,10 +49,9 @@ const CustomPeopleResultTemplate: React.FC<{
 
   const { facetController } = useContext(FacetContext);
 
-  /* console.log(facetController.adspecial.state.values) */
 
   const handleFacetSelect = (item: string) => {
-    console.log("ahdsdhagsdbasd");
+
     const facetValue = facetController.adspecial.state.values.filter(
       (facet) =>
         facet.value.toLowerCase().replace(/\s/g, "") ===

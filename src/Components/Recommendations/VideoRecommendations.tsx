@@ -24,7 +24,6 @@ export const RecommendationListRenderer: FunctionComponent<
   const engine = props.engine;
   const { controller } = props;
   const [state, setState] = useState(controller.state);
-  console.log("video recommendation list", state);
 
   useEffect(() => {
     controller.refresh();
@@ -46,7 +45,6 @@ export const RecommendationListRenderer: FunctionComponent<
     if (!engine) {
       return;
     }
-    console.log('loggin')
     const { logRecommendationOpen } = loadClickAnalyticsActions(engine);
     engine.dispatch(logRecommendationOpen(recommendation));
   };
