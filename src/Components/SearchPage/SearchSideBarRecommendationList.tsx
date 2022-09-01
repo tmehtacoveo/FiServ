@@ -67,7 +67,6 @@ export const RecommendationListRenderer: FunctionComponent<
     if (!engine) {
       return;
     }
-    console.log("loggin");
     const { logRecommendationOpen } = loadClickAnalyticsActions(engine);
     engine.dispatch(logRecommendationOpen(recommendation));
   };

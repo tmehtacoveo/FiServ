@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import usePersistedState from "../../customHooks/usePersistedState";
-import { InitialData } from "./InitialData";
+import { InitialData, KEY_NAME_CONTEXT_DATA, KEY_NAME_PROFILE_SELECTED } from "./InitialData";
 import EngineContext from "../../common/engineContext";
 import { buildContext } from "@coveo/headless";
 
@@ -8,11 +8,11 @@ export const CustomContextContext = React.createContext();
 
 const CustomContextProvider = ({ children }) => {
   const [profileSelected, setProfiledSelected] = usePersistedState(
-    "profile_selected_v1",
+    KEY_NAME_PROFILE_SELECTED,
     InitialData[0].name
   );
   const [ContextData, setContextData] = usePersistedState(
-    "context_data_v1",
+    KEY_NAME_CONTEXT_DATA,
     InitialData
   );
 

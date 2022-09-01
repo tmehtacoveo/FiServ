@@ -67,6 +67,10 @@ export default function ProfileSelector({ContextData,setProfiledSelected, profil
               style={getStyles(item.name, profileSelected, theme)}
             >
               {item.name}
+              {item.email && <>
+              <br/>
+              ({item.email})
+              </>}
             </MenuItem>
           ))}
         </Select>
