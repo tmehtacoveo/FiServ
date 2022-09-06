@@ -82,6 +82,7 @@ const Image = styled.img`
   width: 100%;
   object-fit: cover;
   transition: 0.2s ease-in-out all;
+  object-position: 10%;
 `;
 const TextWrapper = styled.div`
   display: flex;
@@ -98,7 +99,7 @@ const Title = styled.a`
   text-decoration: none;
   font-style: normal;
   align-self: flex-start;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 24px;
   line-height: 32px;
   color: ${Theme.primaryText};
@@ -137,18 +138,18 @@ const ReferralLink = styled.a`
 const MainWrapper = styled.div`
   height: 500px;
   width: 400px;
-  border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 20px;
   background: white;
   cursor: pointer;
+  
   &:hover {
     border-color: ${Theme.link};
   }
 
   &:hover ${Title} {
-    color: #1372ec;
+    color: ${Theme.link};
   }
 
   &:hover ${Image} {

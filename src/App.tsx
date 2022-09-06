@@ -20,6 +20,8 @@ import FacetControllerProvider from "./Components/SearchPage/Facet/FacetContext"
 import QuickViewModal from "./Components/SearchPage/QuickViewModal";
 import QuickViewModalProvider from "./Components/SearchPage/QuickViewModalContext";
 import CustomContextProvider from "./Components/CustomContext/CustomContextContext";
+import styled from 'styled-components';
+import {Theme} from "./theme";
 
 export default function App() {
   const [engine, setEngine] = React.useState<SearchEngine | null>(null);
@@ -38,8 +40,10 @@ export default function App() {
             <QuickViewModalProvider>
               <CustomContextProvider>
                 <Router>
-                  <NavBar />
-                  <Header />
+                  <NavHeaderContainer>
+                    <NavBar />
+                    <Header />
+                  </NavHeaderContainer>
                   <QuickViewModal />
                   <Routes>
                     <Route
@@ -129,3 +133,7 @@ const Error = () => {
     </Box>
   );
 };
+
+const NavHeaderContainer = styled.div`
+  background: url(${Theme.HeaderBG}) no-repeat;
+`;

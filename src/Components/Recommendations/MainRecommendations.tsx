@@ -11,7 +11,7 @@ import styled from "styled-components";
 import RecommendtionCard, {
   SkeletonRecommendtionCard,
 } from "./RecommendationCard";
-import SampleImage from "../../assets/sampleImages/recommendation.png";
+import SampleImage from "../../assets/sampleImages/Recommendation2.png";
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
 import { MainRecommendationConfig } from "../../config/HomeConfig";
 
@@ -105,6 +105,7 @@ const MainRecommendationList = () => {
       accessToken: process.env.REACT_APP_API_KEY!,
       searchHub: process.env.REACT_APP_SEARCH_HUB!,
       pipeline: MainRecommendationConfig.pipeline,
+      platformUrl: process.env.REACT_APP_PLATFORM_URL,
     },
   });
 

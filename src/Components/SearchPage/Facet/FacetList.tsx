@@ -3,6 +3,7 @@ import Facet from "./Facet";
 import { useParams } from "react-router-dom";
 import { FacetConfig, SearchPageTabConfig } from "../../../config/SearchConfig";
 import React from "react";
+import CategoryFacet from "./CategoryFacet";
 
 const FacetList = () => {
   const { filter } = useParams();

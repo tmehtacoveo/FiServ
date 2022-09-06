@@ -16,38 +16,26 @@ export const InitialData = [
     context: [],
   },
   {
-    name: "Oliver Hansen",
+    name: "Oliver O'Gorman",
     profile: "https://static.toiimg.com/photo/68944342.cms",
     context: [
       {
         active: true,
-        keyName: "employment",
-        keyValue: "investment",
-        customQRF: false,
-      },
-      {
-        active: true,
-        keyName: "age",
-        keyValue: "60",
+        keyName: "gas_usage",
+        keyValue: "medical",
         customQRF: false,
       },
     ],
   },
   {
-    name: "Van Henery",
+    name: "Gordon Ramsay",
     profile:
-      "https://englishtribuneimages.blob.core.windows.net/gallary-content/2022/3/2022_3$largeimg_1116021257.JPG",
+      "https://pbs.twimg.com/profile_images/1448696882746695683/Jp2_LEBL_400x400.jpg",
     context: [
       {
         active: true,
-        keyName: "age",
-        keyValue: "32",
-        customQRF: false,
-      },
-      {
-        active: true,
-        keyName: "employment",
-        keyValue: "insurance",
+        keyName: "gas_usage",
+        keyValue: "food",
         customQRF: false,
       },
     ],

@@ -18,9 +18,8 @@ const HeroHome: React.FC = ()=>{
 
 
 const Wrapper = styled.div`
-height: 553px;
+height: 420px;
 width: 100%;
-background-color: aliceblue;
 font-family: inherit;
 display: flex;
 flex-direction: column;
@@ -38,8 +37,11 @@ background-size: cover;
 `
 
 const TextWrapper = styled.div`
-width: 450px;
-
+  max-width: 50%;
+  background: #fffffff2;
+  margin-top: .3125rem;
+  padding: 1.25rem .9375rem;
+  min-height: 9.25rem;
 `
 
 

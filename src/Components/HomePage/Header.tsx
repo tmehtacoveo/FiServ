@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Theme } from "../../theme";
 import styled from "styled-components";
-import HeaderLogo from "../../assets/HeaderLogo.svg";
 import { Link } from "react-router-dom";
 import { Icon } from "react-icons-kit";
 import { search } from "react-icons-kit/feather/search";
@@ -59,8 +58,7 @@ const Header: React.FC = () => {
   return (
     <>
       <Wrapper>
-        <Logo src={HeaderLogo} onClick={() => navigate("/home")} />
-        <RightWrapper>
+        <LeftWrapper>
           <LinkWrapper>
             {HeaderConfig.map((item) => {
               return (
@@ -103,7 +101,8 @@ const Header: React.FC = () => {
                 </Popover>
             </IconsWrapper>
           </LinkWrapper>
-        </RightWrapper>
+        </LeftWrapper>
+        <Logo src={Theme.CompanyLogo} onClick={() => navigate("/home")} />
       </Wrapper>
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
@@ -120,7 +119,6 @@ const Header: React.FC = () => {
 
 const Wrapper = styled.header`
   height: 80px;
-  background-color: ${Theme.secondaryText};
   display: flex;
   padding: 0px 40px;
   align-items: center;
@@ -138,9 +136,9 @@ const Logo = styled.img`
   object-fit: contain;
 `;
 
-const RightWrapper = styled.div`
+const LeftWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex: 1;
 `;
 
@@ -148,7 +146,7 @@ const LinkWrapper = styled.ul`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 800px;
+  width: 1050px;
   @media (max-width: 1000px) {
     width: auto;
   }
@@ -157,7 +155,7 @@ const LinkWrapper = styled.ul`
 const NavigationLink = styled(Link)`
   color: ${Theme.primaryText};
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   opacity: 1;
   transition: 0.2s ease-in-out all;
   &:hover {
@@ -172,7 +170,6 @@ const Divider = styled.div`
   height: 50px;
   border-right-width: 2px;
   width: 1px;
-  height: 48px;
   background: #e5e8e8;
   @media (max-width:1000px) {
     display: none;

@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { Theme } from "../../theme";
-import WhiteLogo from "../../assets/FooterLogo.svg";
 
 
 const Footer: React.FC = () => {
   return (
     <Wrapper>
-      <Logo src={WhiteLogo} />
+      <Logo src={Theme.CompanyLogo} />
     </Wrapper>
   );
 };

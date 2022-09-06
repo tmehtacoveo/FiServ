@@ -31,26 +31,14 @@ export const FacetConfig = [
     field: "concepts",
     title: "Concepts",
   },{
-    field : "mynav2b",
-    title : "Focus Area"
+    title: "Category",
+    field:"breadcrumbhierarchy"
   },{
-    field : "mynav3b",
-    title : "Banking Information"
+    title: "Supply Mode",
+    field:"boc_supplymode"
   },{
-    field :"adspecial",
-    title : "Speciality"
-  },{
-    field :"adminimums",
-    title : "Minimums"
-  },{
-    field :"adstate",
-    title : "State"
-  },{
-    field :"adcity",
-    title : "City"
-  },{
-    title: "More Info",
-    field : "mynav4b"
+  title: "Gas Composition",
+    field:"boc_gas_composition"
   }
 ] as const;
 
@@ -128,7 +116,8 @@ export const FieldToIncludesInSearchResults : string[] = [
   "ytthumbnailurl",
   "sfimage__c",
   "sfimage_url__c",
-  'adspecial'
+  'adspecial',
+  'boc_image',
 ];
 
 
@@ -152,64 +141,48 @@ You can leave the Array empty if you don't want any tabs
 export const SearchPageTabConfig : SearchPageTabConfigType[] = [
   {
     caption: "All",
-    expression: "",
+    expression: "@source=PaulsSitemap",
     isActive: true,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Video Rec Sidebar",
+        pipeline: "BOC Youtube",
         NumberofResults: 3,
         title: "Related Videos",
         videoRecommendation: true,
         imageField: 'ytthumbnailurl'
       }
     ],
-    facetToInclude: ["source", "filetype", "concepts",],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition"],
   },
   {
-    caption: "Investing",
-    expression: `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
+    caption: "Healthcare",
+    expression: '@title="healthcare"',
     isActive: false,
     sideBarRecommendationConfig: [
       {
-        pipeline: "IRS test",
-        NumberofResults: 6,
-        title: "Related for Investing",
-        videoRecommendation: false,
+        pipeline: "BOC Healthcare Youtube Recs",
+        NumberofResults: 3,
+        title: "Videos Related to Healthcare",
+        videoRecommendation: true,
+        imageField: 'ytthumbnailurl',
       },
     ],
-    facetToInclude: ["concepts","mynav2b"],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition" ],
   },
   {
-    caption: "Money Matters",
-    expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
-    isActive: false,
-    facetToInclude: ["concepts","mynav2b", "mynav4b"],
-  },
-  {
-    caption: "Insurance Needs",
-    expression: `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
+    caption: "F&B",
+    expression: `@title="food"`,
     isActive: false,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Glossary test",
-        NumberofResults: 6,
-        title: "Glossary",
-        videoRecommendation: false,
+        pipeline: "BOC F&B Youtube Recs",
+        NumberofResults: 3,
+        title: "Videos Related to F&B",
+        videoRecommendation: true,
+        imageField: 'ytthumbnailurl',
       },
     ],
-    facetToInclude: ["concepts"],
-  },
-  {
-    caption: "Banking Info",
-    expression: `@source==("Bankrate")`,
-    isActive: false,
-    facetToInclude: ["concepts","mynav2b","mynav3b"],
-  },
-  {
-    caption: "Advisors",
-    expression: `@source==("Advisor")`,
-    isActive: false,
-    facetToInclude: ["adspecial","adminimums","adstate","adcity"],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition" ],
   },
   {
     caption: "Youtube",

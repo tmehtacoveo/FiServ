@@ -95,7 +95,7 @@ const Wrapper = styled.div`
 const TabTitle = styled.a<{isActive : boolean }>`
   padding: 15px 20px;
   text-align: center;
-  color: ${Theme.secondaryText};
+  color: ${Theme.primaryText};
   cursor: pointer;
   font-family: inherit;
   background: ${(props) => (props.isActive ? Theme.selection : null)};

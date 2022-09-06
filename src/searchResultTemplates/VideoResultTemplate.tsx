@@ -159,9 +159,9 @@ import React, {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      font-weight: 400;
+      font-weight: bold;
       text-decoration: none;
-      color: ${Theme.resultLink};
+      color: ${Theme.link};
     }
   
     & a:hover {

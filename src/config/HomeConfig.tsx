@@ -1,21 +1,29 @@
-import HeroImage from '../assets/Hero.jpg'
 import { RecommendationType } from './Types/ConfigTypes';
+import {Theme} from "../theme";
 
 export const NavBarConfig = [
   {
-    title: "Personal",
+    title: "Linde",
     redirectTo: "/home",
   },
   {
-    title: "Business",
+    title: "About BOC",
     redirectTo: "/",
   },
   {
-    title: "Commerical",
+    title: "Careers",
     redirectTo: "/",
   },
   {
-    title: "About",
+    title: "Sign in | Register",
+    redirectTo: "/",
+  },
+  {
+    title: "Store Finder",
+    redirectTo: "/",
+  },
+  {
+    title: "Products & Services A-Z",
     redirectTo: "/",
   },
 ];
@@ -23,32 +31,46 @@ export const NavBarConfig = [
 
 export const HeaderConfig = [
     {
-        title: "Bank Account",
+        title: "Healthcare",
         redirectTo: "/home",
       },
       {
-        title: "Credit Card",
+        title: "Gas A-Z",
         redirectTo: "/",
       },
       {
-        title: "Mortgages",
+        title: "Gas by Use",
         redirectTo: "/",
       },
       {
-        title: "Investment",
+        title: "Gas Regulators",
         redirectTo: "/",
       },
       {
-        title: "Insurance",
+        title: "Equipment & Accessories",
         redirectTo: "/",
       },
+  {
+    title: "PPE & Workwear",
+    redirectTo: "/",
+  },
+
+  {
+    title: "Training Courses",
+    redirectTo: "/",
+  },
+
+  {
+    title: "Manage My Account",
+    redirectTo: "/",
+  },
 ]
 
 
 export const HeroConfig = {
-    title  : 'Life changes fast',
-    description : 'A BTEP Mortgage gives you the flexibility to use the equity from your home when you need it.',
-    background : HeroImage,
+    title  : 'We are BOC',
+    description : 'The largest provider of industrial, medical and special gases in the UK and Ireland',
+    background : Theme.HeroBanner,
     buttonText : 'Learn More',
     onClickButtonRedirect : '/search',
     
@@ -61,7 +83,7 @@ export const MainRecommendationConfig : RecommendationType= {
   description : "Here are your personalized recommendations",
   numberOfResults: 6,
   imageField : 'sfimage_url__c',
-  pipeline : 'Homepage',
+  pipeline : 'default',
   id : 'Recommendation'
 }
 
@@ -71,6 +93,6 @@ export const VideoRecommendationConfig : RecommendationType  = {
   description : "Here are your personalized recommendations",
   numberOfResults: 3,
   imageField : 'ytthumbnailurl',
-  pipeline : 'Video Rec Sidebar',
+  pipeline : 'BOC Youtube',
   id : 'Recommendation'
 }

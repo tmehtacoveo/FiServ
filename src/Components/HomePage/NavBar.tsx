@@ -26,14 +26,12 @@ const NavBar: React.FC = ()=>{
 const Wrapper = styled.nav`
 height: 40px;
 width: 100%;
-background-color: ${Theme.navbar};
 `
 
 const NavigationWrapper = styled.ul`
 margin-left: 20px;
 display: flex;
-color : white;
-width: 20%;
+width: 40%;
 min-width: 400px;
 height: 40px;
 justify-content: space-around;
@@ -47,7 +45,7 @@ align-items: center;
 `
 
 const NavigationLink = styled.a`
-color: white;
+  color : ${Theme.primaryText};
 font-size: 14px;
 text-decoration: none;
 opacity: 0.8;

@@ -138,7 +138,7 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
 
   }
 
-
+  // console.log("fields to include ", result);
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
@@ -152,16 +152,18 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
           )}
           </BadgeWrapper>
           <MainWrapper>
-            {filetype in FileTypeIconsConfig && (
-              <SourceTypeWrapper>
-                <IconImage
-                  src={
-                    Object.values(FileTypeIconsConfig)[isFileTypeIconIndex()]
-                  }
-                  alt={`${filetype} icon`}
-                />
-              </SourceTypeWrapper>
-            )}
+            {!result.raw.boc_image ? (filetype in FileTypeIconsConfig && (
+                      <SourceTypeWrapper>
+                        <IconImage
+                            src={
+                              Object.values(FileTypeIconsConfig)[isFileTypeIconIndex()]
+                            }
+                            alt={`${filetype} icon`}
+                        />
+                      </SourceTypeWrapper>
+                  )
+            ) :             <ImageWrapper src={`${result.raw.boc_image}`} alt=""/>
+            }
             <TextWrapper>
               <TitltAndDateWrapper>
                 <Title>{ListItemLink(engine, result, "",QuickViewOnClick)}</Title>
@@ -210,22 +212,27 @@ const MainWrapper = styled.div`
 `;
 
 const SourceTypeWrapper = styled.div`
-  width: 100px;
+  min-width: 100px;
   height: 100px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 5% 0 4%;
   @media (max-width: 480px) {
    display: none;
 }
 `;
 
 const IconImage = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 `;
 
+const ImageWrapper= styled.img`
+  width: 22%;
+  margin-right: 2%;
+`
 const TextWrapper = styled.div`
   flex: 8;
   height: 120px;
@@ -240,15 +247,14 @@ const Title = styled.h2`
   line-height: 24px;
   width: 80%;
 
-
   & a {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-weight: 400;
+    font-weight: bold;
     text-decoration: none;
-    color: ${Theme.resultLink};
+    color: ${Theme.link};
   }
 
   & a:hover {

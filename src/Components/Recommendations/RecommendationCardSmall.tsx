@@ -97,10 +97,10 @@ const Title = styled.a`
   text-decoration: none;
   font-style: normal;
   align-self: flex-start;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 18px;
   line-height: 32px;
-  color: ${Theme.primaryText};
+  color: ${Theme.link};
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -135,18 +135,14 @@ const ReferralLink = styled.a`
 
 const MainWrapper = styled.div`
   /* width: 100%; */
-  border-radius: 16px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 10px 10px 10px 10px;
   background: white;
   cursor: pointer;
+  
   &:hover {
     border-color: ${Theme.link};
-  }
-
-  &:hover ${Title} {
-    color: #1372ec;
   }
 
   &:hover ${ReferralLink} {

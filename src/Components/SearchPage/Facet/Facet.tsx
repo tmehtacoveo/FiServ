@@ -87,7 +87,6 @@ const FacetRenderer: FunctionComponent<FacetRendererProps> = (props) => {
                     )}
                   </div>
                 </Box>
-                <Divider />
                 <Collapse in={collapse}>
                   <List dense>
                     {state.values.map((value: FacetValue) => {
@@ -159,9 +158,8 @@ const Facet: FunctionComponent<FacetProps> = (props) => {
 export default memo(Facet);
 
 const Wrapper = styled.div`
-  border: 1px #e5e8e8 solid;
-  border-radius: 16px;
-  padding: 24px 16px;
-  margin-bottom: 20px;
+  padding: 20px 0 0;
+  border-top: 1px solid #e3e4df;
+  position: relative;
   font-family: inherit;
 `;
