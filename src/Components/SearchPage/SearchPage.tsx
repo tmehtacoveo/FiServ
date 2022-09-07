@@ -22,6 +22,7 @@ import BreadcrumbManager from "./BreadcrumbManager";
 import styled from 'styled-components'
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
 import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
+import NotifyTrigger from "./NotifyTrigger";
 
 interface ISearchPageProps {
   engine: SearchEngine;
@@ -36,6 +37,27 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
     settingContext(); 
     engine.executeFirstSearch();
   }, [engine]);
+
+
+  const IsSideBarRecommendation = ()=>{
+
+    let flag = false;
+
+    SearchPageTabConfig.map((tab : SearchPageTabConfigType, index: number) => {
+      if (
+        (filter?.toLowerCase() ===
+          tab.caption.replace(/\s/g, "").toLowerCase() ||
+          (index === 0 && filter === undefined)) &&
+        tab.sideBarRecommendationConfig
+      ){
+          flag =  true;
+      }
+
+    })
+
+    return flag;
+  }
+
 
 
   return (
@@ -54,6 +76,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
       <SearchTabs filterSelected={filter? filter : ""} />
       <Container maxWidth="xl" style={{ padding: "0px" }}>
         <Grid item mt={3} mb={2}>
+          <NotifyTrigger/>
           <DidYouMean />
         </Grid>
         <Box my={2}>
@@ -61,7 +84,7 @@ const SearchPage: React.FunctionComponent<ISearchPageProps> = (props) => {
             <Grid item xs={12} md={3} sm={12}>
               <FacetList />
             </Grid>
-            <Grid item xs={12} md={6} sm={12}>
+            <Grid item xs={12} md={IsSideBarRecommendation()? 6 : 9} sm={12}>
             <BreadcrumbManager/>
               <Box pl={3} pr={2}>
                 <Grid container alignItems="flex-end">
