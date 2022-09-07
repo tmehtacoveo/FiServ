@@ -99,7 +99,7 @@ function FieldValue(props: FieldValueInterface) {
   );
 }
 
-const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boolean, FieldValues : FieldValueInterface[] }> = ({ result, QuickViewOnClick = false, FieldValues =[] }) => {
+const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boolean, FieldValues? : FieldValueInterface[] }> = ({ result, QuickViewOnClick = false, FieldValues =[] }) => {
   const engine = useContext(EngineContext)!;
   const {setOpenModal, setResult} = useContext(QuickViewModalContext)!;
   const filetype: any = result.raw.sysfiletype;
