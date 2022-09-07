@@ -67,7 +67,12 @@ You can create custom one using the searchResultTemplates/GeneralResultTemplate.
 export const ResultTemplateConfig = [
   {
     conditions: [],
-    content: (result: Result) => <GeneralResultTemplate result={result} QuickViewOnClick = {true} />,
+    content: (result: Result) => 
+    <GeneralResultTemplate 
+      result={result} 
+      QuickViewOnClick = {true} 
+      FieldValues = {[{caption: 'source type', value : 'sysfiletype'},{caption: 'source', value : 'source'}]} 
+    />,
     priority: 1,
   },
   {
