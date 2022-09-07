@@ -71,7 +71,7 @@ export const ResultTemplateConfig = [
     <GeneralResultTemplate 
       result={result} 
       QuickViewOnClick = {true} 
-      FieldValues = {[{caption: 'Source Type', value : 'sysfiletype'},{caption: 'source', value : 'source'}]} 
+      FieldValues = {[{caption: 'source type', value : 'sysfiletype'},{caption: 'source', value : 'source'}]} 
     />,
     priority: 1,
   },
