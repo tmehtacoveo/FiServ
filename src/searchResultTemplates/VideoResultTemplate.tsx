@@ -68,7 +68,7 @@ import React, {
     return (
       <>
         <ListItem disableGutters key={result.uniqueId}>
-          <Box my={1}>
+          <Box my={1} width={'100%'}>
           <BadgeWrapper>
           {result.isRecommendation && (
             <RecommendationBadge>Recommended</RecommendationBadge>
