@@ -66,7 +66,7 @@ const CustomPeopleResultTemplate: React.FC<{
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
-        <Box my={1}>
+        <Box my={1} width={'100%'}>
           <BadgeWrapper>
             {result.isRecommendation && (
               <RecommendationBadge>Recommended</RecommendationBadge>
@@ -163,7 +163,7 @@ const MainWrapper = styled.div`
 const ImageWrapper = styled.div`
   padding: 10px;
   padding-left: 0px;
-  flex: 1;
+  width: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,6 +178,7 @@ const TextWrapper = styled.div`
   margin-left: 20px;
   flex: 4;
   /* height: 120px; */
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
