@@ -37,8 +37,8 @@ export const FacetConfig = [
     title: "Supply Mode",
     field:"boc_supplymode"
   },{
-  title: "Gas Composition",
-    field:"boc_gas_composition"
+  title: "Gas Type",
+    field:"boc_gas_type"
   }
 ] as const;
 
@@ -117,7 +117,7 @@ export const FieldToIncludesInSearchResults : string[] = [
   "sfimage__c",
   "sfimage_url__c",
   'adspecial',
-  'boc_image',
+    'boc_image',
 ];
 
 
@@ -152,7 +152,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         imageField: 'ytthumbnailurl'
       }
     ],
-    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition"],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_type"],
   },
   {
     caption: "Healthcare",
@@ -167,7 +167,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         imageField: 'ytthumbnailurl',
       },
     ],
-    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition" ],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_type" ],
   },
   {
     caption: "F&B",
@@ -182,7 +182,7 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         imageField: 'ytthumbnailurl',
       },
     ],
-    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_composition" ],
+    facetToInclude: ["breadcrumbhierarchy", "boc_supplymode", "boc_gas_type" ],
   },
   {
     caption: "Youtube",
