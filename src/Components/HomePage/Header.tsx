@@ -19,7 +19,7 @@ const Header: React.FC = () => {
   const [openSearch, setOpenSearch] = useState<boolean>(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const {getProfile} = useContext(CustomContextContext)
+  const { getProfile } = useContext(CustomContextContext);
   const onSearchPage = location.pathname.includes("search");
   const toggleSearchBox = () => {
     if (onSearchPage) {
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 </NavigationLink>
               );
             })}
-            <Divider/>
+            <Divider />
             <IconsWrapper>
               <IconContainer
                 style={{ color: Theme.headerIconColor, cursor: "pointer" }}
@@ -84,23 +84,25 @@ const Header: React.FC = () => {
               <ProfileIconContainer
                 style={{ color: Theme.headerIconColor, cursor: "pointer" }}
                 aria-describedby={id}
-                onClick={(event)=>handleClick(event)}
+                onClick={(event) => handleClick(event)}
               >
-                <ProfileAvatar src = {getProfile().profile} alt = {'profile pic'}/>
-                <ProfileName>{getProfile().name.split(' ').slice(0, -1).join(' ')}</ProfileName>
+                <ProfileAvatar src={getProfile().profile} alt={"profile pic"} />
+                <ProfileName>
+                  {getProfile().name.split(" ").slice(0, -1).join(" ")}
+                </ProfileName>
               </ProfileIconContainer>
               <Popover
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                >
-                  <ContextForm/>
-                </Popover>
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+              >
+                <ContextForm />
+              </Popover>
             </IconsWrapper>
           </LinkWrapper>
         </RightWrapper>
@@ -108,9 +110,9 @@ const Header: React.FC = () => {
       <Fade in={openSearch && !onSearchPage}>
         <SearchContainer>
           <SearchBoxContainer>
-            {!onSearchPage && 
-            <HomeSearchBox toggleSearchBox={toggleSearchBox} />
-            }
+            {!onSearchPage && (
+              <HomeSearchBox toggleSearchBox={toggleSearchBox} />
+            )}
           </SearchBoxContainer>
         </SearchContainer>
       </Fade>
@@ -133,8 +135,8 @@ const Wrapper = styled.header`
 `;
 
 const Logo = styled.img`
-  height: 50px;
-  width: 150px;
+  height: 70px;
+  width: auto;
   object-fit: contain;
 `;
 
@@ -174,7 +176,7 @@ const Divider = styled.div`
   width: 1px;
   height: 48px;
   background: #e5e8e8;
-  @media (max-width:1000px) {
+  @media (max-width: 1000px) {
     display: none;
   }
 `;
@@ -198,27 +200,26 @@ const IconsWrapper = styled.div`
 `;
 
 const IconContainer = styled.button`
-background: none;
-border: 0px;
-width: 40px;
-transition: 0.2s ease-in-out all;
-&:hover{
-  transform: scale(0.95);
-}
-&:active{
-  transform: scale(0.85);
-}
-`
+  background: none;
+  border: 0px;
+  width: 40px;
+  transition: 0.2s ease-in-out all;
+  &:hover {
+    transform: scale(0.95);
+  }
+  &:active {
+    transform: scale(0.85);
+  }
+`;
 
 const ProfileName = styled.span`
-font-size  : 16px;
-font-weight: 400;
-font-family: inherit;
-margin-left: 15px;
-color : ${Theme.headerIconColor};
-text-overflow: ellipsis;
-`
-
+  font-size: 16px;
+  font-weight: 400;
+  font-family: inherit;
+  margin-left: 15px;
+  color: ${Theme.headerIconColor};
+  text-overflow: ellipsis;
+`;
 
 const ProfileIconContainer = styled.button`
   background: none;
@@ -228,14 +229,13 @@ const ProfileIconContainer = styled.button`
   display: flex;
   align-items: center;
   transition: 0.2s ease-in-out all;
-  &:hover{
-  transform: scale(0.95);
-}
-&:active{
-  transform: scale(0.85);
-}
-
-`
+  &:hover {
+    transform: scale(0.95);
+  }
+  &:active {
+    transform: scale(0.85);
+  }
+`;
 
 const SearchBoxContainer = styled.div`
   width: 50%;
@@ -246,12 +246,11 @@ const SearchBoxContainer = styled.div`
   }
 `;
 
-
 const ProfileAvatar = styled.img`
   width: 30px;
   height: 30px;
   border-radius: 24px;
   object-fit: cover;
-`
+`;
 
 export default Header;

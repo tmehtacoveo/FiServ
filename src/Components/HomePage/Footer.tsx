@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Theme } from "../../theme";
 import WhiteLogo from "../../assets/FooterLogo.svg";
 
-
 const Footer: React.FC = () => {
   return (
     <Wrapper>
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 150px;
+  height: 100px;
   object-fit: contain;
 `;
 

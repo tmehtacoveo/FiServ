@@ -137,7 +137,7 @@ const ReferralLink = styled.a`
 const MainWrapper = styled.div`
   height: 500px;
   width: 400px;
-  border-radius: 16px;
+  border-radius: 2px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 20px;
@@ -145,10 +145,19 @@ const MainWrapper = styled.div`
   cursor: pointer;
   &:hover {
     border-color: ${Theme.link};
+    background-color: #2f71f8;
   }
 
   &:hover ${Title} {
-    color: #1372ec;
+    color: white;
+  }
+
+  &:hover ${SubTitle} {
+    color: white;
+  }
+
+  &:hover ${TextWrapper} {
+    background-color: #2f71f8;
   }
 
   &:hover ${Image} {
@@ -156,7 +165,7 @@ const MainWrapper = styled.div`
   }
 
   &:hover ${ReferralLink} {
-    opacity: 1;
+    color: white;
   }
   @media (max-width: 480px) {
     width: 90vw;
