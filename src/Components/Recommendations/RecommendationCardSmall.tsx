@@ -4,21 +4,19 @@ import styled from "styled-components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-
 interface RecommendationCardSmallType {
-  title : string,
-  description : string,
-  image : string,
-  video? : boolean,
-  clickUri : string,
-  onClick : ()=>void,
-  onContextMenu : ()=>void,
-  onMouseDown : ()=>void,
-  onMouseUp : ()=>void,
+  title: string;
+  description: string;
+  image: string;
+  video?: boolean;
+  clickUri: string;
+  onClick: () => void;
+  onContextMenu: () => void;
+  onMouseDown: () => void;
+  onMouseUp: () => void;
 }
 
-
-const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
+const RecommendtionCardSmall: React.FC<RecommendationCardSmallType> = ({
   title,
   description,
   video = false,
@@ -27,7 +25,7 @@ const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
   onContextMenu,
   onMouseDown,
   onMouseUp,
-  image
+  image,
 }) => {
   return (
     <MainWrapper
@@ -37,13 +35,13 @@ const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
         window.open(clickUri, "_blank", "noopener,noreferrer");
       }}
       onContextMenu={onContextMenu}
-     /*  onMouseDown={onMouseDown}
+      /*  onMouseDown={onMouseDown}
       onMouseUp={onMouseUp} */
     >
       {video ? (
         <VideoWrapper>
-            <Image src = {image}/>
-            <Title>{title}</Title>
+          <Image src={image} />
+          <Title>{title}</Title>
         </VideoWrapper>
       ) : (
         <TextWrapper>
@@ -55,7 +53,7 @@ const RecommendtionCardSmall : React.FC<RecommendationCardSmallType> = ({
   );
 };
 
-export const SkeletonRecommendtionCardSmall : React.FC = () => {
+export const SkeletonRecommendtionCardSmall: React.FC = () => {
   return (
     <MainWrapper>
       <div style={{ padding: "30px 20px" }}>
@@ -77,10 +75,10 @@ const TextWrapper = styled.div`
 `;
 
 const Image = styled.img`
-width: 90%;
-object-fit : "center";
-margin-bottom: 10px;
-`
+  width: 90%;
+  object-fit: "center";
+  margin-bottom: 10px;
+`;
 
 const VideoWrapper = styled.div`
   display: flex;
@@ -135,7 +133,7 @@ const ReferralLink = styled.a`
 
 const MainWrapper = styled.div`
   /* width: 100%; */
-  border-radius: 16px;
+  border-radius: 2px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 10px 10px 10px 10px;

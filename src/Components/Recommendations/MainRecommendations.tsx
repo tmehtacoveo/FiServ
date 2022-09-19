@@ -127,7 +127,7 @@ export default MainRecommendationList;
 const MainWrapper = styled.div`
   width: 95%;
   background-color: white;
-  border-radius: 24px;
+  border-radius: 2px;
   position: relative;
   top: -40px;
   padding: 40px 20px;

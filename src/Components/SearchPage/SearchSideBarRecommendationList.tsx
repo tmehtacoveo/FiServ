@@ -79,21 +79,31 @@ export const RecommendationListRenderer: FunctionComponent<
           {state.recommendations.length > 0 && (
             <>
               <Divider />
-              <Typography variant="h6" component="h6" sx = {{marginLeft : '20px'}}>
-              {props.title}
+              <Typography
+                variant="h6"
+                component="h6"
+                sx={{ marginLeft: "20px" }}
+              >
+                {props.title}
               </Typography>
               <CardWrapper>
                 {state?.recommendations
                   ?.slice(0, props.NumberofResults)
                   .map((recommendation, index) => {
-
-                    const temp: unknown = recommendation.raw[`${props.imageField}`];
-                    const imageURL : string = temp as string;
+                    const temp: unknown =
+                      recommendation.raw[`${props.imageField}`];
+                    const imageURL: string = temp as string;
 
                     return (
                       <div key={recommendation.title}>
                         <RecommendtionCardSmall
-                          video={props.videoRecommendation? props.videoRecommendation : (recommendation.raw.sourcetype === "YouTube"? true : false)}
+                          video={
+                            props.videoRecommendation
+                              ? props.videoRecommendation
+                              : recommendation.raw.sourcetype === "YouTube"
+                              ? true
+                              : false
+                          }
                           title={recommendation.title}
                           description={recommendation.excerpt}
                           clickUri={recommendation.clickUri}
@@ -101,7 +111,7 @@ export const RecommendationListRenderer: FunctionComponent<
                           onContextMenu={() => logClick(recommendation)}
                           onMouseDown={() => logClick(recommendation)}
                           onMouseUp={() => logClick(recommendation)}
-                          image={imageURL? imageURL : SampleImage}
+                          image={imageURL ? imageURL : SampleImage}
                         />
                       </div>
                     );
@@ -118,7 +128,7 @@ export const RecommendationListRenderer: FunctionComponent<
             {skeletonArray.map((item, index) => {
               return (
                 <div key={item}>
-                  <SkeletonRecommendtionCardSmall/>
+                  <SkeletonRecommendtionCardSmall />
                 </div>
               );
             })}
@@ -134,7 +144,7 @@ interface SearSearchSideBarRecommendationListProps {
   NumberofResults?: number;
   title?: string;
   videoRecommendation?: boolean;
-  imageField? : string;
+  imageField?: string;
 }
 
 const SearchSideBarRecommendationList: FunctionComponent<
@@ -144,7 +154,7 @@ const SearchSideBarRecommendationList: FunctionComponent<
   NumberofResults = 0,
   title = "",
   videoRecommendation = false,
-  imageField = ''
+  imageField = "",
 }) => {
   const recommendationEngine = buildRecommendationEngine({
     configuration: {
@@ -170,7 +180,7 @@ const SearchSideBarRecommendationList: FunctionComponent<
       NumberofResults={NumberofResults}
       videoRecommendation={videoRecommendation}
       imageField={imageField}
-      title = {title}
+      title={title}
     />
   );
 };
@@ -178,7 +188,7 @@ const SearchSideBarRecommendationList: FunctionComponent<
 export default SearchSideBarRecommendationList;
 
 const Divider = styled.div`
-/*   width: 100%; */
+  /*   width: 100%; */
   height: 4px;
   background: ${Theme.primaryText};
   margin-top: 30px;
@@ -189,7 +199,7 @@ const Divider = styled.div`
 
 const MainWrapper = styled.div`
   width: 100%;
-  border-radius: 24px;
+  border-radius: 2px;
   position: relative;
   display: flex;
   flex-direction: column;

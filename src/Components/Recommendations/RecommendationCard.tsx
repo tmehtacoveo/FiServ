@@ -137,7 +137,7 @@ const ReferralLink = styled.a`
 const MainWrapper = styled.div`
   height: 500px;
   width: 400px;
-  border-radius: 16px;
+  border-radius: 4px;
   border: 1px solid #e5e8e8;
   overflow: hidden;
   margin: 20px;
@@ -147,20 +147,20 @@ const MainWrapper = styled.div`
     border-color: ${Theme.link};
   }
 
-  &:hover ${Title} {
-    color: #1372ec;
-  }
+  // &:hover ${Title} {
+  //   color: #1372ec;
+  // }
 
-  &:hover ${Image} {
-    transform: scale(1.03);
-  }
+  // &:hover ${Image} {
+  //   transform: scale(1.03);
+  // }
 
-  &:hover ${ReferralLink} {
-    opacity: 1;
-  }
-  @media (max-width: 480px) {
-    width: 90vw;
-  }
+  // &:hover ${ReferralLink} {
+  //   opacity: 1;
+  // }
+  // @media (max-width: 480px) {
+  //   width: 90vw;
+  // }
 `;
 
 export default RecommendtionCard;

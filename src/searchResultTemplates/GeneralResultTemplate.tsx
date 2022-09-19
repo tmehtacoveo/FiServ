@@ -1,18 +1,12 @@
-import React, {
-  useContext,
-} from "react";
+import React, { useContext } from "react";
 import { ListItem, Box, Typography } from "@mui/material";
-import {
-  Result,
-  buildInteractiveResult,
-  SearchEngine,
-} from "@coveo/headless";
+import { Result, buildInteractiveResult, SearchEngine } from "@coveo/headless";
 import EngineContext from "../common/engineContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Theme } from "../theme";
 import { FileTypeIconsConfig } from "../config/SearchConfig";
-import {eye} from 'react-icons-kit/feather/eye'
+import { eye } from "react-icons-kit/feather/eye";
 import Icon from "react-icons-kit";
 import { QuickViewModalContext } from "../Components/SearchPage/QuickViewModalContext";
 
@@ -35,7 +29,7 @@ function ListItemLink(
   engine: SearchEngine,
   result: Result,
   source?: string,
-  QuickViewOnClick? : boolean,
+  QuickViewOnClick?: boolean,
   setResult?: (x: Result) => void
 ) {
   const interactiveResult = buildInteractiveResult(engine, {
@@ -47,7 +41,6 @@ function ListItemLink(
         <Link
           to={`/salesforcekb/${result.raw.sfid}`}
           onClick={() => {
-            
             if (setResult) {
               setResult(result);
             }
@@ -82,7 +75,7 @@ function ListItemLink(
 
 function FieldValue(props: FieldValueInterface) {
   return (
-      <Box mr={2}>
+    <Box mr={2}>
       {" "}
       <Typography
         color="textSecondary"
@@ -94,14 +87,17 @@ function FieldValue(props: FieldValueInterface) {
       <Typography color="textSecondary" variant="caption">
         {props.value}
       </Typography>
-    
     </Box>
   );
 }
 
-const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boolean, FieldValues? : FieldValueInterface[] }> = ({ result, QuickViewOnClick = false, FieldValues =[] }) => {
+const GeneralResultTemplate: React.FC<{
+  result: Result;
+  QuickViewOnClick: boolean;
+  FieldValues?: FieldValueInterface[];
+}> = ({ result, QuickViewOnClick = false, FieldValues = [] }) => {
   const engine = useContext(EngineContext)!;
-  const {setOpenModal, setResult} = useContext(QuickViewModalContext)!;
+  const { setOpenModal, setResult } = useContext(QuickViewModalContext)!;
   const filetype: any = result.raw.sysfiletype;
   const date = new Date(Number(result.raw.date));
   const isFileTypeIconIndex = () => {
@@ -111,30 +107,35 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
     return 0;
   };
 
-
-  const highlightedExcerpt = (result :  Result)=>{
+  const highlightedExcerpt = (result: Result) => {
     let highlightedString = result.excerpt;
     let adjustmentoffset = 0;
-    result.excerptHighlights.forEach((item)=>{
-    highlightedString =  highlightedString.slice(0,item.offset + adjustmentoffset) + "<b>" + highlightedString.slice(item.offset + adjustmentoffset,item.offset + adjustmentoffset + item.length) + "</b>" + highlightedString.slice(item.offset + adjustmentoffset + item.length);
-    adjustmentoffset = adjustmentoffset + 7;
-    })
+    result.excerptHighlights.forEach((item) => {
+      highlightedString =
+        highlightedString.slice(0, item.offset + adjustmentoffset) +
+        "<b>" +
+        highlightedString.slice(
+          item.offset + adjustmentoffset,
+          item.offset + adjustmentoffset + item.length
+        ) +
+        "</b>" +
+        highlightedString.slice(item.offset + adjustmentoffset + item.length);
+      adjustmentoffset = adjustmentoffset + 7;
+    });
     return highlightedString;
-
-  }
-
+  };
 
   return (
     <>
       <ListItem disableGutters key={result.uniqueId}>
-        <Box my={1} width={'100%'} >
+        <Box my={1} width={"100%"}>
           <BadgeWrapper>
-          {result.isRecommendation && (
-            <RecommendationBadge>Recommended</RecommendationBadge>
-          )}
-          {result.isTopResult && (
-            <RecommendationBadge>Featured</RecommendationBadge>
-          )}
+            {result.isRecommendation && (
+              <RecommendationBadge>Recommended</RecommendationBadge>
+            )}
+            {result.isTopResult && (
+              <RecommendationBadge>Featured</RecommendationBadge>
+            )}
           </BadgeWrapper>
           <MainWrapper>
             {filetype in FileTypeIconsConfig && (
@@ -149,42 +150,53 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
             )}
             <TextWrapper>
               <TitltAndDateWrapper>
-                <Title>{ListItemLink(engine, result, "",QuickViewOnClick)}</Title>
+                <Title>
+                  {ListItemLink(engine, result, "", QuickViewOnClick)}
+                </Title>
                 <DateContainer>
-                {QuickViewOnClick &&
-                <Icon icon = {eye} style = {{cursor : 'pointer', marginRight: '10px'}} onClick={()=>{
-                  setResult(result);
-                  setOpenModal(true);
-                }}/>}
-                {result.raw.date && (
-                  <Excerpt>
-                    {date.getDate() +
-                      "/" +
-                      (date.getMonth() + 1) +
-                      "/" +
-                      date.getFullYear()}
-                  </Excerpt>
-                )}
+                  {QuickViewOnClick && (
+                    <Icon
+                      icon={eye}
+                      style={{ cursor: "pointer", marginRight: "10px" }}
+                      onClick={() => {
+                        setResult(result);
+                        setOpenModal(true);
+                      }}
+                    />
+                  )}
+                  {result.raw.date && (
+                    <Excerpt>
+                      {date.getDate() +
+                        "/" +
+                        (date.getMonth() + 1) +
+                        "/" +
+                        date.getFullYear()}
+                    </Excerpt>
+                  )}
                 </DateContainer>
               </TitltAndDateWrapper>
               {result.excerpt && (
                 <Box pb={1}>
-                  <Excerpt dangerouslySetInnerHTML={{ __html: highlightedExcerpt(result) }} />
+                  <Excerpt
+                    dangerouslySetInnerHTML={{
+                      __html: highlightedExcerpt(result),
+                    }}
+                  />
                 </Box>
               )}
-              {FieldValues.length > 0 &&
-              <AdditionalInfoFieldContainer>
-                {FieldValues.map((item, index)=>{
-                const temp: unknown = result.raw[`${item.value}`];
-                const fieldValue: string = temp as string;
-                      return <FieldValue caption = {item.caption} value = {fieldValue}/>
-                })}
-            </AdditionalInfoFieldContainer>
-              }
+              {FieldValues.length > 0 && (
+                <AdditionalInfoFieldContainer>
+                  {FieldValues.map((item, index) => {
+                    const temp: unknown = result.raw[`${item.value}`];
+                    const fieldValue: string = temp as string;
+                    return (
+                      <FieldValue caption={item.caption} value={fieldValue} />
+                    );
+                  })}
+                </AdditionalInfoFieldContainer>
+              )}
             </TextWrapper>
-            
           </MainWrapper>
-          
         </Box>
       </ListItem>
       <div
@@ -200,8 +212,6 @@ const GeneralResultTemplate: React.FC<{ result: Result, QuickViewOnClick : boole
 
 export default GeneralResultTemplate;
 
-
-
 const MainWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -212,13 +222,13 @@ const MainWrapper = styled.div`
 
 const SourceTypeWrapper = styled.div`
   width: 100px;
- /*  height: 100px; */
+  /*  height: 100px; */
   display: flex;
   justify-content: center;
   align-items: center;
   @media (max-width: 480px) {
-   display: none;
-}
+    display: none;
+  }
 `;
 
 const IconImage = styled.img`
@@ -241,7 +251,6 @@ const Title = styled.h2`
   width: 80%;
   margin-bottom: 10px;
 
-
   & a {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -256,12 +265,12 @@ const Title = styled.h2`
     text-decoration: underline;
   }
   @media (max-width: 480px) {
-   font-size: 18px;
-   & a {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-   }
-}
+    font-size: 18px;
+    & a {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+    }
+  }
 `;
 
 const Excerpt = styled.span`
@@ -274,19 +283,19 @@ const Excerpt = styled.span`
   font-family: inherit;
   font-weight: 300px;
   @media (max-width: 480px) {
-   font-size: 12px;
-}
+    font-size: 12px;
+  }
 
-& b{
-  font-weight: 400;
-}
+  & b {
+    font-weight: 400;
+  }
 `;
 
 const RecommendationBadge = styled.div`
   background: #f6f7f9;
   width: 100px;
   height: 20px;
-  border-radius: 32px;
+  border-radius: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -305,18 +314,14 @@ const BadgeWrapper = styled.div`
   flex-direction: row;
   width: 210px;
   justify-content: space-between;
-
-`
-
+`;
 
 const DateContainer = styled.div`
-display: flex;
-align-items: center;
-width: 130px;
-
-`
-
+  display: flex;
+  align-items: center;
+  width: 130px;
+`;
 
 const AdditionalInfoFieldContainer = styled.div`
   display: flex;
-`
+`;

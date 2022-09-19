@@ -1,79 +1,72 @@
-import HeroImage from '../assets/Hero.jpg'
-import { RecommendationType } from './Types/ConfigTypes';
+import HeroImage from "../assets/Hero.jpg";
+import { RecommendationType } from "./Types/ConfigTypes";
 
 export const NavBarConfig = [
   {
-    title: "Personal",
+    title: "FAQ",
     redirectTo: "/home",
   },
   {
-    title: "Business",
+    title: "Easy Order",
     redirectTo: "/",
   },
   {
-    title: "Commerical",
+    title: "Store Locator",
     redirectTo: "/",
   },
   {
-    title: "About",
+    title: "Shipping & Returns",
     redirectTo: "/",
   },
 ];
 
-
 export const HeaderConfig = [
-    {
-        title: "Bank Account",
-        redirectTo: "/home",
-      },
-      {
-        title: "Credit Card",
-        redirectTo: "/",
-      },
-      {
-        title: "Mortgages",
-        redirectTo: "/",
-      },
-      {
-        title: "Investment",
-        redirectTo: "/",
-      },
-      {
-        title: "Insurance",
-        redirectTo: "/",
-      },
-]
-
+  {
+    title: "Coffee",
+    redirectTo: "/home",
+  },
+  {
+    title: "Machines",
+    redirectTo: "/",
+  },
+  {
+    title: "Accessories",
+    redirectTo: "/",
+  },
+  {
+    title: "Recycling",
+    redirectTo: "/",
+  },
+  {
+    title: "For Business",
+    redirectTo: "/",
+  },
+];
 
 export const HeroConfig = {
-    title  : 'Life changes fast',
-    description : 'A BTEP Mortgage gives you the flexibility to use the equity from your home when you need it.',
-    background : HeroImage,
-    buttonText : 'Learn More',
-    onClickButtonRedirect : '/search',
-    
-}
+  title: "",
+  description: "",
+  background: HeroImage,
+  buttonText: "Learn More",
+  onClickButtonRedirect: "/search",
+};
 
-
-export const MainRecommendationConfig : RecommendationType= {
-
-  title : 'Recommendations',
-  description : "Here are your personalized recommendations",
+export const MainRecommendationConfig: RecommendationType = {
+  title: "TRENDING NOW",
+  description: "Here are your personalized recommendations",
   numberOfResults: 6,
-  imageField : 'sfimage_url__c',
-  pipeline : 'Homepage',
-  id : 'Recommendation'
-}
+  imageField: "sfimage_url__c",
+  pipeline: "default",
+  id: "Recommendation",
+};
 
-export const VideoRecommendationConfig : RecommendationType  = {
-
-  title : 'Videos',
-  description : "Here are your personalized recommendations",
+export const VideoRecommendationConfig: RecommendationType = {
+  title: "Videos",
+  description: "Here are your personalized recommendations",
   numberOfResults: 3,
-  imageField : 'ytthumbnailurl',
-  pipeline : 'Video Rec Sidebar',
-  id : 'Recommendation'
-}
-
+  imageField: "ytthumbnailurl",
+  pipeline: "Youtube",
+  id: "Recommendation",
+};
 
 export const EnableAuthentication = false;

@@ -8,7 +8,9 @@ import {
 } from "@coveo/headless/recommendation";
 import { Theme } from "../../theme";
 import styled from "styled-components";
-import RecommendtionCard, { SkeletonRecommendtionCard } from "./RecommendationCard";
+import RecommendtionCard, {
+  SkeletonRecommendtionCard,
+} from "./RecommendationCard";
 import SampleImage from "../../assets/sampleImages/recommendation.png";
 import { CustomContextContext } from "../CustomContext/CustomContextContext";
 import { VideoRecommendationConfig } from "../../config/HomeConfig";
@@ -27,9 +29,8 @@ export const RecommendationListRenderer: FunctionComponent<
 
   useEffect(() => {
     controller.refresh();
-    controller.subscribe(() => setState(controller.state))
+    controller.subscribe(() => setState(controller.state));
   }, []);
-
 
   if (state.error) {
     return (
@@ -49,47 +50,51 @@ export const RecommendationListRenderer: FunctionComponent<
     engine.dispatch(logRecommendationOpen(recommendation));
   };
 
-  const skeletonArray = [1,2,3]
-  const NumberOfResult = VideoRecommendationConfig.numberOfResults
+  const skeletonArray = [1, 2, 3];
+  const NumberOfResult = VideoRecommendationConfig.numberOfResults;
   return (
     <MainWrapper>
       <Title>{VideoRecommendationConfig.title}</Title>
       <SubTitle>{VideoRecommendationConfig.description}</SubTitle>
-      {state.recommendations.length > 0 ?
-      <CardWrapper>
-        {state?.recommendations?.slice(0, NumberOfResult).map((recommendation, index) => {
+      {state.recommendations.length > 0 ? (
+        <CardWrapper>
+          {state?.recommendations
+            ?.slice(0, NumberOfResult)
+            .map((recommendation, index) => {
+              const temp: unknown =
+                recommendation.raw[`${VideoRecommendationConfig.imageField}`];
+              const imgeURL: string = temp as string;
 
-        const temp: unknown = recommendation.raw[`${VideoRecommendationConfig.imageField}`];
-        const imgeURL : string = temp as string;
-
-          return (
-            <div key = {recommendation.title}>
-            <RecommendtionCard
-              video={true}
-              title={recommendation.title}
-              description={recommendation.excerpt}
-              image={imgeURL? imgeURL: SampleImage}
-              clickUri={recommendation.clickUri} 
-              onClick={() => logClick(recommendation)}
-              onContextMenu={() => logClick(recommendation)}
-              onMouseDown={() => logClick(recommendation)}
-              onMouseUp={() => logClick(recommendation)}
-            />
-            </div>
-          );
-        })}
-      </CardWrapper> : <CardWrapper>
-        {skeletonArray.map((item, index) => {
-          return (
-            <div key = {item}>
-            <SkeletonRecommendtionCard/>
-            </div>
-          );
-        })}
-      </CardWrapper> }
+              return (
+                <div key={recommendation.title}>
+                  <RecommendtionCard
+                    video={true}
+                    title={recommendation.title}
+                    description={recommendation.excerpt}
+                    image={imgeURL ? imgeURL : SampleImage}
+                    clickUri={recommendation.clickUri}
+                    onClick={() => logClick(recommendation)}
+                    onContextMenu={() => logClick(recommendation)}
+                    onMouseDown={() => logClick(recommendation)}
+                    onMouseUp={() => logClick(recommendation)}
+                  />
+                </div>
+              );
+            })}
+        </CardWrapper>
+      ) : (
+        <CardWrapper>
+          {skeletonArray.map((item, index) => {
+            return (
+              <div key={item}>
+                <SkeletonRecommendtionCard />
+              </div>
+            );
+          })}
+        </CardWrapper>
+      )}
     </MainWrapper>
   );
-
 };
 
 const VideoRecommendation = () => {
@@ -97,16 +102,14 @@ const VideoRecommendation = () => {
     configuration: {
       organizationId: process.env.REACT_APP_ORGANIZATION_ID!,
       accessToken: process.env.REACT_APP_API_KEY!,
-      searchHub : process.env.REACT_APP_SEARCH_HUB!,
-      pipeline : VideoRecommendationConfig.pipeline,
-
+      searchHub: process.env.REACT_APP_SEARCH_HUB!,
+      pipeline: VideoRecommendationConfig.pipeline,
     },
   });
 
+  const { settingContextFromEngine } = useContext(CustomContextContext);
 
-  const {settingContextFromEngine} = useContext(CustomContextContext)
-
-  settingContextFromEngine(recommendationEngine)
+  settingContextFromEngine(recommendationEngine);
 
   const recController = buildRecommendationList(recommendationEngine, {
     options: { id: VideoRecommendationConfig.id },
@@ -124,7 +127,7 @@ export default VideoRecommendation;
 
 const MainWrapper = styled.div`
   width: 95%;
-  border-radius: 24px;
+  border-radius: 12px;
   position: relative;
   padding: 20px 20px;
   display: flex;
@@ -159,4 +162,3 @@ const CardWrapper = styled.div`
   max-width: 1500px;
   margin-top: 20px;
 `;
-

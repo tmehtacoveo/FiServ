@@ -9,9 +9,11 @@ import { ResultTemplatesHelpers } from "@coveo/headless";
 import PeopleResultTemplate from "../searchResultTemplates/PeopleResultTemplate";
 import VideoResultTemplate from "../searchResultTemplates/VideoResultTemplate";
 import { Result } from "@coveo/headless";
-import { DefaultSideBarRecommendationConfigType, SearchPageTabConfigType } from "./Types/ConfigTypes";
+import {
+  DefaultSideBarRecommendationConfigType,
+  SearchPageTabConfigType,
+} from "./Types/ConfigTypes";
 import CustomPeopleResultTemplate from "../searchResultTemplates/CustomPeopleResultTemplate";
-
 
 /* 
 FacetConfig is used to initialize all the facet when the webpage loads up, 
@@ -30,30 +32,36 @@ export const FacetConfig = [
   {
     field: "concepts",
     title: "Concepts",
-  },{
-    field : "mynav2b",
-    title : "Focus Area"
-  },{
-    field : "mynav3b",
-    title : "Banking Information"
-  },{
-    field :"adspecial",
-    title : "Speciality"
-  },{
-    field :"adminimums",
-    title : "Minimums"
-  },{
-    field :"adstate",
-    title : "State"
-  },{
-    field :"adcity",
-    title : "City"
-  },{
+  },
+  {
+    field: "mynav2b",
+    title: "Focus Area",
+  },
+  {
+    field: "mynav3b",
+    title: "Banking Information",
+  },
+  {
+    field: "adspecial",
+    title: "Speciality",
+  },
+  {
+    field: "adminimums",
+    title: "Minimums",
+  },
+  {
+    field: "adstate",
+    title: "State",
+  },
+  {
+    field: "adcity",
+    title: "City",
+  },
+  {
     title: "More Info",
-    field : "mynav4b"
-  }
+    field: "mynav4b",
+  },
 ] as const;
-
 
 /* 
 ResultTemplateConfig helps you select which result template to show on which condition. At moment there are 3 genertic result template:
@@ -67,12 +75,16 @@ You can create custom one using the searchResultTemplates/GeneralResultTemplate.
 export const ResultTemplateConfig = [
   {
     conditions: [],
-    content: (result: Result) => 
-    <GeneralResultTemplate 
-      result={result} 
-      QuickViewOnClick = {true} 
-      FieldValues = {[{caption: 'source type', value : 'sysfiletype'},{caption: 'source', value : 'source'}]} 
-    />,
+    content: (result: Result) => (
+      <GeneralResultTemplate
+        result={result}
+        QuickViewOnClick={true}
+        FieldValues={[
+          { caption: "source type", value: "sysfiletype" },
+          { caption: "source", value: "source" },
+        ]}
+      />
+    ),
     priority: 1,
   },
   {
@@ -93,8 +105,6 @@ export const ResultTemplateConfig = [
   },
 ];
 
-
-
 /* 
 FileTypeIconsConfig helps you add file type icons in the GeneralResultTemplate.
 The key should be the field raw.sysfiletype e.g html,pdf,doc etc
@@ -105,17 +115,13 @@ You can add more images to the assets/FileTypeIcons folder. Make sure to import 
 
 */
 
-export const FileTypeIconsConfig  = {
+export const FileTypeIconsConfig = {
   pdf: pdfIcon,
   html: htmlIcon,
   epub: pubIcon,
-  doc : docIcon,
-  SalesforceItem : sfIcon,
+  doc: docIcon,
+  SalesforceItem: sfIcon,
 };
-
-
-
-
 
 /* 
 FieldToIncludesInSearchResults helps you add more fields to the result templates. 
@@ -124,21 +130,17 @@ When setting imageField in this file, make sure the field is included in the Fie
 The fields 'date', 'ytthumbnailurl', 'sysfiletype' should NOT be removed. 
 */
 
-export const FieldToIncludesInSearchResults : string[] = [
+export const FieldToIncludesInSearchResults: string[] = [
   "sfanswer__c",
   "sfid",
-  "sysfiletype", 
+  "sysfiletype",
   "date",
   "adimage",
   "ytthumbnailurl",
   "sfimage__c",
   "sfimage_url__c",
-  'adspecial'
+  "adspecial",
 ];
-
-
-
-
 
 /* 
 SearchPageTabConfig helps you configure the Tabs. Each object represent a new Tab.
@@ -154,7 +156,7 @@ You can leave the Array empty if you don't want any tabs
 
 */
 
-export const SearchPageTabConfig : SearchPageTabConfigType[] = [
+export const SearchPageTabConfig: SearchPageTabConfigType[] = [
   {
     caption: "All",
     expression: "",
@@ -165,14 +167,14 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         NumberofResults: 3,
         title: "Related Videos",
         videoRecommendation: true,
-        imageField: 'ytthumbnailurl'
-      }
+        imageField: "ytthumbnailurl",
+      },
     ],
-    facetToInclude: ["source", "filetype", "concepts",],
+    facetToInclude: ["source", "filetype", "concepts"],
   },
   {
-    caption: "Investing",
-    expression: `@source==("Investopedia","Investopedia Videos","Nerd Wallet") AND @concepts='investment'`,
+    caption: "Accessories",
+    expression: `@systitle=("Accessories") AND @concepts='capsules'`,
     isActive: false,
     sideBarRecommendationConfig: [
       {
@@ -182,17 +184,17 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
         videoRecommendation: false,
       },
     ],
-    facetToInclude: ["concepts","mynav2b"],
+    facetToInclude: ["concepts", "mynav2b"],
   },
   {
-    caption: "Money Matters",
+    caption: "Barista Creations",
     expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
     isActive: false,
-    facetToInclude: ["concepts","mynav2b", "mynav4b"],
+    facetToInclude: ["concepts", "mynav2b", "mynav4b"],
   },
   {
-    caption: "Insurance Needs",
-    expression: `@source==("Insurance Information","Insurance Advice","Policy Genius","Nerd Wallet") AND @concepts='insurance'`,
+    caption: "How To's & More",
+    expression: `@title=("How To")`,
     isActive: false,
     sideBarRecommendationConfig: [
       {
@@ -205,17 +207,17 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
     facetToInclude: ["concepts"],
   },
   {
-    caption: "Banking Info",
+    caption: "World Explorations",
     expression: `@source==("Bankrate")`,
     isActive: false,
-    facetToInclude: ["concepts","mynav2b","mynav3b"],
+    facetToInclude: ["concepts", "mynav2b", "mynav3b"],
   },
-  {
-    caption: "Advisors",
-    expression: `@source==("Advisor")`,
-    isActive: false,
-    facetToInclude: ["adspecial","adminimums","adstate","adcity"],
-  },
+  // {
+  //   caption: "Advisors",
+  //   expression: `@source==("Advisor")`,
+  //   isActive: false,
+  //   facetToInclude: ["adspecial","adminimums","adstate","adcity"],
+  // },
   {
     caption: "Youtube",
     expression: `@filetype=="youtubevideo"`,
@@ -223,8 +225,6 @@ export const SearchPageTabConfig : SearchPageTabConfigType[] = [
     facetToInclude: ["concepts"],
   },
 ];
-
-
 
 /* 
 DefaultSideBarRecommendationConfig is used if you want to show same sideBar recommendation on each tab.

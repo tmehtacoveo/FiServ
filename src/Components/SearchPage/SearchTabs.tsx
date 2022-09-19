@@ -7,25 +7,27 @@ import { useNavigate } from "react-router-dom";
 import { SearchPageTabConfig } from "../../config/SearchConfig";
 import { SearchPageTabConfigType } from "../../config/Types/ConfigTypes";
 
-
-const isRouteMatching  = (param : string, caption : string) => {
+const isRouteMatching = (param: string, caption: string) => {
   if (!param && caption === SearchPageTabConfig[0].caption) {
     return true;
   }
-  return (
-    (param && caption.replace(/\s/g, "").toLowerCase() === param.toLowerCase())? true : false
-  );
+  return param &&
+    caption.replace(/\s/g, "").toLowerCase() === param.toLowerCase()
+    ? true
+    : false;
 };
 
-
 interface SearchTabType {
-  item : SearchPageTabConfigType,
-  controller : Tab,
-  selected : boolean 
+  item: SearchPageTabConfigType;
+  controller: Tab;
+  selected: boolean;
 }
 
-
-export const SearchTab: React.FC<SearchTabType> = ({ controller, item, selected }) => {
+export const SearchTab: React.FC<SearchTabType> = ({
+  controller,
+  item,
+  selected,
+}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -50,12 +52,11 @@ export const SearchTab: React.FC<SearchTabType> = ({ controller, item, selected 
   );
 };
 
-
 interface SearchTabsType {
-  filterSelected : string
+  filterSelected: string;
 }
 
-const SearchTabs : React.FC<SearchTabsType> = ({ filterSelected }) => {
+const SearchTabs: React.FC<SearchTabsType> = ({ filterSelected }) => {
   const engine = useContext(EngineContext)!;
 
   return (
@@ -69,12 +70,12 @@ const SearchTabs : React.FC<SearchTabsType> = ({ filterSelected }) => {
         });
 
         return (
-          <React.Fragment key = {item.caption}>
-          <SearchTab
-            item={item}
-            controller={controller}
-            selected={isRouteMatching(filterSelected, item.caption)}
-          ></SearchTab>
+          <React.Fragment key={item.caption}>
+            <SearchTab
+              item={item}
+              controller={controller}
+              selected={isRouteMatching(filterSelected, item.caption)}
+            ></SearchTab>
           </React.Fragment>
         );
       })}
@@ -92,17 +93,16 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const TabTitle = styled.a<{isActive : boolean }>`
+const TabTitle = styled.a<{ isActive: boolean }>`
   padding: 15px 20px;
   text-align: center;
   color: ${Theme.secondaryText};
   cursor: pointer;
   font-family: inherit;
   background: ${(props) => (props.isActive ? Theme.selection : null)};
-  opacity: ${(props) => (props.isActive ? 1 : 0.8)};
   transition: 0.2s ease-in-out all;
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 `;
 
