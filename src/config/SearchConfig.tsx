@@ -26,6 +26,14 @@ export const FacetConfig = [
     title: "Source",
   },
   {
+    field: "nes_category",
+    title: "Category",
+  },
+  {
+    field: "language",
+    title: "Language",
+  },
+  {
     field: "filetype",
     title: "File Type",
   },
@@ -163,54 +171,55 @@ export const SearchPageTabConfig: SearchPageTabConfigType[] = [
     isActive: true,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Video Rec Sidebar",
-        NumberofResults: 3,
+        pipeline: "Youtube",
+        NumberofResults: 6,
         title: "Related Videos",
         videoRecommendation: true,
         imageField: "ytthumbnailurl",
       },
     ],
-    facetToInclude: ["source", "filetype", "concepts"],
+    facetToInclude: ["language", "concepts", "filetype"],
   },
   {
-    caption: "Accessories",
-    expression: `@systitle=("Accessories") AND @concepts='capsules'`,
+    caption: "Products",
+    expression: `@systitle=("Accessories") OR @concepts=("machines", "machine", "pod", "pods")`,
     isActive: false,
     sideBarRecommendationConfig: [
       {
-        pipeline: "IRS test",
+        pipeline: "Products Sidebar",
         NumberofResults: 6,
-        title: "Related for Investing",
+        title: "You May Like",
         videoRecommendation: false,
       },
     ],
-    facetToInclude: ["concepts", "mynav2b"],
+    facetToInclude: ["nes_category"],
   },
   {
-    caption: "Barista Creations",
-    expression: `@source==("Nerd Wallet","Credit Cards","Bankrate","Insurance Advice")`,
+    caption: "Coffee Recipes",
+    expression: `@title=("recipe", "barista")`,
     isActive: false,
-    facetToInclude: ["concepts", "mynav2b", "mynav4b"],
+    sideBarRecommendationConfig: [
+      {
+        pipeline: "Youtube Recipes",
+        NumberofResults: 6,
+        title: "Related for Recipes",
+        videoRecommendation: true,
+        imageField: "ytthumbnailurl",
+      },
+    ],
+    facetToInclude: ["language"],
   },
   {
     caption: "How To's & More",
     expression: `@title=("How To")`,
     isActive: false,
-    sideBarRecommendationConfig: [
-      {
-        pipeline: "Glossary test",
-        NumberofResults: 6,
-        title: "Glossary",
-        videoRecommendation: false,
-      },
-    ],
     facetToInclude: ["concepts"],
   },
   {
-    caption: "World Explorations",
-    expression: `@source==("Bankrate")`,
+    caption: "Recycling",
+    expression: `@systitle=("Recycling") OR @concept=("Recycling")`,
     isActive: false,
-    facetToInclude: ["concepts", "mynav2b", "mynav3b"],
+    facetToInclude: ["language", "mynav2b", "mynav3b"],
   },
   // {
   //   caption: "Advisors",
@@ -222,7 +231,7 @@ export const SearchPageTabConfig: SearchPageTabConfigType[] = [
     caption: "Youtube",
     expression: `@filetype=="youtubevideo"`,
     isActive: false,
-    facetToInclude: ["concepts"],
+    facetToInclude: ["language"],
   },
 ];
 

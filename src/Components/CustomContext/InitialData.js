@@ -34,7 +34,7 @@ export const InitialData = [
       },
       {
         active: true,
-        keyName: "purchase_history",
+        keyName: "purchase_interest",
         keyValue: "pods",
         customQRF: false,
       },
@@ -48,14 +48,14 @@ export const InitialData = [
     context: [
       {
         active: true,
-        keyName: "employment",
-        keyValue: "barista",
+        keyName: "purchase_interest",
+        keyValue: "pack",
         customQRF: false,
       },
       {
         active: true,
-        keyName: "purchase_history",
-        keyValue: "",
+        keyName: "spending_history",
+        keyValue: "high",
         customQRF: false,
       },
     ],
