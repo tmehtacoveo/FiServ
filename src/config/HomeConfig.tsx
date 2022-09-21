@@ -55,8 +55,8 @@ export const MainRecommendationConfig: RecommendationType = {
   title: "TRENDING NOW",
   description: "Here are your personalized recommendations",
   numberOfResults: 6,
-  imageField: "sfimage_url__c",
-  pipeline: "default",
+  imageField: "nes_image",
+  pipeline: "default with nes_image rule - test",
   id: "Recommendation",
 };
 

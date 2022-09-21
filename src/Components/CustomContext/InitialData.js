@@ -28,14 +28,8 @@ export const InitialData = [
     context: [
       {
         active: true,
-        keyName: "employment",
-        keyValue: "investment",
-        customQRF: false,
-      },
-      {
-        active: true,
         keyName: "purchase_interest",
-        keyValue: "pods",
+        keyValue: "cups",
         customQRF: false,
       },
     ],
@@ -49,13 +43,13 @@ export const InitialData = [
       {
         active: true,
         keyName: "purchase_interest",
-        keyValue: "pack",
+        keyValue: "machine",
         customQRF: false,
       },
       {
         active: true,
-        keyName: "spending_history",
-        keyValue: "high",
+        keyName: "avg_min_purchase",
+        keyValue: "100",
         customQRF: false,
       },
     ],

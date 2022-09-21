@@ -144,7 +144,7 @@ const MainWrapper = styled.div`
   }
 
   &:hover ${Title} {
-    color: #1372ec;
+    color: ${Theme.link};
   }
 
   &:hover ${ReferralLink} {

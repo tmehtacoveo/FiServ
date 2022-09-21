@@ -145,6 +145,7 @@ export const FieldToIncludesInSearchResults: string[] = [
   "date",
   "adimage",
   "ytthumbnailurl",
+  "nes_image",
   "sfimage__c",
   "sfimage_url__c",
   "adspecial",
@@ -186,7 +187,7 @@ export const SearchPageTabConfig: SearchPageTabConfigType[] = [
     isActive: false,
     sideBarRecommendationConfig: [
       {
-        pipeline: "Products Sidebar",
+        pipeline: "Copy of Products Sidebar",
         NumberofResults: 6,
         title: "You May Like",
         videoRecommendation: false,
